@@ -59,7 +59,7 @@ git pull
 
 或者如下操作：
 
-- 将远程主机 origin 的 main分支拉取过来，与本地的 brantest 分支合并。
+- 将远程主机 origin 的 main分支拉取过来，与本地的 zgl分支合并。
 
 ```git
 git pull origin main:zgl
@@ -70,3 +70,4 @@ git pull origin main:zgl
 ```
 git pull origin main
 ```
+
