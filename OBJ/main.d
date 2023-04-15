@@ -1,15 +1,15 @@
 ..\obj\main.o: main.c
 ..\obj\main.o: ..\Library\inc\ht32.h
-..\obj\main.o: C:\zlg\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.38\ARM\INC\Holtek\HT32F5xxxx\ht32f5xxxx_01.h
-..\obj\main.o: C:\zlg\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.38\ARM\INC\Holtek\HT32F5xxxx\ht32_config.h
+..\obj\main.o: D:\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.44\ARM\INC\Holtek\HT32F5xxxx\ht32f5xxxx_01.h
+..\obj\main.o: D:\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.44\ARM\INC\Holtek\HT32F5xxxx\ht32_config.h
 ..\obj\main.o: ..\Code\Include\core_cm0plus.h
-..\obj\main.o: C:\zlg\KEIL5\keil5\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\main.o: D:\KEIL5\keil5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\main.o: ..\Code\Include\core_cmInstr.h
 ..\obj\main.o: ..\Code\Include\core_cmFunc.h
-..\obj\main.o: C:\zlg\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.38\ARM\INC\Holtek\HT32F5xxxx\system_ht32f5xxxx_01.h
+..\obj\main.o: D:\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.44\ARM\INC\Holtek\HT32F5xxxx\system_ht32f5xxxx_01.h
 ..\obj\main.o: ..\Library\inc\ht32f5xxxx_lib.h
 ..\obj\main.o: ..\Library\inc\ht32f52342_52_libcfg.h
-..\obj\main.o: C:\zlg\KEIL5\keil5\ARM\ARMCC\Bin\..\include\stdio.h
+..\obj\main.o: D:\KEIL5\keil5\ARM\ARMCC\Bin\..\include\stdio.h
 ..\obj\main.o: ..\Config\ht32f5xxxx_conf.h
 ..\obj\main.o: ..\Library\inc\ht32f5xxxx_adc.h
 ..\obj\main.o: ..\Library\inc\ht32.h
@@ -46,3 +46,4 @@
 ..\obj\main.o: ..\Hardware\PWM\pwm.h
 ..\obj\main.o: ..\Hardware\DELAY\delay.h
 ..\obj\main.o: ..\Hardware\HX711\hx711.h
+..\obj\main.o: ..\Hardware\ENCODER\encoder.h

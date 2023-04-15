@@ -16,7 +16,7 @@
         <TargetCommonOption>
           <Device>HT32F52342_64LQFP</Device>
           <Vendor>Holtek</Vendor>
-          <PackID>Holtek.HT32_DFP.1.0.38</PackID>
+          <PackID>Holtek.HT32_DFP.1.0.44</PackID>
           <PackURL>https://mcu.holtek.com.tw/pack</PackURL>
           <Cpu>IRAM(0x20000000,0x2000) IROM(0x00000000,0x10000) CPUTYPE("Cortex-M0+") CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -336,7 +336,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HT32_DRIVER, USE_HT32F52352_SK, USE_HT32F52342_52, USE_MEM_HT32F52352</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Code;..\Code\Include;..\Library\inc;..\Config;..\Utilities\common;..\Hardware\LED;..\Hardware\USART;..\Utilities;..\Utilities\HT32_Board;..\Hardware\PWM;..\Hardware\DELAY;..\Hardware\HX711</IncludePath>
+              <IncludePath>..\Code;..\Code\Include;..\Library\inc;..\Config;..\Utilities\common;..\Hardware\LED;..\Hardware\USART;..\Utilities;..\Utilities\HT32_Board;..\Hardware\PWM;..\Hardware\DELAY;..\Hardware\HX711;..\Hardware\ENCODER</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -419,6 +419,11 @@
               <FileName>hx711.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Hardware\HX711\hx711.c</FilePath>
+            </File>
+            <File>
+              <FileName>encoder.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Hardware\ENCODER\encoder.c</FilePath>
             </File>
           </Files>
         </Group>
