@@ -6,6 +6,7 @@
 "..\obj\pwm.o"
 "..\obj\delay.o"
 "..\obj\hx711.o"
+"..\obj\encoder.o"
 "..\obj\ht32_op.o"
 "..\obj\startup_ht32f5xxxx_01.o"
 "..\obj\ht32_usbd_core.o"
