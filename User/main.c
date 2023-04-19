@@ -3,18 +3,21 @@
 #include "pwm.h"
 #include "delay.h"
 #include "hx711.h"
+#include "MatrixKey.h"
 
 /* Global functions ----------------------------------------------------------------------------------------*/
 /*********************************************************************************************************//**
   * @brief  Main program.
   * @retval None
   ***********************************************************************************************************/
+  
+  unsigned char key_num = 0;
 int main(void)
 {
 	GPTM_PWM_init();		// pwm初始化
 	HX711_Init();			// 初始化压力传感器
 	USART_Configuration();	// 串口初始化
-	
+	GPIO_MatrixKey_Configuration();
 //	Get_Basic();
 //	Servo_Run(0);
 //	Servo_Run2(0);
@@ -24,12 +27,17 @@ int main(void)
 	
 	while (1)
 	{
-		Get_Weight();
+//		Get_Weight();
 	
 //		Usart_SendStr(COM0_PORT,"Hello World!");//循环发送字符串，测试用
 //		delay_ms(500);
-//		Usart_Sendbyte(COM0_PORT,0xff);
+		Usart_Sendbyte(COM0_PORT,0xff);
 		delay_ms(500);
 		Ultrasonic_Ranging();
+		
+//		key_num = MatrixKey();
+//		if(key_num){} // 如果按下了按键
+		
+		
 	}
 }

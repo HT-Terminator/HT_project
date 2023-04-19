@@ -46,3 +46,4 @@
 ..\obj\main.o: ..\Hardware\PWM\pwm.h
 ..\obj\main.o: ..\Hardware\DELAY\delay.h
 ..\obj\main.o: ..\Hardware\HX711\hx711.h
+..\obj\main.o: ..\Hardware\MatrixKey\MatrixKey.h
