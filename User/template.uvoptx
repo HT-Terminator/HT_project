@@ -78,6 +78,23 @@
         <IsCurrentTarget>1</IsCurrentTarget>
       </OPTFL>
       <CpuCode>255</CpuCode>
+      <Books>
+        <Book>
+          <Number>0</Number>
+          <Title>User Manual (ESK32-30501 (HT32F52352))</Title>
+          <Path>https://www.holtek.com.tw/documents/10179/106680/HT32F5xxxx_StarterKitUserManuav100.pdf</Path>
+        </Book>
+        <Book>
+          <Number>1</Number>
+          <Title>Schematics (ESK32-30501 (HT32F52352))</Title>
+          <Path>https://www.holtek.com/documents/10179/106680/ESK32-30501_Schematics_52352_SK_V2.0.zip</Path>
+        </Book>
+        <Book>
+          <Number>2</Number>
+          <Title>ESK32-30501 Starter Kit Web Page (ESK32-30501 (HT32F52352))</Title>
+          <Path>https://www.holtek.com/esk32-30501</Path>
+        </Book>
+      </Books>
       <DebugOpt>
         <uSim>0</uSim>
         <uTrg>1</uTrg>
@@ -100,9 +117,6 @@
         <tRSysVw>1</tRSysVw>
         <sRunDeb>0</sRunDeb>
         <sLrtime>0</sLrtime>
-        <bEvRecOn>1</bEvRecOn>
-        <bSchkAxf>0</bSchkAxf>
-        <bTchkAxf>0</bTchkAxf>
         <nTsel>12</nTsel>
         <sDll></sDll>
         <sDllPa></sDllPa>
@@ -238,16 +252,9 @@
       <LintExecutable></LintExecutable>
       <LintConfigFile></LintConfigFile>
       <bLintAuto>0</bLintAuto>
-      <bAutoGenD>0</bAutoGenD>
-      <LntExFlags>0</LntExFlags>
-      <pMisraName></pMisraName>
-      <pszMrule></pszMrule>
-      <pSingCmds></pSingCmds>
-      <pMultCmds></pMultCmds>
-      <pMisraNamep></pMisraNamep>
-      <pszMrulep></pszMrulep>
-      <pSingCmdsp></pSingCmdsp>
-      <pMultCmdsp></pMultCmdsp>
+      <Lin2Executable></Lin2Executable>
+      <Lin2ConfigFile></Lin2ConfigFile>
+      <bLin2Auto>0</bLin2Auto>
     </TargetOption>
   </Target>
 

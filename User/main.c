@@ -17,12 +17,16 @@ int main(void)
 	USART_Configuration();	// ´®¿Ú³õÊ¼»¯
 	TM_Capture_Configuration();
 	
-//	Get_Basic();
+	Get_Basic();
 //	Servo_Run(0);
 //	Servo_Run2(0);
 //	Servo_Run3(0);
 //	Servo_Run4(0);
-//	delay_ms(500);
+			for(int i = 0;i<20;i++){
+			delay_ms(100);
+			}
+	Get_Basic();
+	
 	
 	while (1)
 	{
