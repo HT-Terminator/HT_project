@@ -14,6 +14,6 @@ extern u32 HX711_Read(void);
 extern void Get_Basic(void);
 extern void Get_Weight(void);
 
-extern s32 Weight_Medicine;
+extern volatile int Weight;
 
 #endif

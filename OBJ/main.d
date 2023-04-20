@@ -57,3 +57,4 @@
 ..\obj\main.o: ..\Utilities\common/ebi_lcd.h
 ..\obj\main.o: ..\Config\ht32_board_config.h
 ..\obj\main.o: C:\zlg\KEIL5\keil5\ARM\ARMCC\Bin\..\include\stdlib.h
+..\obj\main.o: ..\Hardware\ISD1820\isd1820.h

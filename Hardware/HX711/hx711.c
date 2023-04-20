@@ -6,7 +6,7 @@
 
 u32 HX711_Buffer;
 u32 Weight_Basic;
-s32 Weight_Medicine;
+volatile int Weight;
 
 //校准参数
 //因为不同的传感器特性曲线不是很一致，因此，每一个传感器需要矫正这里这个参数才能使测量值很准确。
@@ -55,7 +55,7 @@ void GPIO_Init_ipu(void)
     AFIO_GPxConfig(GPIO_PD, AFIO_PIN_1, AFIO_FUN_GPIO);
 
     /* Configure GPIO pull resistor                                                                         */
-    GPIO_PullResistorConfig(HT_GPIOD, GPIO_PIN_1, GPIO_PR_DOWN);
+    GPIO_PullResistorConfig(HT_GPIOD, GPIO_PIN_1, GPIO_PR_UP);
 
     /* Configure GPIO direction as input                                                                    */
     GPIO_DirectionConfig(HT_GPIOD, GPIO_PIN_1, GPIO_DIR_IN);
@@ -122,12 +122,12 @@ void Get_Weight(void)
 	HX711_Buffer = HX711_Read();
 	if(HX711_Buffer > Weight_Basic)			
 	{
-		Weight_Medicine = HX711_Buffer;
-		Weight_Medicine = Weight_Medicine - Weight_Basic;				//获取实物的AD采样数值。
-		Weight_Medicine = (s32)((float)Weight_Medicine/GapValue); 	//计算实物的实际重量
+		Weight = HX711_Buffer;
+		Weight = Weight - Weight_Basic;				//获取实物的AD采样数值。
+		Weight = (s32)((float)Weight/GapValue); 	//计算实物的实际重量
 	}
 	else
 	{
-		Weight_Medicine = 0;
+		Weight = 0;
 	}
 }

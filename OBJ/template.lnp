@@ -8,6 +8,7 @@
 "..\obj\hx711.o"
 "..\obj\matrixkey.o"
 "..\obj\oled.o"
+"..\obj\isd1820.o"
 "..\obj\ht32_op.o"
 "..\obj\startup_ht32f5xxxx_01.o"
 "..\obj\ht32_usbd_core.o"
