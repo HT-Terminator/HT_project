@@ -19,16 +19,9 @@ void USART_Configuration(void)
 	COM0_CLK(CKCUClock)= 1;  //开启时钟
 	CKCU_PeripClockConfig(CKCUClock, ENABLE);
 		
-	AFIO_GPxConfig(USART_GPIO_GROUP, USART_TX_PIN, AFIO_FUN_USART_UART);
-	AFIO_GPxConfig(USART_GPIO_GROUP, USART_RX_PIN, AFIO_FUN_USART_UART);
+	AFIO_GPxConfig(GPIO_PA, USART_TX_PIN, AFIO_FUN_USART_UART);
+	AFIO_GPxConfig(GPIO_PB, USART_RX_PIN, AFIO_FUN_USART_UART);
 
-	/*
-		波特率： 115200
-		长度：   8bits
-		停止位： 1位
-		校验位： 无			
-		模式：   正常模式
-	*/
 	USART_InitStructure.USART_BaudRate = 9600;
 	USART_InitStructure.USART_WordLength = USART_WORDLENGTH_8B;
 	USART_InitStructure.USART_StopBits = USART_STOPBITS_1;
