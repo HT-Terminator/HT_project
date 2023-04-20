@@ -46,3 +46,15 @@
 ..\obj\main.o: ..\Hardware\PWM\pwm.h
 ..\obj\main.o: ..\Hardware\DELAY\delay.h
 ..\obj\main.o: ..\Hardware\HX711\hx711.h
+..\obj\main.o: ..\Hardware\MatrixKey\MatrixKey.h
+..\obj\main.o: ..\Hardware\OLED\oled.h
+..\obj\main.o: ..\Utilities\ht32_board.h
+..\obj\main.o: ..\Library\inc\ht32_config.h
+..\obj\main.o: ..\Utilities\HT32_board/ht32f52352_sk.h
+..\obj\main.o: ..\Utilities\common/i2c_eeprom.h
+..\obj\main.o: ..\Utilities\ht32_board.h
+..\obj\main.o: ..\Utilities\common/spi_flash.h
+..\obj\main.o: ..\Utilities\common/ebi_lcd.h
+..\obj\main.o: ..\Config\ht32_board_config.h
+..\obj\main.o: C:\zlg\KEIL5\keil5\ARM\ARMCC\Bin\..\include\stdlib.h
+..\obj\main.o: ..\Hardware\ISD1820\isd1820.h
