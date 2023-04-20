@@ -21,10 +21,10 @@ int main(void)
 	GPIO_MatrixKey_Configuration();
 	OLED_Init();
 	
-	OLED_ShowString(0,Y_1,"Hello",16);// x的范围为0-127；y的范围为0-7，字体选择12/16（16占两行）
-	OLED_ShowNum(0*8,Y_2,11,2,16);	// 如果设置位数比实际位数大，则在最前面补空格 
-	OLED_ShowNum(2*8,Y_3,2345,4,16);
-	OLED_ShowNum(3*8,Y_4,3,1,16);
+	OLED_ShowString(0,Y_1," Key:",16);	// x的范围为0-127；y的范围为0-7，字体选择12/16（16占两行）
+//	OLED_ShowNum(0*8,Y_2,11,2,16);		// 如果设置位数比实际位数大，则在最前面补空格 
+//	OLED_ShowNum(2*8,Y_3,2345,4,16);
+//	OLED_ShowNum(3*8,Y_4,3,1,16);
 	
 	
 //	Get_Basic();
@@ -37,16 +37,19 @@ int main(void)
 	while (1)
 	{
 //		Get_Weight();
-//		delay_ms(50);
+		delay_ms(50);
 	
 //		Usart_SendStr(COM0_PORT,"Hello World!");//循环发送字符串，测试用
-		delay_ms(100);
-		Usart_Sendbyte(COM0_PORT,0xff);
-		delay_ms(100);
-		Ultrasonic_Ranging();
+//		delay_ms(100);
+//		Usart_Sendbyte(COM0_PORT,0xff);
+//		delay_ms(100);
+//		Ultrasonic_Ranging();
 		
-//		key_num = MatrixKey();
-//		if(key_num){} // 如果按下了按键
+		key_num = MatrixKey();
+		if(key_num)	// 如果按下了按键
+		{
+			OLED_ShowNum(5*8,Y_1,key_num,2,16);
+		} 
 		
 	}
 }
