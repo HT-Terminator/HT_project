@@ -87,7 +87,20 @@ git pull origin main
 ```
 
 ####更新远程分支信息
-    git fetch origin --prune
+```
+git fetch origin --prune
+```
 
 ####查看所有分支
-    git branch -v
+```
+git branch -v
+```
+
+####解决拉取文件冲突
+1. 拉取完成后，此时由于存在文件冲突，因此当前的分支状态属于MERGING
+2. 使用文本编辑器或者vscode打开
+2. 找到标识有HEAD的地方进行修改，上面为自己的，下面为拉取过来的（使用vscode可以方便修改）
+3. 注意修改所有的地方（有时候proj文件里面由于配置也会产生冲突，也需要进行）
+4. 再次```git add .```
+5. ```git commit -m "xxx"```
+6. ```git push``
