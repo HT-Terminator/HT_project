@@ -4,25 +4,16 @@
 #include "HX711.h"
 #include "delay.h"
 
-u32 HX711_Buffer_1;
-u32 HX711_Buffer_2;
-u32 HX711_Buffer_3;
+u32 HX711_Buffer;
 u32 Weight_Basic_1;
-u32 Weight_Basic_2;
-u32 Weight_Basic_3;
-s32 Weight_Medicine_1;
-s32 Weight_Medicine_2;
-s32 Weight_Medicine_3;
-u8 Flag_Error = 0;
+volatile int Weight_Medicine_1;
 
 //校准参数
 //因为不同的传感器特性曲线不是很一致，因此，每一个传感器需要矫正这里这个参数才能使测量值很准确。
 //当发现测试出来的重量偏大时，增加该数值。
 //如果测试出来的重量偏小时，减小改数值。
 //该值可以为小数
-#define GapValue_1 106.5
-#define GapValue_2 106.5
-#define GapValue_3 106.5
+#define GapValue 106.5
 
 void GPIO_Init_out_pp(void)
 {
@@ -78,10 +69,10 @@ void GPIO_Init_ipu(void)
 void HX711_Init(void)
 {
 	//HX711_SCK
-	GPIO_Init_out_pp();	// PB0 PB2 PB4
+	GPIO_Init_out_pp();	// PC11
 	
 	//HX711_DOUT
-	GPIO_Init_ipu();	// PB1 PB3 PB5
+	GPIO_Init_ipu();	// PD1
 	
 	//初始化设置为0
 	GPIO_SetOutBits(HT_GPIOD, GPIO_PIN_1);	
@@ -116,66 +107,9 @@ u32 HX711_Read_1(void)	//增益128
 	return(count);
 }
 
-//u32 HX711_Read_2(void)	//增益128
-//{
-//	unsigned long count; 
-//	unsigned char i; 
-//  	HX711_SCK_HIGH_2();
-//	delay_us(1);
-//  	HX711_SCK_LOW_2(); 
-//  	count=0; 
-//  	while(HX711_DOUT_2); 
-//  	for(i=0;i<24;i++)
-//	{ 
-//	  	HX711_SCK_HIGH_2();
-//	  	count=count<<1; 
-//		delay_us(1);
-//		HX711_SCK_LOW_2(); 
-//	  	if(HX711_DOUT_2)
-//			count++; 
-//		delay_us(1);
-//	} 
-// 	HX711_SCK_HIGH_2();
-//    count=count^0x800000;//第25个脉冲下降沿来时，转换数据
-//	delay_us(1);
-//	HX711_SCK_LOW_2(); 
-//	return(count);
-//}
-
-//u32 HX711_Read_3(void)	//增益128
-//{
-//	unsigned long count; 
-//	unsigned char i; 
-//  	HX711_SCK_HIGH_3();
-//	delay_us(1);
-//  	HX711_SCK_LOW_3(); 
-//  	count=0; 
-//  	while(HX711_DOUT_3); 
-//  	for(i=0;i<24;i++)
-//	{ 
-//	  	HX711_SCK_HIGH_3();
-//	  	count=count<<1; 
-//		delay_us(1);
-//		HX711_SCK_LOW_3(); 
-//	  	if(HX711_DOUT_3)
-//			count++; 
-//		delay_us(1);
-//	} 
-// 	HX711_SCK_HIGH_3();
-//    count=count^0x800000;//第25个脉冲下降沿来时，转换数据
-//	delay_us(1);
-//	HX711_SCK_LOW_3(); 
-//	return(count);
-//}
-//****************************************************
-//获取无重物时度数
-//****************************************************
 void Get_Basic(void)
 {
 	Weight_Basic_1 = HX711_Read_1();	
-//	Weight_Basic_1 = (uint32_t)(((float)Weight_Basic_1/GapValue_1) - 19462);
-//	Weight_Basic_2 = HX711_Read_2();
-//	Weight_Basic_3 = HX711_Read_3();
 } 
 
 //****************************************************
@@ -184,38 +118,15 @@ void Get_Basic(void)
 void Get_Weight(void)
 {
 	HX711_Buffer_1 = HX711_Read_1();
-//	HX711_Buffer_2 = HX711_Read_2();
-//	HX711_Buffer_3 = HX711_Read_3();
 	if(HX711_Buffer_1 > Weight_Basic_1)			
 	{
-		Weight_Medicine_1 = HX711_Buffer_1;
+		Weight_Medicine_1 = HX711_Buffer;
 		Weight_Medicine_1 = Weight_Medicine_1 - Weight_Basic_1;				//获取实物的AD采样数值。
-		Weight_Medicine_1 = (s32)((float)Weight_Medicine_1/GapValue_1); 	//计算实物的实际重量
+		Weight_Medicine_1 = (s32)((float)Weight_Medicine_1/GapValue); 	//计算实物的实际重量
 	}
 	else
 	{
 		Weight_Medicine_1 = 0;
 	}
-	
-//	if(HX711_Buffer_2 > Weight_Basic_2)			
-//	{
-//		Weight_Medicine_2 = HX711_Buffer_2;
-//		Weight_Medicine_2 = Weight_Medicine_2 - Weight_Basic_2;				//获取实物的AD采样数值。
-//		Weight_Medicine_2 = (s32)((float)Weight_Medicine_2/GapValue_2); 	//计算实物的实际重量
-//	}
-//	else
-//	{
-//		Weight_Medicine_2 = 0;
-//	}
-//	
-//	if(HX711_Buffer_3 > Weight_Basic_3)			
-//	{
-//		Weight_Medicine_3 = HX711_Buffer_3;
-//		Weight_Medicine_3 = Weight_Medicine_3 - Weight_Basic_3;				//获取实物的AD采样数值。
-//		Weight_Medicine_3 = (s32)((float)Weight_Medicine_3/GapValue_3); 	//计算实物的实际重量
-//	}
-//	else
-//	{
-//		Weight_Medicine_3 = 0;
-//	}
+
 }

@@ -332,7 +332,11 @@
               <MiscControls></MiscControls>
               <Define>USE_HT32_DRIVER, USE_HT32F52352_SK, USE_HT32F52342_52, USE_MEM_HT32F52352</Define>
               <Undefine></Undefine>
+<<<<<<< HEAD
               <IncludePath>..\Code;..\Code\Include;..\Library\inc;..\Config;..\Utilities\common;..\Hardware\LED;..\Hardware\USART;..\Utilities;..\Utilities\HT32_Board;..\Hardware\PWM;..\Hardware\DELAY;..\Hardware\HX711;..\Hardware\ENCODER</IncludePath>
+=======
+              <IncludePath>..\Code;..\Code\Include;..\Library\inc;..\Config;..\Utilities\common;..\Hardware\LED;..\Hardware\USART;..\Utilities;..\Utilities\HT32_Board;..\Hardware\PWM;..\Hardware\DELAY;..\Hardware\HX711;..\Hardware\MatrixKey;..\Hardware\OLED;..\Hardware\ISD1820</IncludePath>
+>>>>>>> ef783708d71730c15200a10cc9a1ef990d6618f4
             </VariousControls>
           </Cads>
           <Aads>
@@ -416,9 +420,25 @@
               <FilePath>..\Hardware\HX711\hx711.c</FilePath>
             </File>
             <File>
+<<<<<<< HEAD
               <FileName>encoder.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Hardware\ENCODER\encoder.c</FilePath>
+=======
+              <FileName>MatrixKey.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Hardware\MatrixKey\MatrixKey.c</FilePath>
+            </File>
+            <File>
+              <FileName>oled.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Hardware\OLED\oled.c</FilePath>
+            </File>
+            <File>
+              <FileName>isd1820.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Hardware\ISD1820\isd1820.c</FilePath>
+>>>>>>> ef783708d71730c15200a10cc9a1ef990d6618f4
             </File>
           </Files>
         </Group>
