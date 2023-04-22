@@ -52,4 +52,6 @@ void  get_encoder_data(void);
 void  encoder_data_process(void);
 float Low_pass_filter(low_pass_filter_parameters *filter,float data);
 
+extern int Encoder_TIM; 
+
 #endif

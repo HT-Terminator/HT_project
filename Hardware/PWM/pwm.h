@@ -13,12 +13,13 @@
 #define HTCFG_MCTM_CH2_AFIO_PIN                     (AFIO_PIN_2)
 #define HTCFG_MCTM_CH3_AFIO_PIN                     (AFIO_PIN_3)
 
-#define HTCFG_MCTM_RELOAD                           (48000000/2000)	//周期2ms
+//#define HTCFG_MCTM_RELOAD                           (48000000/2000)	//周期2ms
+#define HTCFG_MCTM_RELOAD                           4800
 
 void MCTM_PWM_init(void);
 void PWM_SetFreq(u32 uReload);
-void SetMotor_L(int PWML,int PWMN);
-void SetMotor_R(int PWML,int PWMN);
+void SetMotor_L(int PWMN);
+void SetMotor_R(int PWML);
 void SetMotor_Stop(void);
 
 //void Servo_Run(uint16_t angle);

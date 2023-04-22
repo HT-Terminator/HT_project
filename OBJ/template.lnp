@@ -6,7 +6,11 @@
 "..\obj\pwm.o"
 "..\obj\delay.o"
 "..\obj\hx711.o"
+"..\obj\matrixkey.o"
+"..\obj\oled.o"
+"..\obj\isd1820.o"
 "..\obj\encoder.o"
+"..\obj\pid.o"
 "..\obj\ht32_op.o"
 "..\obj\startup_ht32f5xxxx_01.o"
 "..\obj\ht32_usbd_core.o"
@@ -39,6 +43,6 @@
 "..\obj\ht32_serial.o"
 "..\obj\i2c_eeprom.o"
 --library_type=microlib --strict --scatter "..\OBJ\template.sct"
---summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list "..\..\..\Documents\template.map" -o ..\OBJ\template.axf

@@ -10,8 +10,8 @@
 //#define COM1_IRQn                    (USART1_IRQn)
 
 #define USART_GPIO_GROUP             (GPIO_PA)
-#define USART_TX_PIN                 (GPIO_PIN_2)
-#define USART_RX_PIN                 (GPIO_PIN_3)
+#define USART_TX_PIN                 (GPIO_PIN_8)
+#define USART_RX_PIN                 (GPIO_PIN_1)
 #define USART_AFIO_MODE              (AFIO_FUN_USART_UART) //模式设置，默认模式：AFIO_MODE_DEFAULT ，AFIO_MODE_1~15对应模式1~15
 #define COM0_PORT                    (HT_USART0)
 #define COM0_IRQn                    (USART0_IRQn)
@@ -24,6 +24,7 @@ void Usart_SendStr(HT_USART_TypeDef* USARTx, uint8_t *str);
 void Ultrasonic_Ranging(void);
 
 extern unsigned char usart0_flag;
+extern uint16_t distance;
 
 #endif
 
