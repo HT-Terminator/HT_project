@@ -13,7 +13,7 @@
 #define HTCFG_MCTM_CH2_AFIO_PIN                     (AFIO_PIN_2)
 #define HTCFG_MCTM_CH3_AFIO_PIN                     (AFIO_PIN_3)
 
-//#define HTCFG_MCTM_RELOAD                           (48000000/2000)	//ÖÜÆÚ2ms
+//#define HTCFG_MCTM_RELOAD                           (48000000/2000)	//ï¿½ï¿½ï¿½ï¿½2ms
 #define HTCFG_MCTM_RELOAD                           4800
 
 void MCTM_PWM_init(void);
