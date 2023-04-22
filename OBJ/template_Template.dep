@@ -42,7 +42,7 @@ I (..\Library\inc\ht32_cm0plus_misc.h)(0x574D2641)
 I (..\Library\inc\ht32_serial.h)(0x5E05BA23)
 I (..\Library\inc\ht32_div.h)(0x56C22A05)
 I (..\Library\inc\ht32_rand.h)(0x57B1BC8E)
-F (.\main.c)(0x64415AD3)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Code -I ..\Code\Include -I ..\Library\inc -I ..\Config -I ..\Utilities\common -I ..\Hardware\LED -I ..\Hardware\USART -I ..\Utilities -I ..\Utilities\HT32_Board -I ..\Hardware\PWM -I ..\Hardware\DELAY -I ..\Hardware\HX711 -I ..\Hardware\MatrixKey -I ..\Hardware\OLED -I ..\Hardware\ISD1820-I C:\Users\16625\Desktop\HT_project\User\RTE-I C:\zlg\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.38\ARM\INC\Holtek\HT32F5xxxx-I C:\zlg\KEIL5\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DUSE_HT32F52342_52 -DUSE_HT32_DRIVER -DUSE_HT32F52352_SK -DUSE_HT32F52342_52 -DUSE_MEM_HT32F52352-o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
+F (.\main.c)(0x64428F32)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Code -I ..\Code\Include -I ..\Library\inc -I ..\Config -I ..\Utilities\common -I ..\Hardware\LED -I ..\Hardware\USART -I ..\Utilities -I ..\Utilities\HT32_Board -I ..\Hardware\PWM -I ..\Hardware\DELAY -I ..\Hardware\HX711 -I ..\Hardware\MatrixKey -I ..\Hardware\OLED -I ..\Hardware\ISD1820-I C:\Users\16625\Desktop\HT_project\User\RTE-I C:\zlg\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.38\ARM\INC\Holtek\HT32F5xxxx-I C:\zlg\KEIL5\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DUSE_HT32F52342_52 -DUSE_HT32_DRIVER -DUSE_HT32F52352_SK -DUSE_HT32F52342_52 -DUSE_MEM_HT32F52352-o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
 I (..\Library\inc\ht32.h)(0x59959B2B)
 I (C:\zlg\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.38\ARM\INC\Holtek\HT32F5xxxx\ht32f5xxxx_01.h)(0x624FCBF2)
 I (C:\zlg\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.38\ARM\INC\Holtek\HT32F5xxxx\ht32_config.h)(0x61E6AE08)
@@ -85,12 +85,12 @@ I (..\Library\inc\ht32_cm0plus_misc.h)(0x574D2641)
 I (..\Library\inc\ht32_serial.h)(0x5E05BA23)
 I (..\Library\inc\ht32_div.h)(0x56C22A05)
 I (..\Library\inc\ht32_rand.h)(0x57B1BC8E)
-I (..\Hardware\USART\usart.h)(0x64413A0E)
-I (..\Hardware\PWM\pwm.h)(0x62A2140A)
+I (..\Hardware\USART\usart.h)(0x64417116)
+I (..\Hardware\PWM\pwm.h)(0x64428E67)
 I (..\Hardware\DELAY\delay.h)(0x62A33428)
-I (..\Hardware\HX711\hx711.h)(0x644153B0)
-I (..\Hardware\MatrixKey\MatrixKey.h)(0x643F618E)
-I (..\Hardware\OLED\oled.h)(0x64414F43)
+I (..\Hardware\HX711\hx711.h)(0x64417116)
+I (..\Hardware\MatrixKey\MatrixKey.h)(0x64417116)
+I (..\Hardware\OLED\oled.h)(0x64417116)
 I (..\Utilities\ht32_board.h)(0x5BD2D96C)
 I (..\Library\inc\ht32_config.h)(0x5DCD42DC)
 I (..\Utilities\HT32_board/ht32f52352_sk.h)(0x5E200854)
@@ -99,8 +99,8 @@ I (..\Utilities\common/spi_flash.h)(0x5C46FF4E)
 I (..\Utilities\common/ebi_lcd.h)(0x5B14D2DE)
 I (..\Config\ht32_board_config.h)(0x5FFBBBA1)
 I (C:\zlg\KEIL5\keil5\ARM\ARMCC\include\stdlib.h)(0x569DEA3A)
-I (..\Hardware\ISD1820\isd1820.h)(0x64415A2F)
-F (..\Hardware\LED\led.c)(0x64413C8C)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Code -I ..\Code\Include -I ..\Library\inc -I ..\Config -I ..\Utilities\common -I ..\Hardware\LED -I ..\Hardware\USART -I ..\Utilities -I ..\Utilities\HT32_Board -I ..\Hardware\PWM -I ..\Hardware\DELAY -I ..\Hardware\HX711 -I ..\Hardware\MatrixKey -I ..\Hardware\OLED -I ..\Hardware\ISD1820-I C:\Users\16625\Desktop\HT_project\User\RTE-I C:\zlg\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.38\ARM\INC\Holtek\HT32F5xxxx-I C:\zlg\KEIL5\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DUSE_HT32F52342_52 -DUSE_HT32_DRIVER -DUSE_HT32F52352_SK -DUSE_HT32F52342_52 -DUSE_MEM_HT32F52352-o ..\obj\led.o --omf_browse ..\obj\led.crf --depend ..\obj\led.d)
+I (..\Hardware\ISD1820\isd1820.h)(0x64417116)
+F (..\Hardware\LED\led.c)(0x64417116)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Code -I ..\Code\Include -I ..\Library\inc -I ..\Config -I ..\Utilities\common -I ..\Hardware\LED -I ..\Hardware\USART -I ..\Utilities -I ..\Utilities\HT32_Board -I ..\Hardware\PWM -I ..\Hardware\DELAY -I ..\Hardware\HX711 -I ..\Hardware\MatrixKey -I ..\Hardware\OLED -I ..\Hardware\ISD1820-I C:\Users\16625\Desktop\HT_project\User\RTE-I C:\zlg\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.38\ARM\INC\Holtek\HT32F5xxxx-I C:\zlg\KEIL5\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DUSE_HT32F52342_52 -DUSE_HT32_DRIVER -DUSE_HT32F52352_SK -DUSE_HT32F52342_52 -DUSE_MEM_HT32F52352-o ..\obj\led.o --omf_browse ..\obj\led.crf --depend ..\obj\led.d)
 I (..\Hardware\LED\led.h)(0x5E91624E)
 I (..\Library\inc\ht32f5xxxx_ckcu.h)(0x5E4FBBFA)
 I (..\Library\inc\ht32.h)(0x59959B2B)
@@ -144,8 +144,8 @@ I (..\Library\inc\ht32_cm0plus_misc.h)(0x574D2641)
 I (..\Library\inc\ht32_serial.h)(0x5E05BA23)
 I (..\Library\inc\ht32_div.h)(0x56C22A05)
 I (..\Library\inc\ht32_rand.h)(0x57B1BC8E)
-F (..\Hardware\USART\usart.c)(0x64413A0D)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Code -I ..\Code\Include -I ..\Library\inc -I ..\Config -I ..\Utilities\common -I ..\Hardware\LED -I ..\Hardware\USART -I ..\Utilities -I ..\Utilities\HT32_Board -I ..\Hardware\PWM -I ..\Hardware\DELAY -I ..\Hardware\HX711 -I ..\Hardware\MatrixKey -I ..\Hardware\OLED -I ..\Hardware\ISD1820-I C:\Users\16625\Desktop\HT_project\User\RTE-I C:\zlg\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.38\ARM\INC\Holtek\HT32F5xxxx-I C:\zlg\KEIL5\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DUSE_HT32F52342_52 -DUSE_HT32_DRIVER -DUSE_HT32F52352_SK -DUSE_HT32F52342_52 -DUSE_MEM_HT32F52352-o ..\obj\usart.o --omf_browse ..\obj\usart.crf --depend ..\obj\usart.d)
-I (..\Hardware\USART\usart.h)(0x64413A0E)
+F (..\Hardware\USART\usart.c)(0x64417116)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Code -I ..\Code\Include -I ..\Library\inc -I ..\Config -I ..\Utilities\common -I ..\Hardware\LED -I ..\Hardware\USART -I ..\Utilities -I ..\Utilities\HT32_Board -I ..\Hardware\PWM -I ..\Hardware\DELAY -I ..\Hardware\HX711 -I ..\Hardware\MatrixKey -I ..\Hardware\OLED -I ..\Hardware\ISD1820-I C:\Users\16625\Desktop\HT_project\User\RTE-I C:\zlg\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.38\ARM\INC\Holtek\HT32F5xxxx-I C:\zlg\KEIL5\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DUSE_HT32F52342_52 -DUSE_HT32_DRIVER -DUSE_HT32F52352_SK -DUSE_HT32F52342_52 -DUSE_MEM_HT32F52352-o ..\obj\usart.o --omf_browse ..\obj\usart.crf --depend ..\obj\usart.d)
+I (..\Hardware\USART\usart.h)(0x64417116)
 I (..\Library\inc\ht32f5xxxx_usart.h)(0x5E6A44D5)
 I (..\Library\inc\HT32.h)(0x59959B2B)
 I (C:\zlg\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.38\ARM\INC\Holtek\HT32F5xxxx\ht32f5xxxx_01.h)(0x624FCBF2)
@@ -196,8 +196,8 @@ I (..\Utilities\common/spi_flash.h)(0x5C46FF4E)
 I (..\Utilities\common/ebi_lcd.h)(0x5B14D2DE)
 I (..\Config\ht32_board_config.h)(0x5FFBBBA1)
 I (..\Hardware\DELAY\delay.h)(0x62A33428)
-F (..\Hardware\PWM\pwm.c)(0x62A338CC)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Code -I ..\Code\Include -I ..\Library\inc -I ..\Config -I ..\Utilities\common -I ..\Hardware\LED -I ..\Hardware\USART -I ..\Utilities -I ..\Utilities\HT32_Board -I ..\Hardware\PWM -I ..\Hardware\DELAY -I ..\Hardware\HX711 -I ..\Hardware\MatrixKey -I ..\Hardware\OLED -I ..\Hardware\ISD1820-I C:\Users\16625\Desktop\HT_project\User\RTE-I C:\zlg\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.38\ARM\INC\Holtek\HT32F5xxxx-I C:\zlg\KEIL5\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DUSE_HT32F52342_52 -DUSE_HT32_DRIVER -DUSE_HT32F52352_SK -DUSE_HT32F52342_52 -DUSE_MEM_HT32F52352-o ..\obj\pwm.o --omf_browse ..\obj\pwm.crf --depend ..\obj\pwm.d)
-I (..\Hardware\PWM\pwm.h)(0x62A2140A)
+F (..\Hardware\PWM\pwm.c)(0x64428E46)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Code -I ..\Code\Include -I ..\Library\inc -I ..\Config -I ..\Utilities\common -I ..\Hardware\LED -I ..\Hardware\USART -I ..\Utilities -I ..\Utilities\HT32_Board -I ..\Hardware\PWM -I ..\Hardware\DELAY -I ..\Hardware\HX711 -I ..\Hardware\MatrixKey -I ..\Hardware\OLED -I ..\Hardware\ISD1820-I C:\Users\16625\Desktop\HT_project\User\RTE-I C:\zlg\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.38\ARM\INC\Holtek\HT32F5xxxx-I C:\zlg\KEIL5\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DUSE_HT32F52342_52 -DUSE_HT32_DRIVER -DUSE_HT32F52352_SK -DUSE_HT32F52342_52 -DUSE_MEM_HT32F52352-o ..\obj\pwm.o --omf_browse ..\obj\pwm.crf --depend ..\obj\pwm.d)
+I (..\Hardware\PWM\pwm.h)(0x64428E67)
 I (..\Library\inc\ht32f5xxxx_bftm.h)(0x5CB1B379)
 I (..\Library\inc\ht32.h)(0x59959B2B)
 I (C:\zlg\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.38\ARM\INC\Holtek\HT32F5xxxx\ht32f5xxxx_01.h)(0x624FCBF2)
@@ -285,8 +285,8 @@ I (..\Library\inc\ht32_serial.h)(0x5E05BA23)
 I (..\Library\inc\ht32_div.h)(0x56C22A05)
 I (..\Library\inc\ht32_rand.h)(0x57B1BC8E)
 I (..\Hardware\DELAY\delay.h)(0x62A33428)
-F (..\Hardware\HX711\hx711.c)(0x644153AF)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Code -I ..\Code\Include -I ..\Library\inc -I ..\Config -I ..\Utilities\common -I ..\Hardware\LED -I ..\Hardware\USART -I ..\Utilities -I ..\Utilities\HT32_Board -I ..\Hardware\PWM -I ..\Hardware\DELAY -I ..\Hardware\HX711 -I ..\Hardware\MatrixKey -I ..\Hardware\OLED -I ..\Hardware\ISD1820-I C:\Users\16625\Desktop\HT_project\User\RTE-I C:\zlg\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.38\ARM\INC\Holtek\HT32F5xxxx-I C:\zlg\KEIL5\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DUSE_HT32F52342_52 -DUSE_HT32_DRIVER -DUSE_HT32F52352_SK -DUSE_HT32F52342_52 -DUSE_MEM_HT32F52352-o ..\obj\hx711.o --omf_browse ..\obj\hx711.crf --depend ..\obj\hx711.d)
-I (..\Hardware\HX711\HX711.h)(0x644153B0)
+F (..\Hardware\HX711\hx711.c)(0x64417116)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Code -I ..\Code\Include -I ..\Library\inc -I ..\Config -I ..\Utilities\common -I ..\Hardware\LED -I ..\Hardware\USART -I ..\Utilities -I ..\Utilities\HT32_Board -I ..\Hardware\PWM -I ..\Hardware\DELAY -I ..\Hardware\HX711 -I ..\Hardware\MatrixKey -I ..\Hardware\OLED -I ..\Hardware\ISD1820-I C:\Users\16625\Desktop\HT_project\User\RTE-I C:\zlg\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.38\ARM\INC\Holtek\HT32F5xxxx-I C:\zlg\KEIL5\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DUSE_HT32F52342_52 -DUSE_HT32_DRIVER -DUSE_HT32F52352_SK -DUSE_HT32F52342_52 -DUSE_MEM_HT32F52352-o ..\obj\hx711.o --omf_browse ..\obj\hx711.crf --depend ..\obj\hx711.d)
+I (..\Hardware\HX711\HX711.h)(0x64417116)
 I (C:\zlg\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.38\ARM\INC\Holtek\HT32F5xxxx\ht32f5xxxx_01.h)(0x624FCBF2)
 I (C:\zlg\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.38\ARM\INC\Holtek\HT32F5xxxx\ht32_config.h)(0x61E6AE08)
 I (..\Code\Include\core_cm0plus.h)(0x5649CB3A)
@@ -330,8 +330,8 @@ I (..\Library\inc\ht32_serial.h)(0x5E05BA23)
 I (..\Library\inc\ht32_div.h)(0x56C22A05)
 I (..\Library\inc\ht32_rand.h)(0x57B1BC8E)
 I (..\Hardware\DELAY\delay.h)(0x62A33428)
-F (..\Hardware\MatrixKey\MatrixKey.c)(0x6441588C)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Code -I ..\Code\Include -I ..\Library\inc -I ..\Config -I ..\Utilities\common -I ..\Hardware\LED -I ..\Hardware\USART -I ..\Utilities -I ..\Utilities\HT32_Board -I ..\Hardware\PWM -I ..\Hardware\DELAY -I ..\Hardware\HX711 -I ..\Hardware\MatrixKey -I ..\Hardware\OLED -I ..\Hardware\ISD1820-I C:\Users\16625\Desktop\HT_project\User\RTE-I C:\zlg\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.38\ARM\INC\Holtek\HT32F5xxxx-I C:\zlg\KEIL5\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DUSE_HT32F52342_52 -DUSE_HT32_DRIVER -DUSE_HT32F52352_SK -DUSE_HT32F52342_52 -DUSE_MEM_HT32F52352-o ..\obj\matrixkey.o --omf_browse ..\obj\matrixkey.crf --depend ..\obj\matrixkey.d)
-I (..\Hardware\MatrixKey\MatrixKey.h)(0x643F618E)
+F (..\Hardware\MatrixKey\MatrixKey.c)(0x64417116)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Code -I ..\Code\Include -I ..\Library\inc -I ..\Config -I ..\Utilities\common -I ..\Hardware\LED -I ..\Hardware\USART -I ..\Utilities -I ..\Utilities\HT32_Board -I ..\Hardware\PWM -I ..\Hardware\DELAY -I ..\Hardware\HX711 -I ..\Hardware\MatrixKey -I ..\Hardware\OLED -I ..\Hardware\ISD1820-I C:\Users\16625\Desktop\HT_project\User\RTE-I C:\zlg\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.38\ARM\INC\Holtek\HT32F5xxxx-I C:\zlg\KEIL5\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DUSE_HT32F52342_52 -DUSE_HT32_DRIVER -DUSE_HT32F52352_SK -DUSE_HT32F52342_52 -DUSE_MEM_HT32F52352-o ..\obj\matrixkey.o --omf_browse ..\obj\matrixkey.crf --depend ..\obj\matrixkey.d)
+I (..\Hardware\MatrixKey\MatrixKey.h)(0x64417116)
 I (..\Hardware\DELAY\delay.h)(0x62A33428)
 I (..\Library\inc\ht32_cm0plus_misc.h)(0x574D2641)
 I (..\Library\inc\ht32.h)(0x59959B2B)
@@ -375,8 +375,8 @@ I (..\Library\inc\ht32f5xxxx_wdt.h)(0x59959B2B)
 I (..\Library\inc\ht32_serial.h)(0x5E05BA23)
 I (..\Library\inc\ht32_div.h)(0x56C22A05)
 I (..\Library\inc\ht32_rand.h)(0x57B1BC8E)
-F (..\Hardware\OLED\oled.c)(0x64414E0E)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Code -I ..\Code\Include -I ..\Library\inc -I ..\Config -I ..\Utilities\common -I ..\Hardware\LED -I ..\Hardware\USART -I ..\Utilities -I ..\Utilities\HT32_Board -I ..\Hardware\PWM -I ..\Hardware\DELAY -I ..\Hardware\HX711 -I ..\Hardware\MatrixKey -I ..\Hardware\OLED -I ..\Hardware\ISD1820-I C:\Users\16625\Desktop\HT_project\User\RTE-I C:\zlg\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.38\ARM\INC\Holtek\HT32F5xxxx-I C:\zlg\KEIL5\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DUSE_HT32F52342_52 -DUSE_HT32_DRIVER -DUSE_HT32F52352_SK -DUSE_HT32F52342_52 -DUSE_MEM_HT32F52352-o ..\obj\oled.o --omf_browse ..\obj\oled.crf --depend ..\obj\oled.d)
-I (..\Hardware\OLED\oled.h)(0x64414F43)
+F (..\Hardware\OLED\oled.c)(0x64417116)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Code -I ..\Code\Include -I ..\Library\inc -I ..\Config -I ..\Utilities\common -I ..\Hardware\LED -I ..\Hardware\USART -I ..\Utilities -I ..\Utilities\HT32_Board -I ..\Hardware\PWM -I ..\Hardware\DELAY -I ..\Hardware\HX711 -I ..\Hardware\MatrixKey -I ..\Hardware\OLED -I ..\Hardware\ISD1820-I C:\Users\16625\Desktop\HT_project\User\RTE-I C:\zlg\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.38\ARM\INC\Holtek\HT32F5xxxx-I C:\zlg\KEIL5\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DUSE_HT32F52342_52 -DUSE_HT32_DRIVER -DUSE_HT32F52352_SK -DUSE_HT32F52342_52 -DUSE_MEM_HT32F52352-o ..\obj\oled.o --omf_browse ..\obj\oled.crf --depend ..\obj\oled.d)
+I (..\Hardware\OLED\oled.h)(0x64417116)
 I (..\Utilities\ht32_board.h)(0x5BD2D96C)
 I (..\Library\inc\ht32_config.h)(0x5DCD42DC)
 I (..\Utilities\HT32_board/ht32f52352_sk.h)(0x5E200854)
@@ -427,10 +427,10 @@ I (..\Utilities\common/spi_flash.h)(0x5C46FF4E)
 I (..\Utilities\common/ebi_lcd.h)(0x5B14D2DE)
 I (..\Config\ht32_board_config.h)(0x5FFBBBA1)
 I (C:\zlg\KEIL5\keil5\ARM\ARMCC\include\stdlib.h)(0x569DEA3A)
-I (..\Hardware\OLED\oledfont.h)(0x544D1530)
+I (..\Hardware\OLED\oledfont.h)(0x64417116)
 I (..\Hardware\DELAY\delay.h)(0x62A33428)
-F (..\Hardware\ISD1820\isd1820.c)(0x64415A32)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Code -I ..\Code\Include -I ..\Library\inc -I ..\Config -I ..\Utilities\common -I ..\Hardware\LED -I ..\Hardware\USART -I ..\Utilities -I ..\Utilities\HT32_Board -I ..\Hardware\PWM -I ..\Hardware\DELAY -I ..\Hardware\HX711 -I ..\Hardware\MatrixKey -I ..\Hardware\OLED -I ..\Hardware\ISD1820-I C:\Users\16625\Desktop\HT_project\User\RTE-I C:\zlg\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.38\ARM\INC\Holtek\HT32F5xxxx-I C:\zlg\KEIL5\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DUSE_HT32F52342_52 -DUSE_HT32_DRIVER -DUSE_HT32F52352_SK -DUSE_HT32F52342_52 -DUSE_MEM_HT32F52352-o ..\obj\isd1820.o --omf_browse ..\obj\isd1820.crf --depend ..\obj\isd1820.d)
-I (..\Hardware\ISD1820\isd1820.h)(0x64415A2F)
+F (..\Hardware\ISD1820\isd1820.c)(0x64417116)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Code -I ..\Code\Include -I ..\Library\inc -I ..\Config -I ..\Utilities\common -I ..\Hardware\LED -I ..\Hardware\USART -I ..\Utilities -I ..\Utilities\HT32_Board -I ..\Hardware\PWM -I ..\Hardware\DELAY -I ..\Hardware\HX711 -I ..\Hardware\MatrixKey -I ..\Hardware\OLED -I ..\Hardware\ISD1820-I C:\Users\16625\Desktop\HT_project\User\RTE-I C:\zlg\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.38\ARM\INC\Holtek\HT32F5xxxx-I C:\zlg\KEIL5\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DUSE_HT32F52342_52 -DUSE_HT32_DRIVER -DUSE_HT32F52352_SK -DUSE_HT32F52342_52 -DUSE_MEM_HT32F52352-o ..\obj\isd1820.o --omf_browse ..\obj\isd1820.crf --depend ..\obj\isd1820.d)
+I (..\Hardware\ISD1820\isd1820.h)(0x64417116)
 I (..\Hardware\DELAY\delay.h)(0x62A33428)
 I (..\Library\inc\ht32_cm0plus_misc.h)(0x574D2641)
 I (..\Library\inc\ht32.h)(0x59959B2B)

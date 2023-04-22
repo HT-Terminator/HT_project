@@ -53,21 +53,19 @@ git push
 
 #### 拉取
 
+方法1：
+
 1. 在main分支想要将github上的代码拉取到zgl分支，需要先切换到zgl分支：
 
 ```
 git checkout zgl
 ```
 
-2. 将仓库代码拉取到当前分支
+2. 将远程指定分支 拉取到 本地当前分支上：
 
 ```
-git pull
+git pull origin <远程分支名> // 比如 git pull origin main
 ```
-
-
-
----
 
 
 

@@ -13,10 +13,12 @@
   * @retval None
   ***********************************************************************************************************/
   
-  unsigned char key_num = 0;
+unsigned char key_num = 0;
+  
+void MatrixKey_proc(void);
+  
 int main(void)
 {
-	GPTM_PWM_init();		// pwm初始化
 	HX711_Init();			// 初始化压力传感器
 	USART_Configuration();	// 串口初始化
 	GPIO_MatrixKey_Configuration();
@@ -30,11 +32,6 @@ int main(void)
 //	OLED_ShowNum(3*8,Y_4,3,1,16);
 	
 //	Get_Basic();
-//	Servo_Run(0);
-//	Servo_Run2(0);
-//	Servo_Run3(0);
-//	Servo_Run4(0);
-//	delay_ms(500);
 	
 	while (1)
 	{
@@ -51,11 +48,16 @@ int main(void)
 //		delay_ms(100);
 //		Ultrasonic_Ranging();
 		
-		key_num = MatrixKey();
-		if(key_num)	// 如果按下了按键
-		{
-			OLED_ShowNum(5*8,Y_1,key_num,2,16);
-		} 
-		
+		MatrixKey_proc();
 	}
+}
+
+
+void MatrixKey_proc()
+{
+	key_num = MatrixKey();
+	if(key_num)	// 如果按下了按键
+	{
+		OLED_ShowNum(5*8,Y_1,key_num,2,16);
+	} 
 }
