@@ -4,7 +4,7 @@
 #include "HX711.h"
 #include "delay.h"
 
-u32 HX711_Buffer;
+u32 HX711_Buffer_1;
 u32 Weight_Basic_1;
 volatile int Weight_Medicine_1;
 
@@ -120,7 +120,7 @@ void Get_Weight(void)
 	HX711_Buffer_1 = HX711_Read_1();
 	if(HX711_Buffer_1 > Weight_Basic_1)			
 	{
-		Weight_Medicine_1 = HX711_Buffer;
+		Weight_Medicine_1 = HX711_Buffer_1;
 		Weight_Medicine_1 = Weight_Medicine_1 - Weight_Basic_1;				//获取实物的AD采样数值。
 		Weight_Medicine_1 = (s32)((float)Weight_Medicine_1/GapValue); 	//计算实物的实际重量
 	}

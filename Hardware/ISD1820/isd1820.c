@@ -18,8 +18,8 @@ void ISD1820_Init()
 	AFIO_GPxConfig(GPIO_PD, AFIO_PIN_0|AFIO_PIN_2, AFIO_FUN_GPIO);
 
     /* Configure GPIO pull resistor                                                                         */
-    GPIO_PullResistorConfig(HT_GPIOB, GPIO_PIN_6|GPIO_PIN_8, GPIO_PR_UP);
-    GPIO_PullResistorConfig(HT_GPIOC, GPIO_PIN_0|GPIO_PIN_2, GPIO_PR_UP);
+    GPIO_PullResistorConfig(HT_GPIOB, GPIO_PIN_6|GPIO_PIN_8, GPIO_PR_DOWN);
+    GPIO_PullResistorConfig(HT_GPIOC, GPIO_PIN_0|GPIO_PIN_2, GPIO_PR_DOWN);
 	  
     /* Configure GPIO direction as ouput                                                                    */
     GPIO_DirectionConfig(HT_GPIOB, GPIO_PIN_6|GPIO_PIN_8, GPIO_DIR_OUT);

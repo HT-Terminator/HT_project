@@ -84,23 +84,25 @@ void PWM_SetFreq(u32 uReload)
 }
 
 //通道0和1为一组
-//计数周期HTCFG_MCTM_RELOAD=24000
-//PWML和PWMN对于两个通道的CCR，他们的值相加为24000。
-void SetMotor_L(int PWML,int PWMN)
+//计数周期HTCFG_MCTM_RELOAD
+//输入：PWM范围：0-4800
+void SetMotor_L(int PWMN)
 {
-	TM_SetCaptureCompare(HT_MCTM0, TM_CH_0, PWML);
+	TM_SetCaptureCompare(HT_MCTM0, TM_CH_0, 4800);
+//	TM_SetCaptureCompare(HT_MCTM0, TM_CH_1, PWMN);
 	TM_SetCaptureCompare(HT_MCTM0, TM_CH_1, PWMN);
 	TM_CHCCRPreloadConfig(HT_MCTM0, TM_CH_0, ENABLE);
 	TM_CHCCRPreloadConfig(HT_MCTM0, TM_CH_1, ENABLE);
 }
 
 //通道2和3为一组
-//计数周期HTCFG_MCTM_RELOAD=24000
-//PWML和PWMN对于两个通道的CCR，他们的值相加为24000。
-void SetMotor_R(int PWML,int PWMN)
+//计数周期HTCFG_MCTM_RELOAD
+//输入：PWM范围：0-4800
+void SetMotor_R(int PWML)
 {
-	TM_SetCaptureCompare(HT_MCTM0, TM_CH_2, PWML);
-	TM_SetCaptureCompare(HT_MCTM0, TM_CH_3, PWMN);
+	TM_SetCaptureCompare(HT_MCTM0, TM_CH_2, HTCFG_MCTM_RELOAD-PWML);
+//	TM_SetCaptureCompare(HT_MCTM0, TM_CH_2, PWML);
+	TM_SetCaptureCompare(HT_MCTM0, TM_CH_3, 0);
 	TM_CHCCRPreloadConfig(HT_MCTM0, TM_CH_2, ENABLE);
 	TM_CHCCRPreloadConfig(HT_MCTM0, TM_CH_3, ENABLE);
 }
