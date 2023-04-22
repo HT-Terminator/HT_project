@@ -77,8 +77,8 @@ void MCTM_PWM_init()
 
   /* MCTM Channel Main Output enable                                                                        */
   MCTM_CHMOECmd(HT_MCTM0, ENABLE);
+ }
 }
-
 //设置PWM周期
 //初始化函数中赋值为HTCFG_MCTM_RELOAD=24000
 void PWM_SetFreq(u32 uReload)
@@ -92,7 +92,6 @@ void PWM_SetFreq(u32 uReload)
 void SetMotor_L(int PWMN)
 {
 	TM_SetCaptureCompare(HT_MCTM0, TM_CH_0, 4800);
-//	TM_SetCaptureCompare(HT_MCTM0, TM_CH_1, PWMN);
 	TM_SetCaptureCompare(HT_MCTM0, TM_CH_1, PWMN);
 	TM_CHCCRPreloadConfig(HT_MCTM0, TM_CH_0, ENABLE);
 	TM_CHCCRPreloadConfig(HT_MCTM0, TM_CH_1, ENABLE);
@@ -104,7 +103,6 @@ void SetMotor_L(int PWMN)
 void SetMotor_R(int PWML)
 {
 	TM_SetCaptureCompare(HT_MCTM0, TM_CH_2, HTCFG_MCTM_RELOAD-PWML);
-//	TM_SetCaptureCompare(HT_MCTM0, TM_CH_2, PWML);
 	TM_SetCaptureCompare(HT_MCTM0, TM_CH_3, 0);
 	TM_CHCCRPreloadConfig(HT_MCTM0, TM_CH_2, ENABLE);
 	TM_CHCCRPreloadConfig(HT_MCTM0, TM_CH_3, ENABLE);
