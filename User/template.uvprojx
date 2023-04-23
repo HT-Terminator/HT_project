@@ -133,11 +133,11 @@
             <RunIndependent>0</RunIndependent>
             <UpdateFlashBeforeDebugging>1</UpdateFlashBeforeDebugging>
             <Capability>1</Capability>
-            <DriverSelection>-1</DriverSelection>
+            <DriverSelection>4096</DriverSelection>
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3></Flash3>
+          <Flash3>"" ()</Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -332,7 +332,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HT32_DRIVER, USE_HT32F52352_SK, USE_HT32F52342_52, USE_MEM_HT32F52352</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Code;..\Code\Include;..\Library\inc;..\Config;..\Utilities\common;..\Hardware\LED;..\Hardware\USART;..\Utilities;..\Utilities\HT32_Board;..\Hardware\PWM;..\Hardware\DELAY;..\Hardware\HX711;..\Hardware\MatrixKey;..\Hardware\OLED;..\Hardware\ISD1820</IncludePath>
+              <IncludePath>..\Code;..\Code\Include;..\Library\inc;..\Config;..\Utilities\common;..\Hardware\LED;..\Hardware\USART;..\Utilities;..\Utilities\HT32_Board;..\Hardware\PWM;..\Hardware\DELAY;..\Hardware\HX711;..\Hardware\MatrixKey;..\Hardware\OLED;..\Hardware\ISD1820;..\Hardware\ENCODER;..\Hardware\PID;..\Hardware\TIM</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -429,6 +429,21 @@
               <FileName>isd1820.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Hardware\ISD1820\isd1820.c</FilePath>
+            </File>
+            <File>
+              <FileName>encoder.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Hardware\ENCODER\encoder.c</FilePath>
+            </File>
+            <File>
+              <FileName>pid.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Hardware\PID\pid.c</FilePath>
+            </File>
+            <File>
+              <FileName>timdelay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Hardware\TIM\timdelay.c</FilePath>
             </File>
           </Files>
         </Group>

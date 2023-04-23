@@ -24,6 +24,7 @@ void Usart_SendStr(HT_USART_TypeDef* USARTx, uint8_t *str);
 void Ultrasonic_Ranging(void);
 
 extern unsigned char usart0_flag;
+extern uint16_t distance;
 
 #endif
 

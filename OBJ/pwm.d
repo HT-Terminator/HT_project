@@ -45,3 +45,4 @@
 ..\obj\pwm.o: ..\Library\inc\ht32_div.h
 ..\obj\pwm.o: ..\Library\inc\ht32_rand.h
 ..\obj\pwm.o: C:\zlg\KEIL5\keil5\ARM\ARMCC\Bin\..\include\time.h
+..\obj\pwm.o: ..\Hardware\TIM\timdelay.h
