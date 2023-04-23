@@ -6,8 +6,8 @@ unsigned int sctm_state1;
 unsigned int sctm_state2;
 unsigned int sctm_state3;
 unsigned int sctm_state4;
-
-
+unsigned int sctm_servos1_num;
+unsigned int sctm_servos2_num;
 
 void TM_Configuration(void)
 {
@@ -43,25 +43,18 @@ void TM_Configuration(void)
   TM_Cmd(HTCFG_TM_PORT, ENABLE);
 }
 
-//中断服务函数
+//中断服务函数,0.5ms中断一次
 void HTCFG_TM_IRQHandler(void)
 {
   if (TM_GetIntStatus(HTCFG_TM_PORT, TM_INT_UEV) != RESET)
 	{
-			TM_ClearFlag(HTCFG_TM_PORT, TM_INT_UEV);
-			sctm_state1++;
-			sctm_state2++;
-			sctm_state3++;
-			sctm_state4++;  
+		TM_ClearFlag(HTCFG_TM_PORT, TM_INT_UEV);
+		sctm_state1++;
+		sctm_state2++;
+		sctm_state3++;
+		sctm_state4++;  
+		sctm_servos1_num++;
+		sctm_servos2_num++;
 	}
 }
-
-
-
-
-
-
-
-
-
 
