@@ -7,6 +7,7 @@
 #include "MatrixKey.h"
 #include "oled.h"
 #include "isd1820.h"
+#include "timdelay.h"
 
 
 /* Global functions ----------------------------------------------------------------------------------------*/
@@ -25,6 +26,7 @@ int main(void)
 	GPIO_MatrixKey_Configuration();
 	OLED_Init();
 	ISD1820_Init();
+	TM_Configuration();
 	
 	OLED_ShowString(0,Y_1," Key:",16);	// x的范围为0-127；y的范围为0-7，字体选择12/16（16占两行）
 	OLED_ShowString(0,Y_2," Weight:",16);
