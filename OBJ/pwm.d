@@ -2,16 +2,16 @@
 ..\obj\pwm.o: ..\Hardware\PWM\pwm.h
 ..\obj\pwm.o: ..\Library\inc\ht32f5xxxx_bftm.h
 ..\obj\pwm.o: ..\Library\inc\ht32.h
-..\obj\pwm.o: D:\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.44\ARM\INC\Holtek\HT32F5xxxx\ht32f5xxxx_01.h
-..\obj\pwm.o: D:\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.44\ARM\INC\Holtek\HT32F5xxxx\ht32_config.h
+..\obj\pwm.o: C:\zlg\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.38\ARM\INC\Holtek\HT32F5xxxx\ht32f5xxxx_01.h
+..\obj\pwm.o: C:\zlg\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.38\ARM\INC\Holtek\HT32F5xxxx\ht32_config.h
 ..\obj\pwm.o: ..\Code\Include\core_cm0plus.h
-..\obj\pwm.o: D:\KEIL5\keil5\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\pwm.o: C:\zlg\KEIL5\keil5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\pwm.o: ..\Code\Include\core_cmInstr.h
 ..\obj\pwm.o: ..\Code\Include\core_cmFunc.h
-..\obj\pwm.o: D:\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.44\ARM\INC\Holtek\HT32F5xxxx\system_ht32f5xxxx_01.h
+..\obj\pwm.o: C:\zlg\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.38\ARM\INC\Holtek\HT32F5xxxx\system_ht32f5xxxx_01.h
 ..\obj\pwm.o: ..\Library\inc\ht32f5xxxx_lib.h
 ..\obj\pwm.o: ..\Library\inc\ht32f52342_52_libcfg.h
-..\obj\pwm.o: D:\KEIL5\keil5\ARM\ARMCC\Bin\..\include\stdio.h
+..\obj\pwm.o: C:\zlg\KEIL5\keil5\ARM\ARMCC\Bin\..\include\stdio.h
 ..\obj\pwm.o: ..\Config\ht32f5xxxx_conf.h
 ..\obj\pwm.o: ..\Library\inc\ht32f5xxxx_adc.h
 ..\obj\pwm.o: ..\Library\inc\ht32.h
@@ -44,4 +44,4 @@
 ..\obj\pwm.o: ..\Library\inc\ht32_serial.h
 ..\obj\pwm.o: ..\Library\inc\ht32_div.h
 ..\obj\pwm.o: ..\Library\inc\ht32_rand.h
-..\obj\pwm.o: D:\KEIL5\keil5\ARM\ARMCC\Bin\..\include\time.h
+..\obj\pwm.o: C:\zlg\KEIL5\keil5\ARM\ARMCC\Bin\..\include\time.h

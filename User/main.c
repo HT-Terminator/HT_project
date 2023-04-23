@@ -38,15 +38,8 @@ int main(void)
 //	OLED_ShowNum(3*8,Y_4,3,1,16);
 	SetMotor_R(20);		//设置占空比
 	SetMotor_L(20);
-	
-	Get_Basic();
-//	Servo_Run(0);
-//	Servo_Run2(0);
-//	Servo_Run3(0);
-//	Servo_Run4(0);
-			for(int i = 0;i<20;i++){
-			delay_ms(100);
-			}
+
+	delay_ms(2000);
 	Get_Basic();
 	
 	while (1)
@@ -69,12 +62,6 @@ int main(void)
 //		Ultrasonic_Ranging();
 //		OLED_ShowNum(10*8,Y_3,distance,4,16);
 		
-//		key_num = MatrixKey();
-//		if(key_num)	// 如果按下了按键
-//		{
-//			OLED_ShowNum(5*8,Y_1,key_num,2,16);
-//		} 
-//		
 	}
 }
 

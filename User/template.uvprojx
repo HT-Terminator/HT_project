@@ -15,7 +15,7 @@
         <TargetCommonOption>
           <Device>HT32F52342_64LQFP</Device>
           <Vendor>Holtek</Vendor>
-          <PackID>Holtek.HT32_DFP.1.0.44</PackID>
+          <PackID>Holtek.HT32_DFP.1.0.38</PackID>
           <PackURL>https://mcu.holtek.com.tw/pack</PackURL>
           <Cpu>IRAM(0x20000000,0x2000) IROM(0x00000000,0x10000) CPUTYPE("Cortex-M0+") CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
