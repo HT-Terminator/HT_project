@@ -1,6 +1,8 @@
 #include "pwm.h"
 #include "time.h"
 
+unsigned char pwm_tim_mun = 2;
+unsigned char pwm_pin_value = 1,tim1_num1; // 
 
 //输出四路PWM波控制后轮两个电机
 //arr：自动重装值
@@ -27,7 +29,8 @@ void MCTM_PWM_init()
     /* Configure MCTM Break pin                                                                               */
   AFIO_GPxConfig(HTCFG_MCTM_CH3_GPIO_ID, HTCFG_MCTM_CH3_AFIO_PIN, AFIO_FUN_MCTM_GPTM);
 
-    //定时器时基以及计数方式初始化
+  { /* Configure AFIO mode as GPIO                                                                          */
+	AFIO_GPxConfig(GPIO_PC, AFIO_PIN_1|AFIO_PIN_5, AFIO_FUN_GPIO);
 
 //    MCTM_TimeBaseIniture.CounterMode = TM_CNT_MODE_UP;            //边沿对齐向上模式
 //    MCTM_TimeBaseIniture.CounterReload = 200-1;                   //计数重装载计数器
@@ -74,8 +77,8 @@ void MCTM_PWM_init()
 
   /* MCTM Channel Main Output enable                                                                        */
   MCTM_CHMOECmd(HT_MCTM0, ENABLE);
+ }
 }
-
 //设置PWM周期
 //初始化函数中赋值为HTCFG_MCTM_RELOAD=24000
 void PWM_SetFreq(u32 uReload)
@@ -89,7 +92,6 @@ void PWM_SetFreq(u32 uReload)
 void SetMotor_L(int PWMN)
 {
 	TM_SetCaptureCompare(HT_MCTM0, TM_CH_0, 4800);
-//	TM_SetCaptureCompare(HT_MCTM0, TM_CH_1, PWMN);
 	TM_SetCaptureCompare(HT_MCTM0, TM_CH_1, PWMN);
 	TM_CHCCRPreloadConfig(HT_MCTM0, TM_CH_0, ENABLE);
 	TM_CHCCRPreloadConfig(HT_MCTM0, TM_CH_1, ENABLE);
@@ -101,7 +103,6 @@ void SetMotor_L(int PWMN)
 void SetMotor_R(int PWML)
 {
 	TM_SetCaptureCompare(HT_MCTM0, TM_CH_2, HTCFG_MCTM_RELOAD-PWML);
-//	TM_SetCaptureCompare(HT_MCTM0, TM_CH_2, PWML);
 	TM_SetCaptureCompare(HT_MCTM0, TM_CH_3, 0);
 	TM_CHCCRPreloadConfig(HT_MCTM0, TM_CH_2, ENABLE);
 	TM_CHCCRPreloadConfig(HT_MCTM0, TM_CH_3, ENABLE);

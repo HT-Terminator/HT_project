@@ -50,9 +50,15 @@ git merge zgl
 git push
 ```
 
+如果不小心在main分支下编程，这时可以Push但是不能切换到别的分支
+1. 因为更改后的东西与其他分支下的相同文件发送冲突（别的分支修改在切换Main分支则不会）
+2. 使用```git stash```先让修改暂存，然后就可以切换了（git stash将工作区恢复到上次提交的内容，同时备份本地所做的修改）
+3. 接着可以执行```git stash pop```将之前本地做的修改应用到当前工作区。
 
 
 #### 拉取
+
+方法1：
 
 1. 在main分支想要将github上的代码拉取到zgl分支，需要先切换到zgl分支：
 
@@ -60,15 +66,11 @@ git push
 git checkout zgl
 ```
 
-2. 将仓库代码拉取到当前分支
+2. 将远程指定分支 拉取到 本地当前分支上：
 
 ```
-git pull
+git pull origin <远程分支名> // 比如 git pull origin main
 ```
-
-
-
----
 
 
 

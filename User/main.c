@@ -16,7 +16,10 @@
   * @retval None
   ***********************************************************************************************************/
   
-  unsigned char key_num = 0;
+unsigned char key_num = 0;
+  
+void MatrixKey_proc(void);
+  
 int main(void)
 {
 	MCTM_PWM_init();		// pwm初始化
@@ -75,4 +78,14 @@ int main(void)
 //		} 
 //		
 	}
+}
+
+
+void MatrixKey_proc()
+{
+	key_num = MatrixKey();
+	if(key_num)	// 如果按下了按键
+	{
+		OLED_ShowNum(5*8,Y_1,key_num,2,16);
+	} 
 }
