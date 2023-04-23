@@ -2,7 +2,6 @@
 #define _PWM_H_
 #include "ht32f5xxxx_bftm.h"
 
-
 #define HTCFG_MCTM_CH0_GPIO_ID                      (GPIO_PA)
 #define HTCFG_MCTM_CH1_GPIO_ID                      (GPIO_PB)
 #define HTCFG_MCTM_CH2_GPIO_ID                      (GPIO_PB)
@@ -16,6 +15,9 @@
 //#define HTCFG_MCTM_RELOAD                           (48000000/2000)	//����2ms
 #define HTCFG_MCTM_RELOAD                           4800
 
+void GPIO_ServosPwm_Init(void);
+void servos1_angle(unsigned char angle);
+void servos2_angle(unsigned char angle);
 void MCTM_PWM_init(void);
 void PWM_SetFreq(u32 uReload);
 void SetMotor_L(int PWMN);

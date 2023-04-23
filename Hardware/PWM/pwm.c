@@ -1,8 +1,84 @@
 #include "pwm.h"
 #include "time.h"
+#include "timdelay.h"
 
 unsigned char pwm_tim_mun = 2;
-unsigned char pwm_pin_value = 1,tim1_num1; // 
+unsigned char pwm_pc1_value = 0;// 舵机信号线的值
+unsigned char pwm_pc5_value = 0;
+
+void GPIO_ServosPwm_Init()
+{
+  { /* Enable peripheral clock                                                                              */
+	CKCU_PeripClockConfig_TypeDef CKCUClock = {{ 0 }};
+	CKCUClock.Bit.AFIO = 1;
+	CKCUClock.Bit.PC = 1;
+	CKCU_PeripClockConfig(CKCUClock, ENABLE);
+  }
+
+  { /* Configure GPIO as input mode                                                                         */
+
+    /* Configure AFIO mode as GPIO                                                                          */
+	AFIO_GPxConfig(GPIO_PC, AFIO_PIN_1|AFIO_PIN_5, AFIO_FUN_GPIO);
+
+    /* Configure GPIO pull resistor                                                                         */
+    GPIO_PullResistorConfig(HT_GPIOC, GPIO_PIN_1|GPIO_PIN_5, GPIO_PR_DOWN);
+    
+	/* Default value RESET/SET                                                                              */
+    GPIO_WriteOutBits(HT_GPIOC, GPIO_PIN_1|GPIO_PIN_5, RESET);
+	  
+    /* Configure GPIO direction as ouput                                                                    */
+    GPIO_DirectionConfig(HT_GPIOC, GPIO_PIN_1|GPIO_PIN_5, GPIO_DIR_OUT);
+	  
+  }
+}
+
+void servos1_angle(unsigned char angle)
+{
+	unsigned char tim_num_high = 0;
+	switch(angle)
+	{
+		case 0:tim_num_high = 2;break;
+		case 45:tim_num_high = 3;break;
+		case 90:tim_num_high = 4;break;
+		default:break;
+	}
+	if((pwm_pc1_value == 1) && sctm_servos1_num >= 40 - tim_num_high)
+	{
+		sctm_servos1_num = 0;
+		GPIO_WriteOutBits(HT_GPIOC, GPIO_PIN_1, SET);
+		pwm_pc1_value = !pwm_pc1_value;
+	}
+	else if((pwm_pc1_value == 0) && sctm_servos1_num >= tim_num_high)
+	{
+		sctm_servos1_num = 0;
+		GPIO_WriteOutBits(HT_GPIOC, GPIO_PIN_1, RESET);
+		pwm_pc1_value = !pwm_pc1_value;
+	}
+}
+
+void servos2_angle(unsigned char angle)
+{
+	unsigned char tim_num_high = 0;
+	switch(angle)
+	{
+		case 0:tim_num_high = 2;break;
+		case 45:tim_num_high = 3;break;
+		case 90:tim_num_high = 4;break;
+		default:break;
+	}
+	if((pwm_pc5_value == 1) && sctm_servos2_num >= 40 - tim_num_high)
+	{
+		sctm_servos2_num = 0;
+		GPIO_WriteOutBits(HT_GPIOC, GPIO_PIN_5, SET);
+		pwm_pc5_value = !pwm_pc5_value;
+	}
+	else if((pwm_pc5_value == 0) && sctm_servos2_num >= tim_num_high)
+	{
+		sctm_servos2_num = 0;
+		GPIO_WriteOutBits(HT_GPIOC, GPIO_PIN_5, RESET);
+		pwm_pc5_value = !pwm_pc5_value;
+	}
+}
 
 //输出四路PWM波控制后轮两个电机
 //arr：自动重装值

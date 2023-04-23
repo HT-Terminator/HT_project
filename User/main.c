@@ -7,27 +7,25 @@
 #include "MatrixKey.h"
 #include "oled.h"
 #include "isd1820.h"
+#include "timdelay.h"
 
-
-/* Global functions ----------------------------------------------------------------------------------------*/
-/*********************************************************************************************************//**
-  * @brief  Main program.
-  * @retval None
-  ***********************************************************************************************************/
-  
-unsigned char key_num = 0;
-  
 void MatrixKey_proc(void);
+void Servos_proc(void);
   
+unsigned char key_num = 0;		// 矩阵键盘的按键值
+
+
 int main(void)
 {
-	MCTM_PWM_init();		// pwm初始化
-	HX711_Init();			// 初始化压力传感器
-	USART_Configuration();	// 串口初始化
-	TM_Capture_Configuration();
-	GPIO_MatrixKey_Configuration();
-	OLED_Init();
-	ISD1820_Init();
+	MCTM_PWM_init();				// pwm初始化
+	HX711_Init();					// 初始化压力传感器
+	USART_Configuration();			// 串口初始化
+	TM_Capture_Configuration();		// 电机编码器初始化
+	TM_Configuration();				// sctm0初始化
+	GPIO_MatrixKey_Configuration();	// 矩阵键盘初始化
+	GPIO_ServosPwm_Init();			// 舵机初始化
+	OLED_Init();					// OLED初始化
+	ISD1820_Init();					// 语音模块初始化
 	
 	OLED_ShowString(0,Y_1," Key:",16);	// x的范围为0-127；y的范围为0-7，字体选择12/16（16占两行）
 	OLED_ShowString(0,Y_2," Weight:",16);
@@ -46,9 +44,11 @@ int main(void)
 	{
 //		ISD1820_Alert();
 //		delay_ms(4000); 
-		Read_Encoder(1);
-		OLED_ShowNum(8*8,Y_4,Encoder_TIM,7,16);
-				delay_ms(100);
+		
+//		Read_Encoder(1);
+//		OLED_ShowNum(8*8,Y_4,Encoder_TIM,7,16);
+//		delay_ms(100);
+		
 //		Get_Weight();
 //		OLED_ShowNum(8*8,Y_2,Weight_Medicine_1,4,16);
 		
@@ -62,9 +62,15 @@ int main(void)
 //		Ultrasonic_Ranging();
 //		OLED_ShowNum(10*8,Y_3,distance,4,16);
 		
+		Servos_proc();
 	}
 }
 
+void Servos_proc()
+{
+	servos1_angle(45);
+	servos2_angle(45);
+}
 
 void MatrixKey_proc()
 {
