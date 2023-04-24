@@ -60,3 +60,5 @@
 ..\obj\main.o: D:\KEIL5\keil5\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\obj\main.o: ..\Hardware\ISD1820\isd1820.h
 ..\obj\main.o: ..\Hardware\TIM\timdelay.h
+..\obj\main.o: ..\Hardware\TRACK\track.h
+..\obj\main.o: ..\Hardware\PID\pid.h

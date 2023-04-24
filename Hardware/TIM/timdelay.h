@@ -14,8 +14,8 @@
 void TM_Configuration(void);
 void HTCFG_TM_IRQHandler(void);
 
-extern unsigned int sctm_state1;
-extern unsigned int sctm_state2;
+extern unsigned int sctm_10ms;
+extern unsigned int sctm_100ms;
 extern unsigned int sctm_state3;
 extern unsigned int sctm_state4;
 

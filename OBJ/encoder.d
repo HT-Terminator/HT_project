@@ -45,3 +45,4 @@
 ..\obj\encoder.o: ..\Library\inc\ht32_serial.h
 ..\obj\encoder.o: ..\Library\inc\ht32_div.h
 ..\obj\encoder.o: ..\Library\inc\ht32_rand.h
+..\obj\encoder.o: D:\KEIL5\keil5\ARM\ARMCC\Bin\..\include\math.h
