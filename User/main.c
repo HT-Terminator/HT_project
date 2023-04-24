@@ -8,54 +8,88 @@
 #include "oled.h"
 #include "isd1820.h"
 #include "timdelay.h"
+#include "track.h"
+#include "pid.h"
 
 void MatrixKey_proc(void);
 void Servos_proc(void);
+
+/* Global functions ----------------------------------------------------------------------------------------*/
+/*********************************************************************************************************//**
+  * @brief  Main program.
+  * @retval None
+  ***********************************************************************************************************/
   
-unsigned char key_num = 0;		// ¾ØÕó¼üÅÌµÄ°´¼üÖµ
+unsigned char key_num = 0;
+float  PWML=0,PWMR=0;  
+
+void MatrixKey_proc(void);
+void encoder_process_100ms(void);
+void control_100ms(void);
+
 
 
 int main(void)
 {
-	MCTM_PWM_init();				// pwm³õÊ¼»¯
-	HX711_Init();					// ³õÊ¼»¯Ñ¹Á¦´«¸ÐÆ÷
-	USART_Configuration();			// ´®¿Ú³õÊ¼»¯
-	TM_Capture_Configuration();		// µç»ú±àÂëÆ÷³õÊ¼»¯
-	TM_Configuration();				// sctm0³õÊ¼»¯
-	GPIO_MatrixKey_Configuration();	// ¾ØÕó¼üÅÌ³õÊ¼»¯
-	GPIO_ServosPwm_Init();			// ¶æ»ú³õÊ¼»¯
-	OLED_Init();					// OLED³õÊ¼»¯
-	ISD1820_Init();					// ÓïÒôÄ£¿é³õÊ¼»¯
+	MCTM_PWM_init();				// pwmï¿½ï¿½Ê¼ï¿½ï¿½
+	HX711_Init();					// ï¿½ï¿½Ê¼ï¿½ï¿½Ñ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	USART_Configuration();			// ï¿½ï¿½ï¿½Ú³ï¿½Ê¼ï¿½ï¿½
+	TM_Capture_Configuration();		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½
+	GPIO_MatrixKey_Configuration();	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½Ê¼ï¿½ï¿½
+	GPIO_ServosPwm_Init();			// ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½
+	OLED_Init();					// OLEDï¿½ï¿½Ê¼ï¿½ï¿½
+	ISD1820_Init();					// ï¿½ï¿½ï¿½ï¿½Ä£ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½
+	MCTM_PWM_init();		// pwmï¿½ï¿½Ê¼ï¿½ï¿½
+	HX711_Init();			// ï¿½ï¿½Ê¼ï¿½ï¿½Ñ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	USART_Configuration();	// ï¿½ï¿½ï¿½Ú³ï¿½Ê¼ï¿½ï¿½
+	TM_Capture_Configuration();
+	GPIO_MatrixKey_Configuration();
+	OLED_Init();
+	ISD1820_Init();
+	TRACK_Init();
+	Pidinit();
 	
-	OLED_ShowString(0,Y_1," Key:",16);	// xµÄ·¶Î§Îª0-127£»yµÄ·¶Î§Îª0-7£¬×ÖÌåÑ¡Ôñ12/16£¨16Õ¼Á½ÐÐ£©
+	OLED_ShowString(0,Y_1," Key:",16);	// xï¿½Ä·ï¿½Î§Îª0-127ï¿½ï¿½yï¿½Ä·ï¿½Î§Îª0-7ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½12/16ï¿½ï¿½16Õ¼ï¿½ï¿½ï¿½Ð£ï¿½
 	OLED_ShowString(0,Y_2," Weight:",16);
 	OLED_ShowString(0,Y_3," Distance:",16);
-	OLED_ShowString(0,Y_4," PULSE:",16);
-//	OLED_ShowNum(0*8,Y_2,11,2,16);		// Èç¹ûÉèÖÃÎ»Êý±ÈÊµ¼ÊÎ»Êý´ó£¬ÔòÔÚ×îÇ°Ãæ²¹¿Õ¸ñ 
+	OLED_ShowString(0,Y_4," Encoder:",16);
+//	OLED_ShowNum(0*8,Y_2,11,2,16);		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½æ²¹ï¿½Õ¸ï¿½ 
 //	OLED_ShowNum(2*8,Y_3,2345,4,16);
 //	OLED_ShowNum(3*8,Y_4,3,1,16);
-	SetMotor_R(20);		//ÉèÖÃÕ¼¿Õ±È
-	SetMotor_L(20);
-
-	delay_ms(2000);
-	Get_Basic();
-	
+//   	SetMotor_R(1500);		//ï¿½ï¿½ï¿½ï¿½Õ¼ï¿½Õ±ï¿½
+//	  SetMotor_L(1500);
+//	
+//	Get_Basic();
+//	Servo_Run(0);
+//	Servo_Run2(0);
+//	Servo_Run3(0);
+//	Servo_Run4(0);
+//			for(int i = 0;i<20;i++){
+//			delay_ms(100);
+//			}
+//	Get_Basic();
+	TM_Configuration();
 	while (1)
 	{
+		encoder_process_100ms();
+		control_100ms();
+	//	encoder_process_100ms();
+		
 //		ISD1820_Alert();
 //		delay_ms(4000); 
-		
-//		Read_Encoder(1);
-//		OLED_ShowNum(8*8,Y_4,Encoder_TIM,7,16);
-//		delay_ms(100);
-		
+//		Read_Encoder(0);	
+//		get_encoder_data();
+//		encoder_data_process();
+//		
+//		OLED_ShowNum(9*8,Y_4,Speed_data.actual_value_l,5,16);
+//				delay_ms(100);
 //		Get_Weight();
 //		OLED_ShowNum(8*8,Y_2,Weight_Medicine_1,4,16);
 		
 //		OLED_ShowNum(0*8,Y_3,Weight,4,16);
 //		delay_ms(50);
 	
-//		Usart_SendStr(COM0_PORT,"Hello World!");//Ñ­»··¢ËÍ×Ö·û´®£¬²âÊÔÓÃ
+//		Usart_SendStr(COM0_PORT,"Hello World!");//Ñ­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //		delay_ms(100);
 //		Usart_Sendbyte(COM0_PORT,0xff);
 //		delay_ms(100);
@@ -75,8 +109,76 @@ void Servos_proc()
 void MatrixKey_proc()
 {
 	key_num = MatrixKey();
-	if(key_num)	// Èç¹û°´ÏÂÁË°´¼ü
+	if(key_num)	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë°ï¿½ï¿½ï¿½
 	{
 		OLED_ShowNum(5*8,Y_1,key_num,2,16);
 	} 
+}
+
+float outputtestl;
+float outputtestr;
+//float actualtestl;
+//float actualtestr;
+
+void control_100ms(void)
+{
+		if(sctm_10ms > 100*2){
+			Track();
+
+			Speedl.output_last = Speedl.output;
+			Speedr.output_last = Speedr.output;
+			Speedl.actual_value = Speed_data.actual_value_l;
+			Speedr.actual_value = Speed_data.actual_value_r;
+			
+//			actualtestl = Speed_data.actual_value_l;
+//			actualtestr = Speed_data.actual_value_r;
+			
+			Direction_pid_ctrl(Dir.target_value,&Dir);//×ªï¿½ï¿½
+			
+			Speedl.target_value = (Speedl.target_value+Dir.output);
+  		Speedr.target_value = (Speedl.target_value-Dir.output);
+			
+			Speed_pid_ctrl(Speedl.target_value,&Speedl);//ï¿½Ù¶È»ï¿½
+			Speed_pid_ctrl(Speedr.target_value,&Speedr);
+
+			PWML += Speedl.output;	//Speed1.outputï¿½ï¿½ï¿½ï¿½errï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ï¿½
+			PWMR += Speedr.output;
+			
+		//2023-3-29ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó£ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¸ï¿½ï¿½ï¿½ä£¬ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½PWMLï¿½ï¿½PWMRï¿½ï¿½Ä³ï¿½ï¿½Ê±ï¿½ï¿½Ò»Ö±ï¿½ï¿½ï¿½ï¿½È»ï¿½ï¿½ï¿½ï¿½ï¿½MotorOutputï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ê±ï¿½ï¿½Ò»Ö±ï¿½ï¿½ï¿½ï¿½MAXÖµ
+		if(PWML > 4000)
+		{
+			PWML = 4000;
+		}
+		if(PWML < 100)
+		{
+			PWML = 100;
+		}
+		if(PWMR > 4000)
+		{
+			PWMR = 4000;
+		}
+		if(PWMR < 100)
+		{
+			PWMR = 100;
+		}
+			
+			MotorOutput(PWML,PWMR);
+
+			sctm_10ms = 0;
+
+ }
+}
+
+void encoder_process_100ms(void)
+{
+		if(sctm_100ms > 100*2){
+			get_encoder_data();
+			encoder_data_process();
+		
+			OLED_ShowNum(9*8,Y_4,Speed_data.actual_value_l,5,16);
+			
+			sctm_100ms=0;
+			
+		}
+
 }

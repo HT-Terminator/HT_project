@@ -52,6 +52,12 @@ void  get_encoder_data(void);
 void  encoder_data_process(void);
 float Low_pass_filter(low_pass_filter_parameters *filter,float data);
 
+//float mylog(float a);
+//float myexp(float x);
+//int power(int x, int n) ;
+
+
 extern int Encoder_TIM; 
+extern volatile encoder_data Speed_data;
 
 #endif

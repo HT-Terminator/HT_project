@@ -332,7 +332,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HT32_DRIVER, USE_HT32F52352_SK, USE_HT32F52342_52, USE_MEM_HT32F52352</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Code;..\Code\Include;..\Library\inc;..\Config;..\Utilities\common;..\Hardware\LED;..\Hardware\USART;..\Utilities;..\Utilities\HT32_Board;..\Hardware\PWM;..\Hardware\DELAY;..\Hardware\HX711;..\Hardware\MatrixKey;..\Hardware\OLED;..\Hardware\ISD1820;..\Hardware\ENCODER;..\Hardware\PID;..\Hardware\TIM</IncludePath>
+              <IncludePath>..\Code;..\Code\Include;..\Library\inc;..\Config;..\Utilities\common;..\Hardware\LED;..\Hardware\USART;..\Utilities;..\Utilities\HT32_Board;..\Hardware\PWM;..\Hardware\DELAY;..\Hardware\HX711;..\Hardware\MatrixKey;..\Hardware\OLED;..\Hardware\ISD1820;..\Hardware\ENCODER;..\Hardware\PID;..\Hardware\TIM;..\Hardware\TRACK</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -444,6 +444,11 @@
               <FileName>timdelay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Hardware\TIM\timdelay.c</FilePath>
+            </File>
+            <File>
+              <FileName>track.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Hardware\TRACK\track.c</FilePath>
             </File>
           </Files>
         </Group>

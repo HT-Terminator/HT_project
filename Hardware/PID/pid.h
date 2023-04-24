@@ -3,6 +3,8 @@
 
 #include "ht32.h"
 
+#define  left_right_error		2		//左右轮的静态误差
+
 typedef struct
 {
     float kp,ki,kd;
@@ -21,9 +23,16 @@ typedef struct
 
 }position_pid;
 
+extern volatile position_pid Speedl;         //速度
+extern volatile position_pid Speedr;         //速度
 
+extern position_pid Dir;     			//转向环
 
-
+float Position_pid(position_pid *pid);
+void Pidinit(void);
+void Speed_pid_ctrl(float target_speed,position_pid *pid);
+void Direction_pid_ctrl(float target_yaw,position_pid *pid);
+void MotorOutput(float left_pid_control_output, float right_pid_control_output);
 
 
 #endif

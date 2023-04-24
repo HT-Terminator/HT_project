@@ -1,15 +1,16 @@
 #include "time.h"
 #include "encoder.h"
 #include "ht32.h"
+#include "math.h"
 int Encoder_TIM; 
 
-int		Encoder_Timer_Overflow_L		=	0;		//全局变量，记录左编码器溢出次数
-int		Encoder_Timer_Overflow_R		=	0;		//全局变量，记录右编码器溢出次数
+int encoder_countl = 0,encoder_countr = 0;
 
 //以下数据主要用于数据处理（单位：个（脉冲））
 s16 encoder1_speed;
 s16 encoder2_speed;
-encoder_data Speed_data;
+
+volatile encoder_data Speed_data;
 //int sum_encoder;
 
 //低通滤波参数，只用到第一个值（一阶低通滤波器滤波系数）
@@ -73,14 +74,49 @@ void TM_Capture_Configuration(void)
 		CapInit.Polarity = TM_CHP_NONINVERTED;
 		TM_PwmInputInit(HT_GPTM1, &CapInit);		
   }
+	TM_IntConfig(HT_GPTM0, TM_INT_CH2CC , ENABLE);
+//	TM_IntConfig(HT_GPTM0, TM_INT_CH3CC , ENABLE);
+	TM_IntConfig(HT_GPTM1, TM_INT_CH2CC , ENABLE);
+//	TM_IntConfig(HT_GPTM1, TM_INT_CH3CC , ENABLE);
+	
+  NVIC_EnableIRQ(HT_GPTM0_IRQn);
+	NVIC_EnableIRQ(HT_GPTM1_IRQn);
+	
 
   TM_Cmd(HT_GPTM0, ENABLE);
 	TM_Cmd(HT_GPTM1, ENABLE);
 }
 
+//中断服务函数
+//左轮
+void HT_GPTM0_IRQHandler(void)
+{
+		if (TM_GetIntStatus(HT_GPTM0, TM_INT_CH2CC) != RESET)
+		{
+				TM_ClearIntPendingBit(HT_GPTM0, TM_INT_CH2CC);
+				encoder_countl++;
+				
+		}
+
+}
+
+//右轮
+void HT_GPTM1_IRQHandler(void)
+{
+		if (TM_GetIntStatus(HT_GPTM1, TM_INT_CH2CC) != RESET)
+		{
+				TM_ClearIntPendingBit(HT_GPTM1, TM_INT_CH2CC);
+				encoder_countr++;	
+		}
+
+}
+
+
+
 //读到的是CCR的值，CCR在每次在触发事件到来了时保存CNT的值
 //经测试：
-//
+//1:右轮，0：左轮
+#if 0
 int Read_Encoder(u8 GPTMX)
 {
 //   int Encoder_TIM;    
@@ -107,17 +143,38 @@ int Read_Encoder(u8 GPTMX)
 	 
 		return Encoder_TIM;
 }
+#endif
+
+#if 1
+int Read_Encoder(u8 GPTMX)
+{
+//   int Encoder_TIM;    
+   switch(GPTMX)
+	 {
+		 case 0:
+			Encoder_TIM = encoder_countl;
+			encoder_countl = 0;
+		 break;
+		 case 1:
+			Encoder_TIM = encoder_countr;
+			encoder_countr = 0;
+		 break;
+		 	
+		 default:  Encoder_TIM=0;
+	 }
+	 
+		return Encoder_TIM;
+}
+#endif
 
 void get_encoder_data(void)
 {
     encoder1_speed = Read_Encoder(0);
 		encoder2_speed = Read_Encoder(1);
 		
-    Speed_data.left_wheel_pulse_num+=(float)encoder1_speed;	
-    Speed_data.right_wheel_pulse_num+=(float)encoder2_speed;
+    Speed_data.left_wheel_pulse_num  += (float)encoder1_speed;	
+    Speed_data.right_wheel_pulse_num += (float)encoder2_speed;
 	
-		Encoder_Timer_Overflow_L=0;
-		Encoder_Timer_Overflow_R=0;
 }
 
 void encoder_data_process(void)
@@ -143,10 +200,71 @@ void encoder_data_process(void)
 //一阶低通滤波函数
 //filter:结构体里的相关系数及数据
 //data：滤波的数据
+#if 0
 float Low_pass_filter(low_pass_filter_parameters *filter,float data)
 {
     filter->sample_data=data;
     filter->output_last=filter->output;
     filter->output=filter->low_pass_parameter * filter->sample_data + (1.0-filter->low_pass_parameter) * filter->output_last;
+		
+		filter->output = 451679 * pow( filter->output, -0.842); 
+	
     return filter->output;
 }
+#endif
+
+#if 1
+float Low_pass_filter(low_pass_filter_parameters *filter,float data)
+{
+    filter->sample_data=data;
+    filter->output_last=filter->output;
+    filter->output=filter->low_pass_parameter * filter->sample_data + (1.0-filter->low_pass_parameter) * filter->output_last; 
+	
+    return filter->output;
+}
+
+
+#endif
+
+
+
+////自定义log函数
+//float mylog(float a)
+//{
+//   int N = 15;//我们取了前15+1项来估算
+//   int k,nk;
+//   int x,xx,y;
+//   x = (a-1)/(a+1);
+//   xx = x*x;
+//   nk = 2*N+1;
+//   y = 1.0/nk;
+//   for(k=N;k>0;k--)
+//   {
+//     nk = nk - 2;
+//     y = 1.0/nk+xx*y;
+//     
+//   }
+//   return 2.0*x*y;
+//}
+
+////自定义exp函数
+//float myexp(float x) 
+//{
+//    int result = 1;
+//    int term = 1;
+//	 //泰勒展开前50项
+//    for (int i = 1; i <= 50; i++) {
+//        term *= x / i;
+//        result += term;
+//    }
+//    return result;
+//}
+
+////自定义power函数
+//int power(int x, int n) 
+//{
+//    return myexp(n * mylog(x));
+//}
+
+
+

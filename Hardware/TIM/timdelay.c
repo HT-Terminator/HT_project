@@ -2,8 +2,8 @@
 #include "time.h"
 #include "timdelay.h"
 
-unsigned int sctm_state1;
-unsigned int sctm_state2;
+unsigned int sctm_10ms;
+unsigned int sctm_100ms;
 unsigned int sctm_state3;
 unsigned int sctm_state4;
 unsigned int sctm_servos1_num;
@@ -26,7 +26,7 @@ void TM_Configuration(void)
     TM_TimeBaseInitTypeDef TimeBaseInit;
 
     TimeBaseInit.Prescaler = 1 - 1;                         					// Timer clock = CK_AHB / 1
-    TimeBaseInit.CounterReload = SystemCoreClock / TM_FREQ_HZ - 1;		//SystemCoreClock=48MHz,TM_FREQ_HZ=2000,¼´0.5ms
+    TimeBaseInit.CounterReload = SystemCoreClock / TM_FREQ_HZ - 1;		//SystemCoreClock=48MHz,TM_FREQ_HZ=2000,ï¿½ï¿½0.5ms
     TimeBaseInit.RepetitionCounter = 0;
     TimeBaseInit.CounterMode = TM_CNT_MODE_UP;
     TimeBaseInit.PSCReloadTime = TM_PSC_RLD_IMMEDIATE;
@@ -43,18 +43,19 @@ void TM_Configuration(void)
   TM_Cmd(HTCFG_TM_PORT, ENABLE);
 }
 
-//ÖÐ¶Ï·þÎñº¯Êý,0.5msÖÐ¶ÏÒ»´Î
+//ï¿½Ð¶Ï·ï¿½ï¿½ï¿½ï¿½ï¿½,0.5msï¿½Ð¶ï¿½Ò»ï¿½ï¿½
 void HTCFG_TM_IRQHandler(void)
 {
   if (TM_GetIntStatus(HTCFG_TM_PORT, TM_INT_UEV) != RESET)
 	{
 		TM_ClearFlag(HTCFG_TM_PORT, TM_INT_UEV);
-		sctm_state1++;
-		sctm_state2++;
-		sctm_state3++;
-		sctm_state4++;  
+
+
 		sctm_servos1_num++;
 		sctm_servos2_num++;
+			sctm_10ms++;
+			sctm_100ms++;
+
 	}
 }
 
