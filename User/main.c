@@ -23,7 +23,7 @@ float  PWML=0,PWMR=0;
 
 void MatrixKey_proc(void);
 void encoder_process_100ms(void);
-void control_10ms(void);
+void control_100ms(void);
   
 int main(void)
 {
@@ -34,7 +34,6 @@ int main(void)
 	GPIO_MatrixKey_Configuration();
 	OLED_Init();
 	ISD1820_Init();
-//	TM_Configuration();
 	TRACK_Init();
 	Pidinit();
 	
@@ -61,7 +60,7 @@ int main(void)
 	while (1)
 	{
 		encoder_process_100ms();
-		control_10ms();
+		control_100ms();
 	//	encoder_process_100ms();
 		
 //		ISD1820_Alert();
@@ -106,29 +105,32 @@ void MatrixKey_proc()
 
 float outputtestl;
 float outputtestr;
-float actualtestl;
-float actualtestr;
+//float actualtestl;
+//float actualtestr;
 
-void control_10ms(void)
+void control_100ms(void)
 {
 		if(sctm_10ms > 100*2){
-			//Track();
+			Track();
 
 			Speedl.output_last = Speedl.output;
 			Speedr.output_last = Speedr.output;
 			Speedl.actual_value = Speed_data.actual_value_l;
 			Speedr.actual_value = Speed_data.actual_value_r;
 			
-			actualtestl = Speed_data.actual_value_l;
-			actualtestr = Speed_data.actual_value_r;
+//			actualtestl = Speed_data.actual_value_l;
+//			actualtestr = Speed_data.actual_value_r;
 			
-//			Direction_pid_ctrl(Dir.target_value,&Dir);//转向环
+			Direction_pid_ctrl(Dir.target_value,&Dir);//转向环
 			
-			outputtestl = Position_pid(&Speedl);
-			outputtestr = Position_pid(&Speedr);
+			Speedl.target_value = (Speedl.target_value+Dir.output);
+  		Speedr.target_value = (Speedl.target_value-Dir.output);
 			
-			PWML += outputtestl;	//Speed1.output属于err算出来的值，所以这里要用减等于
-			PWMR += outputtestr;
+			Speed_pid_ctrl(Speedl.target_value,&Speedl);//速度环
+			Speed_pid_ctrl(Speedr.target_value,&Speedr);
+
+			PWML += Speedl.output;	//Speed1.output属于err算出来的值，所以这里要用减等于
+			PWMR += Speedr.output;
 			
 		//2023-3-29调试添加，因为如果不增加该语句，会出一种情况：PWML和PWMR在某段时刻一直增大，然后进到MotorOutput函数中使得控制在一段时间一直处于MAX值
 		if(PWML > 4000)

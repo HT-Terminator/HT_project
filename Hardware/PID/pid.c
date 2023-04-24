@@ -57,6 +57,16 @@ void Pidinit(void)
     Speedr.output_last=0;
     Speedr.output_Max=4500;
     Speedr.output_Min=-4500;
+	
+		//×ªÏò»·
+    Dir.kp=5;
+    Dir.ki=0;
+    Dir.kd=6;
+	  Dir.target_value=0;
+    Dir.output=0;
+    Dir.output_last=0;
+    Dir.output_Max=15;
+    Dir.output_Min=-15;
 
 }
 

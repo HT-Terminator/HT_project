@@ -49,7 +49,7 @@ void Track_Getbit(void)
 }
 
 /*   左2   左1   中间   右1   右2   */
-void Track(){
+void Track(void){
 	//中间
 	if(left1_state == notFindBlack && left2_state == notFindBlack && middle_state == findBlack && right1_state == notFindBlack && right2_state == notFindBlack){
 		Dir.actual_value = 0;	
@@ -58,15 +58,11 @@ void Track(){
 	//右1
 	else if(left1_state == notFindBlack && left2_state == notFindBlack && middle_state == notFindBlack && right1_state == findBlack && right2_state == notFindBlack){
 		Dir.actual_value = 1;	
-//		SetMotor_L(300,0);
-//		SetMotor_R(900,0);
 	}
 	
 	//左1
 	else if(left1_state == findBlack && left2_state == notFindBlack && middle_state == notFindBlack && right1_state == notFindBlack && right2_state == notFindBlack){
 		Dir.actual_value = -1; 
-//		SetMotor_L(900,0);
-//		SetMotor_R(300,0);
 	}
 	
 	//右2
@@ -87,21 +83,21 @@ void Track(){
 			Dir.actual_value = -3;
 	}
 	
-		//方向环
-		Speedl.target_value = (-20+Dir.output);
-		Speedr.target_value = (20+Dir.output);
-		
-//		Speedl.kp = kpSpeed;
-//    Speedl.ki = kiSpeed;
+//		//方向环
+//		Speedl.target_value = (-20+Dir.output);
+//		Speedr.target_value = (20+Dir.output);
 //		
-//		Speedr.kp = Speedl.kp;
-//		Speedr.ki = Speedl.ki;
+////		Speedl.kp = kpSpeed;
+////    Speedl.ki = kiSpeed;
+////		
+////		Speedr.kp = Speedl.kp;
+////		Speedr.ki = Speedl.ki;
+////		
+////		Dir.kp = kpDir;
+////		Dir.kd = kdDir;
 //		
-//		Dir.kp = kpDir;
-//		Dir.kd = kdDir;
-		
-		Dir.output_Max = 20;
-		Dir.output_Min = -20;
+//		Dir.output_Max = 20;
+//		Dir.output_Min = -20;
 
 }
 

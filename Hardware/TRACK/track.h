@@ -9,7 +9,7 @@
 
 void TRACK_Init(void);
 void Track_Getbit(void);
-
+void Track(void);
 
 
 
