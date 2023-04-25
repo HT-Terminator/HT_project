@@ -44,3 +44,14 @@
 ..\obj\track.o: ..\Library\inc\ht32_div.h
 ..\obj\track.o: ..\Library\inc\ht32_rand.h
 ..\obj\track.o: ..\Hardware\PID\pid.h
+..\obj\track.o: ..\Hardware\PWM\pwm.h
+..\obj\track.o: ..\Hardware\OLED\oled.h
+..\obj\track.o: ..\Utilities\ht32_board.h
+..\obj\track.o: ..\Library\inc\ht32_config.h
+..\obj\track.o: ..\Utilities\HT32_board/ht32f52352_sk.h
+..\obj\track.o: ..\Utilities\common/i2c_eeprom.h
+..\obj\track.o: ..\Utilities\ht32_board.h
+..\obj\track.o: ..\Utilities\common/spi_flash.h
+..\obj\track.o: ..\Utilities\common/ebi_lcd.h
+..\obj\track.o: ..\Config\ht32_board_config.h
+..\obj\track.o: D:\KEIL5\keil5\ARM\ARMCC\Bin\..\include\stdlib.h

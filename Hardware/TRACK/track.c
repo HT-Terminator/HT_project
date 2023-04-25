@@ -1,8 +1,14 @@
 #include "track.h"
 #include "pid.h"
+#include "pwm.h"
+#include "oled.h"
 
 
 uint8_t right1_state,right2_state,left1_state,left2_state,middle_state;
+uint8_t state_sum;
+uint8_t across_room;
+
+uint8_t roomnum = 0;
 
 void TRACK_Init(void)
 {
@@ -48,57 +54,141 @@ void Track_Getbit(void)
 
 }
 
+#if		1
 /*   左2   左1   中间   右1   右2   */
 void Track(void){
+	Track_Getbit();
 	//中间
 	if(left1_state == notFindBlack && left2_state == notFindBlack && middle_state == findBlack && right1_state == notFindBlack && right2_state == notFindBlack){
-		Dir.actual_value = 0;	
+//		Dir.actual_value = 0;	
+		Speedl.target_value=12;
+		Speedr.target_value=12;
 	}
 	
 	//右1
 	else if(left1_state == notFindBlack && left2_state == notFindBlack && middle_state == notFindBlack && right1_state == findBlack && right2_state == notFindBlack){
-		Dir.actual_value = 1;	
+//		Dir.actual_value = 1;
+		Speedl.target_value=17;		//22
+		Speedr.target_value=0;		
 	}
 	
 	//左1
 	else if(left1_state == findBlack && left2_state == notFindBlack && middle_state == notFindBlack && right1_state == notFindBlack && right2_state == notFindBlack){
+//		Dir.actual_value = -1; 
+		Speedl.target_value=0;
+		Speedr.target_value=17;
+	}
+	
+	//右2
+	else if(left1_state == notFindBlack && left2_state == notFindBlack && middle_state == notFindBlack && right1_state == notFindBlack && right2_state == findBlack){
+//		Dir.actual_value = 2;	
+		Speedl.target_value=52;
+		Speedr.target_value=0;
+	}
+	
+	//左2
+	else if(left1_state == notFindBlack && left2_state == findBlack && middle_state == notFindBlack && right1_state == notFindBlack && right2_state == notFindBlack){
+//		Dir.actual_value = -2;
+		Speedl.target_value=0;
+		Speedr.target_value=52;		
+	}
+	
+	//不在黑线上时
+//	else if(left1_state == notFindBlack && left2_state == notFindBlack && middle_state == notFindBlack && right1_state == notFindBlack && right2_state == notFindBlack){
+//		if(Dir.actual_value == 2)
+//			Dir.actual_value = 2;
+//		if(Dir.actual_value == -2)
+//			Dir.actual_value = -2;
+//	}
+	//OLED_ShowNum(8*8,Y_2,Dir.actual_value,2,16);
+//	state_sum = left1_state+left2_state+middle_state+right1_state+right2_state;
+	
+//	if(state_sum == 3)
+//	{
+//		across_room = 1;
+//		state_sum = 0;
+//		
+//	}
+//	
+//	if(across_room)
+//	{
+//		roomnum ++;
+//		across_room = 0;
+//	}
+//	
+//	if(roomnum > roomsum)
+//	{
+//			SetMotor_Stop();
+//			roomnum = 0;
+//	}
+
+
+}
+#endif
+
+
+#if 0
+/*   左2   左1   中间   右1   右2   */
+void Track(void){
+	Track_Getbit();
+	//中间
+	if(left1_state == notFindBlack && left2_state == notFindBlack && middle_state == findBlack && right1_state == notFindBlack && right2_state == notFindBlack){
+		Dir.actual_value = 0;	
+
+	}
+	
+	//右1
+	 else if(left1_state == notFindBlack && left2_state == notFindBlack && middle_state == notFindBlack && right1_state == findBlack && right2_state == notFindBlack){
+		Dir.actual_value = 2;
+		
+	}
+	
+	//左1
+	 else if(left1_state == findBlack && left2_state == notFindBlack && middle_state == notFindBlack && right1_state == notFindBlack && right2_state == notFindBlack){
 		Dir.actual_value = -1; 
 	}
 	
 	//右2
 	else if(left1_state == notFindBlack && left2_state == notFindBlack && middle_state == notFindBlack && right1_state == notFindBlack && right2_state == findBlack){
-		Dir.actual_value = 2;	
+		Dir.actual_value = 3;	
 	}
 	
 	//左2
 	else if(left1_state == notFindBlack && left2_state == findBlack && middle_state == notFindBlack && right1_state == notFindBlack && right2_state == notFindBlack){
-		Dir.actual_value = -2;	
+		Dir.actual_value = -2;
 	}
 	
 	//不在黑线上时
 	else if(left1_state == notFindBlack && left2_state == notFindBlack && middle_state == notFindBlack && right1_state == notFindBlack && right2_state == notFindBlack){
 		if(Dir.actual_value == 2)
-			Dir.actual_value = 3;
+			Dir.actual_value = 2;
 		if(Dir.actual_value == -2)
-			Dir.actual_value = -3;
-	}
+			Dir.actual_value = -2;
+//	}
+	OLED_ShowNum(8*8,Y_2,Dir.actual_value,2,16);
+//	state_sum = left1_state+left2_state+middle_state+right1_state+right2_state;
 	
-//		//方向环
-//		Speedl.target_value = (-20+Dir.output);
-//		Speedr.target_value = (20+Dir.output);
+//	if(state_sum == 3)
+//	{
+//		across_room = 1;
+//		state_sum = 0;
 //		
-////		Speedl.kp = kpSpeed;
-////    Speedl.ki = kiSpeed;
-////		
-////		Speedr.kp = Speedl.kp;
-////		Speedr.ki = Speedl.ki;
-////		
-////		Dir.kp = kpDir;
-////		Dir.kd = kdDir;
-//		
-//		Dir.output_Max = 20;
-//		Dir.output_Min = -20;
+//	}
+//	
+//	if(across_room)
+//	{
+//		roomnum ++;
+//		across_room = 0;
+//	}
+//	
+//	if(roomnum > roomsum)
+//	{
+//			SetMotor_Stop();
+//			roomnum = 0;
+//	}
+
 
 }
-
+	 }
+#endif
 

@@ -3,7 +3,7 @@
 
 #include "ht32.h"
 
-#define  left_right_error		2		//×óÓÒÂÖµÄ¾²Ì¬Îó²î
+#define  left_right_error		1		//×óÓÒÂÖµÄ¾²Ì¬Îó²î
 
 typedef struct
 {

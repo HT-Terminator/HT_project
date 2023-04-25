@@ -40,33 +40,33 @@ float Position_pid(position_pid *pid)
 void Pidinit(void)
 {
     //速度
-    Speedl.kp=5.5;//0.25 0.3 0.375 0.8
-    Speedl.ki=1;
-    Speedl.kd=1;
-    Speedl.target_value=50+left_right_error;//57 58
+    Speedl.kp=50;//6.5 8.5 30 40
+    Speedl.ki=2;
+    Speedl.kd=0;
+    Speedl.target_value=12;//57 58
     Speedl.output=0;
     Speedl.output_last=0;
-    Speedl.output_Max=4500;//300
-    Speedl.output_Min=-4500;
+    Speedl.output_Max=1500;//300
+    Speedl.output_Min=-1500;
 	
-	  Speedr.kp=4;
-    Speedr.ki=1;
-    Speedr.kd=1;
-    Speedr.target_value=50;
+	  Speedr.kp=50;
+    Speedr.ki=2;
+    Speedr.kd=0;
+    Speedr.target_value=12;
     Speedr.output=0;
     Speedr.output_last=0;
-    Speedr.output_Max=4500;
-    Speedr.output_Min=-4500;
+    Speedr.output_Max=1500;
+    Speedr.output_Min=-1500;
 	
 		//转向环
-    Dir.kp=5;
+    Dir.kp=20;
     Dir.ki=0;
-    Dir.kd=6;
+    Dir.kd=1;
 	  Dir.target_value=0;
     Dir.output=0;
     Dir.output_last=0;
-    Dir.output_Max=15;
-    Dir.output_Min=-15;
+    Dir.output_Max=2000;
+    Dir.output_Min=-2000;
 
 }
 

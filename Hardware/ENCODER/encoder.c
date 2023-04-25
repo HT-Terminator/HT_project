@@ -76,8 +76,8 @@ void TM_Capture_Configuration(void)
   }
 	TM_IntConfig(HT_GPTM0, TM_INT_CH2CC , ENABLE);
 //	TM_IntConfig(HT_GPTM0, TM_INT_CH3CC , ENABLE);
-	TM_IntConfig(HT_GPTM1, TM_INT_CH2CC , ENABLE);
-//	TM_IntConfig(HT_GPTM1, TM_INT_CH3CC , ENABLE);
+//	TM_IntConfig(HT_GPTM1, TM_INT_CH2CC , ENABLE);
+	TM_IntConfig(HT_GPTM1, TM_INT_CH3CC , ENABLE);
 	
   NVIC_EnableIRQ(HT_GPTM0_IRQn);
 	NVIC_EnableIRQ(HT_GPTM1_IRQn);
@@ -103,9 +103,9 @@ void HT_GPTM0_IRQHandler(void)
 //”“¬÷
 void HT_GPTM1_IRQHandler(void)
 {
-		if (TM_GetIntStatus(HT_GPTM1, TM_INT_CH2CC) != RESET)
+		if (TM_GetIntStatus(HT_GPTM1, TM_INT_CH3CC) != RESET)
 		{
-				TM_ClearIntPendingBit(HT_GPTM1, TM_INT_CH2CC);
+				TM_ClearIntPendingBit(HT_GPTM1, TM_INT_CH3CC);
 				encoder_countr++;	
 		}
 

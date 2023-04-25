@@ -37,10 +37,11 @@ int main(void)
 	TRACK_Init();
 	Pidinit();
 	
-	OLED_ShowString(0,Y_1," Key:",16);	// x的范围为0-127；y的范围为0-7，字体选择12/16（16占两行）
-	OLED_ShowString(0,Y_2," Weight:",16);
-	OLED_ShowString(0,Y_3," Distance:",16);
-	OLED_ShowString(0,Y_4," Encoder:",16);
+	OLED_ShowString(0,Y_1," tarL:",16);	// x的范围为0-127；y的范围为0-7，字体选择12/16（16占两行）
+	OLED_ShowString(0,Y_2," tarR:",16);
+//	OLED_ShowString(0,Y_3," state:",16);
+	OLED_ShowString(0,Y_3," EL:",16);
+	OLED_ShowString(0,Y_4," ER:",16);
 //	OLED_ShowNum(0*8,Y_2,11,2,16);		// 如果设置位数比实际位数大，则在最前面补空格 
 //	OLED_ShowNum(2*8,Y_3,2345,4,16);
 //	OLED_ShowNum(3*8,Y_4,3,1,16);
@@ -59,37 +60,18 @@ int main(void)
 	TM_Configuration();
 	while (1)
 	{
+		
+		Track();
 		encoder_process_100ms();
 		control_100ms();
-	//	encoder_process_100ms();
+
+//      get_encoder_data();
+//			encoder_data_process();
+		OLED_ShowNum(8*8,Y_1,Speedl.target_value,5,16);
+		OLED_ShowNum(8*8,Y_2,Speedr.target_value,5,16);
+		OLED_ShowNum(8*8,Y_3,Speed_data.actual_value_l,5,16);
+		OLED_ShowNum(8*8,Y_4,Speed_data.actual_value_r,5,16);
 		
-//		ISD1820_Alert();
-//		delay_ms(4000); 
-//		Read_Encoder(0);	
-//		get_encoder_data();
-//		encoder_data_process();
-//		
-//		OLED_ShowNum(9*8,Y_4,Speed_data.actual_value_l,5,16);
-//				delay_ms(100);
-//		Get_Weight();
-//		OLED_ShowNum(8*8,Y_2,Weight_Medicine_1,4,16);
-		
-//		OLED_ShowNum(0*8,Y_3,Weight,4,16);
-//		delay_ms(50);
-	
-//		Usart_SendStr(COM0_PORT,"Hello World!");//循环发送字符串，测试用
-//		delay_ms(100);
-//		Usart_Sendbyte(COM0_PORT,0xff);
-//		delay_ms(100);
-//		Ultrasonic_Ranging();
-//		OLED_ShowNum(10*8,Y_3,distance,4,16);
-//  	Track_Getbit();
-//		key_num = MatrixKey();
-//		if(key_num)	// 如果按下了按键
-//		{
-//			OLED_ShowNum(5*8,Y_1,key_num,2,16);
-//		} 
-//		
 	}
 }
 
@@ -110,8 +92,8 @@ float outputtestr;
 
 void control_100ms(void)
 {
-		if(sctm_10ms > 100*2){
-			Track();
+		if(sctm_10ms > 30*2){
+	//		Track();
 
 			Speedl.output_last = Speedl.output;
 			Speedr.output_last = Speedr.output;
@@ -120,11 +102,11 @@ void control_100ms(void)
 			
 //			actualtestl = Speed_data.actual_value_l;
 //			actualtestr = Speed_data.actual_value_r;
-			
-			Direction_pid_ctrl(Dir.target_value,&Dir);//转向环
-			
-			Speedl.target_value = (Speedl.target_value+Dir.output);
-  		Speedr.target_value = (Speedl.target_value-Dir.output);
+//			
+//			Direction_pid_ctrl(Dir.target_value,&Dir);//转向环
+//			
+//			Speedl.target_value = (12-Dir.output);
+//  		Speedr.target_value = (12+Dir.output);
 			
 			Speed_pid_ctrl(Speedl.target_value,&Speedl);//速度环
 			Speed_pid_ctrl(Speedr.target_value,&Speedr);
@@ -133,21 +115,21 @@ void control_100ms(void)
 			PWMR += Speedr.output;
 			
 		//2023-3-29调试添加，因为如果不增加该语句，会出一种情况：PWML和PWMR在某段时刻一直增大，然后进到MotorOutput函数中使得控制在一段时间一直处于MAX值
-		if(PWML > 4000)
+		if(PWML > 4500)
 		{
-			PWML = 4000;
+			PWML = 4500;
 		}
-		if(PWML < 100)
+		if(PWML < 200)
 		{
-			PWML = 100;
+			PWML = 200;
 		}
-		if(PWMR > 4000)
+		if(PWMR > 4500)
 		{
-			PWMR = 4000;
+			PWMR = 4500;
 		}
-		if(PWMR < 100)
+		if(PWMR < 200)
 		{
-			PWMR = 100;
+			PWMR = 200;
 		}
 			
 			MotorOutput(PWML,PWMR);
@@ -159,11 +141,11 @@ void control_100ms(void)
 
 void encoder_process_100ms(void)
 {
-		if(sctm_100ms > 100*2){
+		if(sctm_100ms > 30*2){
 			get_encoder_data();
 			encoder_data_process();
 		
-			OLED_ShowNum(9*8,Y_4,Speed_data.actual_value_l,5,16);
+//			OLED_ShowNum(9*8,Y_4,Speed_data.actual_value_l,5,16);
 			
 			sctm_100ms=0;
 			
