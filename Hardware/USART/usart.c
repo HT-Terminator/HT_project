@@ -3,12 +3,16 @@
 #include "ht32_board.h"
 #include "ht32_board_config.h"
 #include "delay.h"
+#include "timdelay.h"
 
 unsigned char usart0_flag = 0;
 uint8_t	distance_temperature[3]	= {0};	//[0]为测距高八位，[1]为测距第八位，[2]为测温数据
 uint8_t	RXCounter =	0;	//全局变量，记录接收数据的顺序
 uint8_t tem = 0;				//全局变量，记录温度，单位：度
 uint16_t distance = 0;		//全局变量，记录距离，单位：mm
+
+uint8_t	ranging_signal = 0x55;	
+uint8_t	temperature_signal = 0x50;
 
 void USART_Configuration(void)
 {
@@ -105,18 +109,25 @@ void clear_buff2(void)//串口1缓存清理函数
 
 void Ultrasonic_Ranging(void)
 {
-	uint8_t	ranging_signal = 0x55;	
-	uint8_t	temperature_signal = 0x50;
 	//让USART1向超声波模块发送测距信号（0x55）
-	Usart_Sendbyte(COM0_PORT,ranging_signal);
-//	SendByte_USART1(ranging_signal);
-	delay_ms(100);
+	if(sctm_usart0_100ms > 100*2 && usart0_flag == 0)
+	{
+		Usart_Sendbyte(COM0_PORT,ranging_signal);
+		usart0_flag = 1;
+		sctm_usart0_100ms = 0;
+	}
+	//delay_ms(100);
 	//让USART1向超声波模块发送测温信号（0x50）
-	Usart_Sendbyte(COM0_PORT,temperature_signal);
-//	SendByte_USART1(temperature_signal);
-	delay_ms(100);
-	distance = distance_temperature[0]*256+distance_temperature[1];	//实际距离
-	tem = distance_temperature[2]-45;	//实际温度
-
-	clear_buff2();
+	if(sctm_usart0_100ms > 100*2 && usart0_flag == 1)
+	{
+//		Usart_Sendbyte(COM0_PORT,temperature_signal);
+		usart0_flag = 0;
+		sctm_usart0_100ms = 0;
+//		delay_ms(100);
+		distance = distance_temperature[0]*256+distance_temperature[1];	//实际距离
+	  tem = distance_temperature[2]-45;	//实际温度
+		clear_buff2();
+	}
+	
+	
 }

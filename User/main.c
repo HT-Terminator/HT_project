@@ -36,8 +36,9 @@ int main(void)
 	ISD1820_Init();
 	TRACK_Init();
 	Pidinit();
+	GPIO_Key_Configuration();
 	
-	OLED_ShowString(0,Y_1," tarL:",16);	// x的范围为0-127；y的范围为0-7，字体选择12/16（16占两行）
+	OLED_ShowString(0,Y_1," distance:",16);	// x的范围为0-127；y的范围为0-7，字体选择12/16（16占两行）
 	OLED_ShowString(0,Y_2," tarR:",16);
 //	OLED_ShowString(0,Y_3," state:",16);
 	OLED_ShowString(0,Y_3," EL:",16);
@@ -60,15 +61,27 @@ int main(void)
 	TM_Configuration();
 	while (1)
 	{
-		
+		read_key();
+		if(key_state == 1){
+		Ultrasonic_Ranging();
+			
+		Track_Getbit();
 		Track();
 		encoder_process_100ms();
 		control_100ms();
+		}
+		else{
+		Speedl.target_value=0;
+		Speedr.target_value=0;
+		encoder_process_100ms();
+		control_100ms();
+		}
+		
 
 //      get_encoder_data();
 //			encoder_data_process();
-		OLED_ShowNum(8*8,Y_1,Speedl.target_value,5,16);
-		OLED_ShowNum(8*8,Y_2,Speedr.target_value,5,16);
+		OLED_ShowNum(11*8,Y_1,distance,4,16);
+		OLED_ShowNum(8*8,Y_2,key_state,4,16);
 		OLED_ShowNum(8*8,Y_3,Speed_data.actual_value_l,5,16);
 		OLED_ShowNum(8*8,Y_4,Speed_data.actual_value_r,5,16);
 		
@@ -92,7 +105,7 @@ float outputtestr;
 
 void control_100ms(void)
 {
-		if(sctm_10ms > 30*2){
+		if(sctm_control_30ms > 30*2){
 	//		Track();
 
 			Speedl.output_last = Speedl.output;
@@ -134,21 +147,26 @@ void control_100ms(void)
 			
 			MotorOutput(PWML,PWMR);
 
-			sctm_10ms = 0;
+			sctm_control_30ms = 0;
 
  }
 }
 
 void encoder_process_100ms(void)
 {
-		if(sctm_100ms > 30*2){
+		if(sctm_encoder_30ms > 30*2){
 			get_encoder_data();
 			encoder_data_process();
 		
 //			OLED_ShowNum(9*8,Y_4,Speed_data.actual_value_l,5,16);
 			
-			sctm_100ms=0;
+			sctm_encoder_30ms=0;
 			
 		}
 
 }
+
+
+
+
+

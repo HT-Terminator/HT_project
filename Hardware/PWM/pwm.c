@@ -117,6 +117,14 @@ void SetMotor_Stop(void)
 	TM_CHCCRPreloadConfig(HT_MCTM0, TM_CH_3, DISABLE);
 }
 
+void SetMotor_Run(void)
+{
+	TM_CHCCRPreloadConfig(HT_MCTM0, TM_CH_0, ENABLE);
+	TM_CHCCRPreloadConfig(HT_MCTM0, TM_CH_1, ENABLE);
+	TM_CHCCRPreloadConfig(HT_MCTM0, TM_CH_2, ENABLE);
+	TM_CHCCRPreloadConfig(HT_MCTM0, TM_CH_3, ENABLE);
+}
+
 /**
  * 功能：舵机驱动(可从0~180，每45度旋转一次)
  * 参数：angle  ；舵机旋转度数(相对角度)

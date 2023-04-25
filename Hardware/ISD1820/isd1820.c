@@ -38,6 +38,6 @@ void ISD1820_Init()
 void ISD1820_Alert()
 {
 	GPIO_WriteOutBits(HT_GPIOB, GPIO_PIN_6, SET); // 按键按下是高电平
-	delay_ms(10); 
+	delay_us(100); 
 	GPIO_WriteOutBits(HT_GPIOB, GPIO_PIN_6, RESET);
 }

@@ -53,3 +53,4 @@
 ..\obj\usart.o: ..\Utilities\common/ebi_lcd.h
 ..\obj\usart.o: ..\Config\ht32_board_config.h
 ..\obj\usart.o: ..\Hardware\DELAY\delay.h
+..\obj\usart.o: ..\Hardware\TIM\timdelay.h

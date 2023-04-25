@@ -55,3 +55,5 @@
 ..\obj\track.o: ..\Utilities\common/ebi_lcd.h
 ..\obj\track.o: ..\Config\ht32_board_config.h
 ..\obj\track.o: D:\KEIL5\keil5\ARM\ARMCC\Bin\..\include\stdlib.h
+..\obj\track.o: ..\Hardware\USART\usart.h
+..\obj\track.o: ..\Hardware\ISD1820\isd1820.h

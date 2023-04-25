@@ -20,7 +20,14 @@
 #define P1_6 			GPIO_ReadInBit(HT_GPIOB, GPIO_PIN_5)
 #define P1_7 			GPIO_ReadInBit(HT_GPIOC, GPIO_PIN_15)
 
+#define P1_11 			GPIO_ReadInBit(HT_GPIOA, GPIO_PIN_11)
+
+extern unsigned char key_state;
+
 void GPIO_MatrixKey_Configuration(void);
 unsigned char MatrixKey(void);
+
+void GPIO_Key_Configuration(void);
+void read_key(void);
 
 #endif

@@ -2,6 +2,8 @@
 #include "pid.h"
 #include "pwm.h"
 #include "oled.h"
+#include "usart.h"
+#include "isd1820.h"
 
 
 uint8_t right1_state,right2_state,left1_state,left2_state,middle_state;
@@ -9,6 +11,11 @@ uint8_t state_sum;
 uint8_t across_room;
 
 uint8_t roomnum = 0;
+
+uint8_t stop_state =0;
+
+int8_t now_turn = 0;
+int8_t pre_stop_state = 0;
 
 void TRACK_Init(void)
 {
@@ -51,47 +58,144 @@ void Track_Getbit(void)
 	right2_state=GPIO_ReadInBit(HT_GPIOA, GPIO_PIN_0);
 
 	right1_state=GPIO_ReadInBit(HT_GPIOA, GPIO_PIN_1);
+	
+	if(left2_state == 1)
+	{
+		now_turn = -1;
+	}
+	else if(left1_state == 1)
+	{
+		now_turn = -1;
+	}
+	else if(middle_state == 1)
+	{
+		now_turn = 0;
+	}
+	else if(right2_state == 1)
+	{
+		now_turn = 1;
+	}
+	else if(right1_state == 1)
+	{
+		now_turn = 1;
+	}
+	
+	if(distance < 500 && distance != 0)
+	{
+		pre_stop_state = now_turn;
+		ISD1820_Alert();
+	}
 
 }
 
 #if		1
 /*   左2   左1   中间   右1   右2   */
 void Track(void){
-	Track_Getbit();
+	
+	if(distance < 500 && distance != 0)
+	{
+		Speedl.kp=70;
+		Speedr.kp=70;
+		Speedl.target_value=0;
+		Speedr.target_value=0;
+//		SetMotor_Stop();
+//		SetMotor_L(0);
+//		SetMotor_R(0);
+		stop_state =1 ;
+//		pre_stop_state = now_turn;
+//		ISD1820_Alert();
+	}
+	
+	else if(distance >=500){
+//		Speedl.kp=52;
+//		Speedr.kp=52;
+//		SetMotor_Run();
+		if(stop_state == 1 && pre_stop_state == 0){
+		Speedl.kp=90;
+		Speedr.kp=90;
+		Speedl.target_value=12;
+		Speedr.target_value=12;
+			stop_state = 0;
+		}
+		else if(stop_state == 1 && pre_stop_state == -1){
+		Speedl.kp=90;
+		Speedr.kp=90;
+		Speedl.target_value=0;		//8
+		Speedr.target_value=15;		//16
+			stop_state = 0;
+		}
+		else if(stop_state == 1 && pre_stop_state == 1){
+		Speedl.kp=90;
+		Speedr.kp=90;
+		Speedl.target_value=15;
+		Speedr.target_value=0;
+			stop_state = 0;
+		}
+		else if(stop_state == 1 && pre_stop_state == -2){
+		Speedl.kp=90;
+		Speedr.kp=90;
+		Speedl.target_value=0;		//8
+		Speedr.target_value=15;		//16
+			stop_state = 0;
+		}
+		else if(stop_state == 1 && pre_stop_state == 2){
+		Speedl.kp=90;
+		Speedr.kp=90;
+		Speedl.target_value=15; 
+		Speedr.target_value=0;
+			stop_state = 0;
+		}
+//	Track_Getbit();
 	//中间
 	if(left1_state == notFindBlack && left2_state == notFindBlack && middle_state == findBlack && right1_state == notFindBlack && right2_state == notFindBlack){
 //		Dir.actual_value = 0;	
+		Speedl.kp=52;
+		Speedr.kp=52;
 		Speedl.target_value=12;
 		Speedr.target_value=12;
+	//	now_turn = 0;
 	}
 	
 	//右1
 	else if(left1_state == notFindBlack && left2_state == notFindBlack && middle_state == notFindBlack && right1_state == findBlack && right2_state == notFindBlack){
 //		Dir.actual_value = 1;
-		Speedl.target_value=17;		//22
-		Speedr.target_value=0;		
+		Speedl.kp=52;
+		Speedr.kp=52;
+		Speedl.target_value=15;		//22 17
+		Speedr.target_value=0;	
+//    now_turn = 1;		
 	}
 	
 	//左1
 	else if(left1_state == findBlack && left2_state == notFindBlack && middle_state == notFindBlack && right1_state == notFindBlack && right2_state == notFindBlack){
 //		Dir.actual_value = -1; 
+		Speedl.kp=52;
+		Speedr.kp=52;
 		Speedl.target_value=0;
-		Speedr.target_value=17;
+		Speedr.target_value=15;
+//		now_turn = -1;
 	}
 	
 	//右2
 	else if(left1_state == notFindBlack && left2_state == notFindBlack && middle_state == notFindBlack && right1_state == notFindBlack && right2_state == findBlack){
 //		Dir.actual_value = 2;	
-		Speedl.target_value=52;
+		Speedl.kp=52;
+		Speedr.kp=52;
+		Speedl.target_value=52; //52
 		Speedr.target_value=0;
+//		now_turn = 1;
 	}
 	
 	//左2
 	else if(left1_state == notFindBlack && left2_state == findBlack && middle_state == notFindBlack && right1_state == notFindBlack && right2_state == notFindBlack){
 //		Dir.actual_value = -2;
+		Speedl.kp=52;
+		Speedr.kp=52;
 		Speedl.target_value=0;
-		Speedr.target_value=52;		
+		Speedr.target_value=52;	//52
+//    now_turn = -1;		
 	}
+}
 	
 	//不在黑线上时
 //	else if(left1_state == notFindBlack && left2_state == notFindBlack && middle_state == notFindBlack && right1_state == notFindBlack && right2_state == notFindBlack){

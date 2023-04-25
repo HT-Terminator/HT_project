@@ -2,8 +2,9 @@
 #include "time.h"
 #include "timdelay.h"
 
-unsigned int sctm_10ms;
-unsigned int sctm_100ms;
+unsigned int sctm_control_30ms;
+unsigned int sctm_encoder_30ms;
+unsigned int sctm_usart0_100ms;
 unsigned int sctm_state3;
 unsigned int sctm_state4;
 
@@ -49,10 +50,10 @@ void HTCFG_TM_IRQHandler(void)
   if (TM_GetIntStatus(HTCFG_TM_PORT, TM_INT_UEV) != RESET)
 	{
 			TM_ClearFlag(HTCFG_TM_PORT, TM_INT_UEV);
-			sctm_10ms++;
-			sctm_100ms++;
-			sctm_state3++;
-			sctm_state4++;  
+			sctm_control_30ms++;
+			sctm_encoder_30ms++;
+			sctm_usart0_100ms++;
+			 
 	}
 }
 

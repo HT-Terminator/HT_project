@@ -21,6 +21,7 @@ void PWM_SetFreq(u32 uReload);
 void SetMotor_L(int PWMN);
 void SetMotor_R(int PWML);
 void SetMotor_Stop(void);
+void SetMotor_Run(void);
 
 //void Servo_Run(uint16_t angle);
 //void Servo_Run2(uint16_t angle);

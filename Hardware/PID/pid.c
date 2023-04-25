@@ -40,7 +40,7 @@ float Position_pid(position_pid *pid)
 void Pidinit(void)
 {
     //ËÙ¶È
-    Speedl.kp=50;//6.5 8.5 30 40
+    Speedl.kp=52;//6.5 8.5 30 40 50
     Speedl.ki=2;
     Speedl.kd=0;
     Speedl.target_value=12;//57 58
@@ -49,7 +49,7 @@ void Pidinit(void)
     Speedl.output_Max=1500;//300
     Speedl.output_Min=-1500;
 	
-	  Speedr.kp=50;
+	  Speedr.kp=52;
     Speedr.ki=2;
     Speedr.kd=0;
     Speedr.target_value=12;

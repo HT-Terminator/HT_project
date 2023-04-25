@@ -1,6 +1,8 @@
 #include "MatrixKey.h"
 #include "delay.h"
 
+unsigned char key_state = 0;
+
 void GPIO_MatrixKey_Configuration(void)
 {
   { /* Enable peripheral clock                                                                              */
@@ -41,6 +43,46 @@ void GPIO_MatrixKey_Configuration(void)
   }
 }
 
+void GPIO_Key_Configuration(void)
+{
+  { /* Enable peripheral clock                                                                              */
+	CKCU_PeripClockConfig_TypeDef CKCUClock = {{ 0 }};
+	CKCUClock.Bit.AFIO = 1;
+	CKCUClock.Bit.PA = 1;
+	CKCU_PeripClockConfig(CKCUClock, ENABLE);
+  }
+
+  { /* Configure GPIO as input mode                                                                         */
+
+    /* Configure AFIO mode as GPIO                                                                          */
+	AFIO_GPxConfig(GPIO_PA, AFIO_PIN_11, AFIO_FUN_GPIO);
+
+    /* Configure GPIO pull resistor                                                                         */
+	GPIO_PullResistorConfig(HT_GPIOA, GPIO_PIN_11, GPIO_PR_UP);	// 上拉
+
+    /* Configure GPIO direction as input                                                                    */
+    GPIO_DirectionConfig(HT_GPIOA, GPIO_PIN_11, GPIO_DIR_IN);
+	  
+	  
+    /* Enable input function for read                                                                       */
+    GPIO_InputConfig(HT_GPIOA, GPIO_PIN_11, ENABLE);
+
+  }
+}
+
+void read_key(void)
+{
+	if(P1_11==0)
+	{
+		while(P1_11==0){}
+		delay_ms(10);
+		if(key_state == 0)
+			key_state = 1;
+		else 
+			key_state = 0;
+	}
+
+}
 /**
   * @brief  矩阵键盘读取按键键码
   * @param  无
