@@ -46,3 +46,4 @@
 ..\obj\timdelay.o: ..\Library\inc\ht32_rand.h
 ..\obj\timdelay.o: D:\KEIL5\keil5\ARM\ARMCC\Bin\..\include\time.h
 ..\obj\timdelay.o: ..\Hardware\TIM\timdelay.h
+..\obj\timdelay.o: ..\Hardware\TRACK\track.h

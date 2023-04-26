@@ -22,12 +22,14 @@
 
 #define P1_11 			GPIO_ReadInBit(HT_GPIOA, GPIO_PIN_11)
 
-extern unsigned char key_state;
+extern unsigned char State;
+extern unsigned int  RoomNum ;
 
 void GPIO_MatrixKey_Configuration(void);
 unsigned char MatrixKey(void);
 
 void GPIO_Key_Configuration(void);
 void read_key(void);
+void KeyProcess(unsigned char KeyNum);
 
 #endif

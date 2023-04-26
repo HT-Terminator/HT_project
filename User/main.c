@@ -38,11 +38,11 @@ int main(void)
 	Pidinit();
 	GPIO_Key_Configuration();
 	
-	OLED_ShowString(0,Y_1," distance:",16);	// x的范围为0-127；y的范围为0-7，字体选择12/16（16占两行）
-	OLED_ShowString(0,Y_2," tarR:",16);
+	OLED_ShowString(0,Y_3," nowroom:",16);	// x的范围为0-127；y的范围为0-7，字体选择12/16（16占两行）
+	OLED_ShowString(0,Y_2," ",16);
 //	OLED_ShowString(0,Y_3," state:",16);
-	OLED_ShowString(0,Y_3," EL:",16);
-	OLED_ShowString(0,Y_4," ER:",16);
+	OLED_ShowString(0,Y_1," room:",16);
+	OLED_ShowString(0,Y_4," state:",16);
 //	OLED_ShowNum(0*8,Y_2,11,2,16);		// 如果设置位数比实际位数大，则在最前面补空格 
 //	OLED_ShowNum(2*8,Y_3,2345,4,16);
 //	OLED_ShowNum(3*8,Y_4,3,1,16);
@@ -62,28 +62,28 @@ int main(void)
 	while (1)
 	{
 		read_key();
-		if(key_state == 1){
-		Ultrasonic_Ranging();
-			
+		MatrixKey_proc();
 		Track_Getbit();
-		Track();
-		encoder_process_100ms();
-		control_100ms();
+		if(State == 1){
+			Ultrasonic_Ranging();	
+//		Track_Getbit();
+			Track();
+			encoder_process_100ms();
+			control_100ms();
 		}
-		else{
-		Speedl.target_value=0;
-		Speedr.target_value=0;
-		encoder_process_100ms();
-		control_100ms();
+		else if(State == 0){
+			Speedl.target_value=0;
+			Speedr.target_value=0;
+			encoder_process_100ms();
+			control_100ms();
 		}
 		
 
 //      get_encoder_data();
 //			encoder_data_process();
-		OLED_ShowNum(11*8,Y_1,distance,4,16);
-		OLED_ShowNum(8*8,Y_2,key_state,4,16);
-		OLED_ShowNum(8*8,Y_3,Speed_data.actual_value_l,5,16);
-		OLED_ShowNum(8*8,Y_4,Speed_data.actual_value_r,5,16);
+	//	OLED_ShowNum(11*8,Y_1,distance,4,16);
+	//	OLED_ShowNum(8*8,Y_2,key_state,4,16);
+		
 		
 	}
 }
@@ -94,7 +94,8 @@ void MatrixKey_proc()
 	key_num = MatrixKey();
 	if(key_num)	// 如果按下了按键
 	{
-		OLED_ShowNum(5*8,Y_1,key_num,2,16);
+		KeyProcess(key_num);
+//		OLED_ShowNum(5*8,Y_1,key_num,2,16);
 	} 
 }
 
@@ -163,7 +164,6 @@ void encoder_process_100ms(void)
 			sctm_encoder_30ms=0;
 			
 		}
-
 }
 
 

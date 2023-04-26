@@ -42,7 +42,7 @@ I (..\Library\inc\ht32_cm0plus_misc.h)(0x643A07E6)
 I (..\Library\inc\ht32_serial.h)(0x643A07E6)
 I (..\Library\inc\ht32_div.h)(0x643A07E6)
 I (..\Library\inc\ht32_rand.h)(0x643A07E6)
-F (.\main.c)(0x6447C3A8)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Code -I ..\Code\Include -I ..\Library\inc -I ..\Config -I ..\Utilities\common -I ..\Hardware\LED -I ..\Hardware\USART -I ..\Utilities -I ..\Utilities\HT32_Board -I ..\Hardware\PWM -I ..\Hardware\DELAY -I ..\Hardware\HX711 -I ..\Hardware\MatrixKey -I ..\Hardware\OLED -I ..\Hardware\ISD1820 -I ..\Hardware\ENCODER -I ..\Hardware\PID -I ..\Hardware\TIM -I ..\Hardware\TRACK-I D:\HT\software\HT_project\User\RTE-I D:\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.44\ARM\INC\Holtek\HT32F5xxxx-I D:\KEIL5\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DUSE_HT32F52342_52 -DUSE_HT32_DRIVER -DUSE_HT32F52352_SK -DUSE_HT32F52342_52 -DUSE_MEM_HT32F52352-o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
+F (.\main.c)(0x64487512)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Code -I ..\Code\Include -I ..\Library\inc -I ..\Config -I ..\Utilities\common -I ..\Hardware\LED -I ..\Hardware\USART -I ..\Utilities -I ..\Utilities\HT32_Board -I ..\Hardware\PWM -I ..\Hardware\DELAY -I ..\Hardware\HX711 -I ..\Hardware\MatrixKey -I ..\Hardware\OLED -I ..\Hardware\ISD1820 -I ..\Hardware\ENCODER -I ..\Hardware\PID -I ..\Hardware\TIM -I ..\Hardware\TRACK-I D:\HT\software\HT_project\User\RTE-I D:\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.44\ARM\INC\Holtek\HT32F5xxxx-I D:\KEIL5\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DUSE_HT32F52342_52 -DUSE_HT32_DRIVER -DUSE_HT32F52352_SK -DUSE_HT32F52342_52 -DUSE_MEM_HT32F52352-o ..\obj\main.o --omf_browse ..\obj\main.crf --depend ..\obj\main.d)
 I (..\Library\inc\ht32.h)(0x643A07E6)
 I (D:\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.44\ARM\INC\Holtek\HT32F5xxxx\ht32f5xxxx_01.h)(0x64382F73)
 I (D:\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.44\ARM\INC\Holtek\HT32F5xxxx\ht32_config.h)(0x63906E64)
@@ -88,9 +88,9 @@ I (..\Library\inc\ht32_rand.h)(0x643A07E6)
 I (..\Hardware\USART\usart.h)(0x6443F130)
 I (..\Hardware\PWM\pwm.h)(0x6447961E)
 I (..\Hardware\DELAY\delay.h)(0x643A07E6)
-I (..\Hardware\HX711\hx711.h)(0x6443F130)
+I (..\Hardware\HX711\hx711.h)(0x6447FEF7)
 I (..\Hardware\ENCODER\encoder.h)(0x64454613)
-I (..\Hardware\MatrixKey\MatrixKey.h)(0x64479E66)
+I (..\Hardware\MatrixKey\MatrixKey.h)(0x6447F351)
 I (..\Hardware\OLED\oled.h)(0x6443F130)
 I (..\Utilities\ht32_board.h)(0x643A07E7)
 I (..\Library\inc\ht32_config.h)(0x643A07E6)
@@ -102,7 +102,7 @@ I (..\Config\ht32_board_config.h)(0x643A07E6)
 I (D:\KEIL5\keil5\ARM\ARMCC\include\stdlib.h)(0x569DEA3A)
 I (..\Hardware\ISD1820\isd1820.h)(0x6443F130)
 I (..\Hardware\TIM\timdelay.h)(0x6447842B)
-I (..\Hardware\TRACK\track.h)(0x6446946F)
+I (..\Hardware\TRACK\track.h)(0x644884E1)
 I (..\Hardware\PID\pid.h)(0x64469312)
 F (..\Hardware\LED\led.c)(0x6443F130)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Code -I ..\Code\Include -I ..\Library\inc -I ..\Config -I ..\Utilities\common -I ..\Hardware\LED -I ..\Hardware\USART -I ..\Utilities -I ..\Utilities\HT32_Board -I ..\Hardware\PWM -I ..\Hardware\DELAY -I ..\Hardware\HX711 -I ..\Hardware\MatrixKey -I ..\Hardware\OLED -I ..\Hardware\ISD1820 -I ..\Hardware\ENCODER -I ..\Hardware\PID -I ..\Hardware\TIM -I ..\Hardware\TRACK-I D:\HT\software\HT_project\User\RTE-I D:\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.44\ARM\INC\Holtek\HT32F5xxxx-I D:\KEIL5\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DUSE_HT32F52342_52 -DUSE_HT32_DRIVER -DUSE_HT32F52352_SK -DUSE_HT32F52342_52 -DUSE_MEM_HT32F52352-o ..\obj\led.o --omf_browse ..\obj\led.crf --depend ..\obj\led.d)
 I (..\Hardware\LED\led.h)(0x643A07E6)
@@ -290,8 +290,8 @@ I (..\Library\inc\ht32_serial.h)(0x643A07E6)
 I (..\Library\inc\ht32_div.h)(0x643A07E6)
 I (..\Library\inc\ht32_rand.h)(0x643A07E6)
 I (..\Hardware\DELAY\delay.h)(0x643A07E6)
-F (..\Hardware\HX711\hx711.c)(0x6443F130)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Code -I ..\Code\Include -I ..\Library\inc -I ..\Config -I ..\Utilities\common -I ..\Hardware\LED -I ..\Hardware\USART -I ..\Utilities -I ..\Utilities\HT32_Board -I ..\Hardware\PWM -I ..\Hardware\DELAY -I ..\Hardware\HX711 -I ..\Hardware\MatrixKey -I ..\Hardware\OLED -I ..\Hardware\ISD1820 -I ..\Hardware\ENCODER -I ..\Hardware\PID -I ..\Hardware\TIM -I ..\Hardware\TRACK-I D:\HT\software\HT_project\User\RTE-I D:\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.44\ARM\INC\Holtek\HT32F5xxxx-I D:\KEIL5\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DUSE_HT32F52342_52 -DUSE_HT32_DRIVER -DUSE_HT32F52352_SK -DUSE_HT32F52342_52 -DUSE_MEM_HT32F52352-o ..\obj\hx711.o --omf_browse ..\obj\hx711.crf --depend ..\obj\hx711.d)
-I (..\Hardware\HX711\HX711.h)(0x6443F130)
+F (..\Hardware\HX711\hx711.c)(0x6448050C)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Code -I ..\Code\Include -I ..\Library\inc -I ..\Config -I ..\Utilities\common -I ..\Hardware\LED -I ..\Hardware\USART -I ..\Utilities -I ..\Utilities\HT32_Board -I ..\Hardware\PWM -I ..\Hardware\DELAY -I ..\Hardware\HX711 -I ..\Hardware\MatrixKey -I ..\Hardware\OLED -I ..\Hardware\ISD1820 -I ..\Hardware\ENCODER -I ..\Hardware\PID -I ..\Hardware\TIM -I ..\Hardware\TRACK-I D:\HT\software\HT_project\User\RTE-I D:\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.44\ARM\INC\Holtek\HT32F5xxxx-I D:\KEIL5\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DUSE_HT32F52342_52 -DUSE_HT32_DRIVER -DUSE_HT32F52352_SK -DUSE_HT32F52342_52 -DUSE_MEM_HT32F52352-o ..\obj\hx711.o --omf_browse ..\obj\hx711.crf --depend ..\obj\hx711.d)
+I (..\Hardware\HX711\HX711.h)(0x6447FEF7)
 I (D:\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.44\ARM\INC\Holtek\HT32F5xxxx\ht32f5xxxx_01.h)(0x64382F73)
 I (D:\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.44\ARM\INC\Holtek\HT32F5xxxx\ht32_config.h)(0x63906E64)
 I (..\Code\Include\core_cm0plus.h)(0x643A07E6)
@@ -335,8 +335,8 @@ I (..\Library\inc\ht32_serial.h)(0x643A07E6)
 I (..\Library\inc\ht32_div.h)(0x643A07E6)
 I (..\Library\inc\ht32_rand.h)(0x643A07E6)
 I (..\Hardware\DELAY\delay.h)(0x643A07E6)
-F (..\Hardware\MatrixKey\MatrixKey.c)(0x6447A185)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Code -I ..\Code\Include -I ..\Library\inc -I ..\Config -I ..\Utilities\common -I ..\Hardware\LED -I ..\Hardware\USART -I ..\Utilities -I ..\Utilities\HT32_Board -I ..\Hardware\PWM -I ..\Hardware\DELAY -I ..\Hardware\HX711 -I ..\Hardware\MatrixKey -I ..\Hardware\OLED -I ..\Hardware\ISD1820 -I ..\Hardware\ENCODER -I ..\Hardware\PID -I ..\Hardware\TIM -I ..\Hardware\TRACK-I D:\HT\software\HT_project\User\RTE-I D:\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.44\ARM\INC\Holtek\HT32F5xxxx-I D:\KEIL5\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DUSE_HT32F52342_52 -DUSE_HT32_DRIVER -DUSE_HT32F52352_SK -DUSE_HT32F52342_52 -DUSE_MEM_HT32F52352-o ..\obj\matrixkey.o --omf_browse ..\obj\matrixkey.crf --depend ..\obj\matrixkey.d)
-I (..\Hardware\MatrixKey\MatrixKey.h)(0x64479E66)
+F (..\Hardware\MatrixKey\MatrixKey.c)(0x64487CDD)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Code -I ..\Code\Include -I ..\Library\inc -I ..\Config -I ..\Utilities\common -I ..\Hardware\LED -I ..\Hardware\USART -I ..\Utilities -I ..\Utilities\HT32_Board -I ..\Hardware\PWM -I ..\Hardware\DELAY -I ..\Hardware\HX711 -I ..\Hardware\MatrixKey -I ..\Hardware\OLED -I ..\Hardware\ISD1820 -I ..\Hardware\ENCODER -I ..\Hardware\PID -I ..\Hardware\TIM -I ..\Hardware\TRACK-I D:\HT\software\HT_project\User\RTE-I D:\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.44\ARM\INC\Holtek\HT32F5xxxx-I D:\KEIL5\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DUSE_HT32F52342_52 -DUSE_HT32_DRIVER -DUSE_HT32F52352_SK -DUSE_HT32F52342_52 -DUSE_MEM_HT32F52352-o ..\obj\matrixkey.o --omf_browse ..\obj\matrixkey.crf --depend ..\obj\matrixkey.d)
+I (..\Hardware\MatrixKey\MatrixKey.h)(0x6447F351)
 I (..\Hardware\DELAY\delay.h)(0x643A07E6)
 I (..\Library\inc\ht32_cm0plus_misc.h)(0x643A07E6)
 I (..\Library\inc\ht32.h)(0x643A07E6)
@@ -380,6 +380,17 @@ I (..\Library\inc\ht32f5xxxx_wdt.h)(0x643A07E6)
 I (..\Library\inc\ht32_serial.h)(0x643A07E6)
 I (..\Library\inc\ht32_div.h)(0x643A07E6)
 I (..\Library\inc\ht32_rand.h)(0x643A07E6)
+I (..\Hardware\OLED\oled.h)(0x6443F130)
+I (..\Utilities\ht32_board.h)(0x643A07E7)
+I (..\Library\inc\ht32_config.h)(0x643A07E6)
+I (..\Utilities\HT32_board/ht32f52352_sk.h)(0x643A07E7)
+I (..\Utilities\common/i2c_eeprom.h)(0x643A07E7)
+I (..\Utilities\common/spi_flash.h)(0x643A07E7)
+I (..\Utilities\common/ebi_lcd.h)(0x643A07E7)
+I (..\Config\ht32_board_config.h)(0x643A07E6)
+I (D:\KEIL5\keil5\ARM\ARMCC\include\stdlib.h)(0x569DEA3A)
+I (..\Hardware\TRACK\track.h)(0x644884E1)
+I (..\Hardware\HX711\HX711.h)(0x6447FEF7)
 F (..\Hardware\OLED\oled.c)(0x6443F130)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Code -I ..\Code\Include -I ..\Library\inc -I ..\Config -I ..\Utilities\common -I ..\Hardware\LED -I ..\Hardware\USART -I ..\Utilities -I ..\Utilities\HT32_Board -I ..\Hardware\PWM -I ..\Hardware\DELAY -I ..\Hardware\HX711 -I ..\Hardware\MatrixKey -I ..\Hardware\OLED -I ..\Hardware\ISD1820 -I ..\Hardware\ENCODER -I ..\Hardware\PID -I ..\Hardware\TIM -I ..\Hardware\TRACK-I D:\HT\software\HT_project\User\RTE-I D:\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.44\ARM\INC\Holtek\HT32F5xxxx-I D:\KEIL5\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DUSE_HT32F52342_52 -DUSE_HT32_DRIVER -DUSE_HT32F52352_SK -DUSE_HT32F52342_52 -DUSE_MEM_HT32F52352-o ..\obj\oled.o --omf_browse ..\obj\oled.crf --depend ..\obj\oled.d)
 I (..\Hardware\OLED\oled.h)(0x6443F130)
 I (..\Utilities\ht32_board.h)(0x643A07E7)
@@ -571,7 +582,7 @@ I (..\Library\inc\ht32_div.h)(0x643A07E6)
 I (..\Library\inc\ht32_rand.h)(0x643A07E6)
 I (..\Hardware\ENCODER\encoder.h)(0x64454613)
 I (..\Hardware\PWM\pwm.h)(0x6447961E)
-F (..\Hardware\TIM\timdelay.c)(0x64478229)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Code -I ..\Code\Include -I ..\Library\inc -I ..\Config -I ..\Utilities\common -I ..\Hardware\LED -I ..\Hardware\USART -I ..\Utilities -I ..\Utilities\HT32_Board -I ..\Hardware\PWM -I ..\Hardware\DELAY -I ..\Hardware\HX711 -I ..\Hardware\MatrixKey -I ..\Hardware\OLED -I ..\Hardware\ISD1820 -I ..\Hardware\ENCODER -I ..\Hardware\PID -I ..\Hardware\TIM -I ..\Hardware\TRACK-I D:\HT\software\HT_project\User\RTE-I D:\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.44\ARM\INC\Holtek\HT32F5xxxx-I D:\KEIL5\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DUSE_HT32F52342_52 -DUSE_HT32_DRIVER -DUSE_HT32F52352_SK -DUSE_HT32F52342_52 -DUSE_MEM_HT32F52352-o ..\obj\timdelay.o --omf_browse ..\obj\timdelay.crf --depend ..\obj\timdelay.d)
+F (..\Hardware\TIM\timdelay.c)(0x644884E1)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Code -I ..\Code\Include -I ..\Library\inc -I ..\Config -I ..\Utilities\common -I ..\Hardware\LED -I ..\Hardware\USART -I ..\Utilities -I ..\Utilities\HT32_Board -I ..\Hardware\PWM -I ..\Hardware\DELAY -I ..\Hardware\HX711 -I ..\Hardware\MatrixKey -I ..\Hardware\OLED -I ..\Hardware\ISD1820 -I ..\Hardware\ENCODER -I ..\Hardware\PID -I ..\Hardware\TIM -I ..\Hardware\TRACK-I D:\HT\software\HT_project\User\RTE-I D:\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.44\ARM\INC\Holtek\HT32F5xxxx-I D:\KEIL5\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DUSE_HT32F52342_52 -DUSE_HT32_DRIVER -DUSE_HT32F52352_SK -DUSE_HT32F52342_52 -DUSE_MEM_HT32F52352-o ..\obj\timdelay.o --omf_browse ..\obj\timdelay.crf --depend ..\obj\timdelay.d)
 I (..\Hardware\PWM\pwm.h)(0x6447961E)
 I (..\Library\inc\ht32f5xxxx_bftm.h)(0x643A07E6)
 I (..\Library\inc\ht32.h)(0x643A07E6)
@@ -617,8 +628,9 @@ I (..\Library\inc\ht32_div.h)(0x643A07E6)
 I (..\Library\inc\ht32_rand.h)(0x643A07E6)
 I (D:\KEIL5\keil5\ARM\ARMCC\include\time.h)(0x569DEA3A)
 I (..\Hardware\TIM\timdelay.h)(0x6447842B)
-F (..\Hardware\TRACK\track.c)(0x6447CB9E)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Code -I ..\Code\Include -I ..\Library\inc -I ..\Config -I ..\Utilities\common -I ..\Hardware\LED -I ..\Hardware\USART -I ..\Utilities -I ..\Utilities\HT32_Board -I ..\Hardware\PWM -I ..\Hardware\DELAY -I ..\Hardware\HX711 -I ..\Hardware\MatrixKey -I ..\Hardware\OLED -I ..\Hardware\ISD1820 -I ..\Hardware\ENCODER -I ..\Hardware\PID -I ..\Hardware\TIM -I ..\Hardware\TRACK-I D:\HT\software\HT_project\User\RTE-I D:\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.44\ARM\INC\Holtek\HT32F5xxxx-I D:\KEIL5\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DUSE_HT32F52342_52 -DUSE_HT32_DRIVER -DUSE_HT32F52352_SK -DUSE_HT32F52342_52 -DUSE_MEM_HT32F52352-o ..\obj\track.o --omf_browse ..\obj\track.crf --depend ..\obj\track.d)
-I (..\Hardware\TRACK\track.h)(0x6446946F)
+I (..\Hardware\TRACK\track.h)(0x644884E1)
+F (..\Hardware\TRACK\track.c)(0x644884E1)(--c99 -c --cpu Cortex-M0+ -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Code -I ..\Code\Include -I ..\Library\inc -I ..\Config -I ..\Utilities\common -I ..\Hardware\LED -I ..\Hardware\USART -I ..\Utilities -I ..\Utilities\HT32_Board -I ..\Hardware\PWM -I ..\Hardware\DELAY -I ..\Hardware\HX711 -I ..\Hardware\MatrixKey -I ..\Hardware\OLED -I ..\Hardware\ISD1820 -I ..\Hardware\ENCODER -I ..\Hardware\PID -I ..\Hardware\TIM -I ..\Hardware\TRACK-I D:\HT\software\HT_project\User\RTE-I D:\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.44\ARM\INC\Holtek\HT32F5xxxx-I D:\KEIL5\keil5\ARM\CMSIS\Include-D__UVISION_VERSION="518" -DUSE_HT32F52342_52 -DUSE_HT32_DRIVER -DUSE_HT32F52352_SK -DUSE_HT32F52342_52 -DUSE_MEM_HT32F52352-o ..\obj\track.o --omf_browse ..\obj\track.crf --depend ..\obj\track.d)
+I (..\Hardware\TRACK\track.h)(0x644884E1)
 I (..\Library\inc\ht32.h)(0x643A07E6)
 I (D:\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.44\ARM\INC\Holtek\HT32F5xxxx\ht32f5xxxx_01.h)(0x64382F73)
 I (D:\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.44\ARM\INC\Holtek\HT32F5xxxx\ht32_config.h)(0x63906E64)
@@ -674,6 +686,8 @@ I (..\Config\ht32_board_config.h)(0x643A07E6)
 I (D:\KEIL5\keil5\ARM\ARMCC\include\stdlib.h)(0x569DEA3A)
 I (..\Hardware\USART\usart.h)(0x6443F130)
 I (..\Hardware\ISD1820\isd1820.h)(0x6443F130)
+I (..\Hardware\MatrixKey\MatrixKey.h)(0x6447F351)
+I (..\Hardware\HX711\HX711.H)(0x6447FEF7)
 F (..\Config\ht32_board_config.h)(0x643A07E6)()
 F (..\Config\ht32_op.s)(0x643A07E6)(--cpu Cortex-M0+ -g --apcs=interwork --pd "__MICROLIB SETA 1"-I D:\HT\software\HT_project\User\RTE-I D:\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.44\ARM\INC\Holtek\HT32F5xxxx-I D:\KEIL5\keil5\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 518" --pd "USE_HT32F52342_52 SETA 1" --pd "USE_HT32_CHIP SETA 4"--list ..\..\..\documents\ht32_op.lst --xref -o ..\obj\ht32_op.o --depend ..\obj\ht32_op.d)
 F (..\Config\HT32F5xxxx_01_DebugSupport.ini)(0x643A07E6)()

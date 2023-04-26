@@ -57,3 +57,5 @@
 ..\obj\track.o: D:\KEIL5\keil5\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\obj\track.o: ..\Hardware\USART\usart.h
 ..\obj\track.o: ..\Hardware\ISD1820\isd1820.h
+..\obj\track.o: ..\Hardware\MatrixKey\MatrixKey.h
+..\obj\track.o: ..\Hardware\HX711\HX711.H

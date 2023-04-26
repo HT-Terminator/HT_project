@@ -15,5 +15,6 @@ extern void Get_Basic(void);
 extern void Get_Weight(void);
 
 extern volatile int Weight_Medicine_1;
+extern uint8_t pickup;
 
 #endif

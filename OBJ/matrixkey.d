@@ -45,3 +45,15 @@
 ..\obj\matrixkey.o: ..\Library\inc\ht32_serial.h
 ..\obj\matrixkey.o: ..\Library\inc\ht32_div.h
 ..\obj\matrixkey.o: ..\Library\inc\ht32_rand.h
+..\obj\matrixkey.o: ..\Hardware\OLED\oled.h
+..\obj\matrixkey.o: ..\Utilities\ht32_board.h
+..\obj\matrixkey.o: ..\Library\inc\ht32_config.h
+..\obj\matrixkey.o: ..\Utilities\HT32_board/ht32f52352_sk.h
+..\obj\matrixkey.o: ..\Utilities\common/i2c_eeprom.h
+..\obj\matrixkey.o: ..\Utilities\ht32_board.h
+..\obj\matrixkey.o: ..\Utilities\common/spi_flash.h
+..\obj\matrixkey.o: ..\Utilities\common/ebi_lcd.h
+..\obj\matrixkey.o: ..\Config\ht32_board_config.h
+..\obj\matrixkey.o: D:\KEIL5\keil5\ARM\ARMCC\Bin\..\include\stdlib.h
+..\obj\matrixkey.o: ..\Hardware\TRACK\track.h
+..\obj\matrixkey.o: ..\Hardware\HX711\HX711.h

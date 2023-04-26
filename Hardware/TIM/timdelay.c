@@ -1,11 +1,12 @@
 #include "pwm.h"
 #include "time.h"
 #include "timdelay.h"
+#include "track.h"
 
 unsigned int sctm_control_30ms;
 unsigned int sctm_encoder_30ms;
 unsigned int sctm_usart0_100ms;
-unsigned int sctm_state3;
+unsigned int sctm_across_200ms;
 unsigned int sctm_state4;
 
 
@@ -53,7 +54,15 @@ void HTCFG_TM_IRQHandler(void)
 			sctm_control_30ms++;
 			sctm_encoder_30ms++;
 			sctm_usart0_100ms++;
-			 
+		
+			if(across_flag == 1)
+				sctm_across_200ms++;
+			
+			if(sctm_across_200ms>=200*2 && across_flag == 1)
+			{
+				sctm_across_200ms = 0;
+				across_flag = 0;
+			}
 	}
 }
 
