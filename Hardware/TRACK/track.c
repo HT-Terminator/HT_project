@@ -100,14 +100,14 @@ void Track_Getbit(void)
 			Send.Change_Flag = 1;
 			Send.Distance = RoomNum - nowroom;
 			Send.Time = Send.Distance*5;
-			Cloud_All_Msg_Push();
+			//Cloud_All_Msg_Push();
 		}
 		else if(sale_state == 1)
 		{
 			Sell.Change_Flag = 1;
 			Sell.Distance = RoomNum - nowroom;
-			Sell.Time = Sell.Distance*5;
-			Cloud_All_Msg_Push();
+//			Sell.Time = Sell.Distance*5;
+			//Cloud_All_Msg_Push();
 		}
 		
 		OLED_ShowNum(12*6,Y_3,nowroom,3,16);
@@ -131,26 +131,29 @@ void Stop_Begin_room(void)
 		Speedr.target_value=0;
 		stop_state_room =1 ;
 //		State = 2; //待取货
-		Send.Change_Flag =1;
-		Send.State = 2;	//发送请取货
-		Send.Distance = 0;
-		Send.Time = 0;
-		for(int i=0;i<3;i++)
-			delay_ms(20);
-			Cloud_All_Msg_Push();
-		State = 2; //待取货
+		if(sale_state == 0)
+			{
+			Send.Change_Flag =1;
+			Send.State = 2;	//发送请取货
+			Send.Distance = 0;
+			Send.Time = 0;
+			delay_ms(500);
+	//		//Cloud_All_Msg_Push();
+//			State = 2; //待取货
+		}
+//		OLED_ShowNum(12*6,Y_3,Send.State,3,16);
 		
 		
-		if(sale_state == 1)
+		else if(sale_state == 1)
 		{
 			Sell.Change_Flag = 1;
 			Sell.State = 2;//售货已送达
 			Sell.Distance = 0;
-			Sell.Time = 0;
-			for(int i=0;i<6;i++)
-				delay_ms(20);
-				Cloud_All_Msg_Push();
+			delay_ms(500);
+//			Sell.Time = 0;
+			//Cloud_All_Msg_Push();
 		}
+		State = 2; //待取货
 		state_show();
 	}
 	else if((stop_state_room==1 && pickupover == 1) || sctm_nopickup_10000ms >= 10000*2 )		//送达已取货或者超过取货时间，则开走
@@ -201,7 +204,21 @@ void Stop_Begin_StartingPoint(void)
 		
 		Send.Call = 0;	//空闲
 		Send.Change_Flag = 1;
-		Cloud_All_Msg_Push();
+//		//Cloud_All_Msg_Push();
+//		cloud_init();
+//				Send.room = 0;
+//				Send.Distance = 0;
+//				Send.Time = Send.Distance*5;
+//				Sell.room = 0;
+//				Sell.Distance = 0;
+////				Sell.Time = 0;
+//				Send.State = 0;
+//				Sell.State = 0;
+//				Sell.Change_Flag = 1;
+//				Send.Change_Flag = 1;
+				cloud_init();
+				delay_ms(500);
+				//Cloud_All_Msg_Push();
 		
 //		OLED_ShowNum(3*6,Y_4,State,1,16);
 		OLED_ShowNum(12*6,Y_3,nowroom,3,16);
@@ -312,7 +329,7 @@ void Track(void){
 	
 		//左2
 		else if(stop_state_room==0&&stop_state_startingpoint==0&&left1_state == notFindBlack && left2_state == findBlack && middle_state == notFindBlack && right1_state == notFindBlack && right2_state == notFindBlack){
-			if(sctm_left_500ms > 1500*2)
+			if(sctm_left_500ms > 1300*2)
 			{
 				Speedl.kp=40;
 				Speedr.kp=40;

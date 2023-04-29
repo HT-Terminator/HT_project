@@ -173,7 +173,7 @@ void Get_Weight(void)
 					Send.Pickup = 1;
 					Send.Change_Flag =1;
 					Send.State = 1;	//发送已取货
-					Cloud_All_Msg_Push();
+//					Cloud_All_Msg_Push();
 					state_show();
 				}
 			}
@@ -189,29 +189,44 @@ void Get_Weight(void)
 			if(sctm_pickup_2500ms >= 5500*2)
 				{
 					ServosL_control(CLOSE);
-					State  = 1;
+//					State  = 1;
 					pickupover = 1;
 					pickup = 0;
 					sctm_pickup_2500ms=0;
 					diffbig = 0;
-					Sell.Pickup = 1;				
-					Send.Change_Flag =1;
-					Send.State = 1;	//发送已取货
-					Cloud_All_Msg_Push();
+					Sell.Pickup = 1;	
+					Sell.State = 0;
+					Sell.Change_Flag = 1;
+//					Send.Change_Flag =1;
+//					Send.State = 1;	//发送已取货
+					State  = 1;
+//					Cloud_All_Msg_Push();
 					state_show();
 				}
 			else if(sctm_pickup_2500ms >= 2500*2 && sctm_pickup_2500ms < 5000*2)
 				{
-					if(weight_now < 95+5 && weight_now > 95-5)
+					if(weight_now < 54+15 && weight_now > 54-5)
+					{
 						saleprice = firstsale;
+						Sell.Time = firstsale;
+					}
 //						OLED_ShowNum(9*8,Y_4,firstsale,4,16);	//拿走第一种商品，显示5元
 					else if(weight_now < 95+10 && weight_now > 95)
+					{
 						saleprice = secondsale;
+						Sell.Time = secondsale;
+					}
 					else
-						saleprice = 0;
+					{
+						saleprice = 5;
+						Sell.Time = 5;
+					}
 //						OLED_ShowNum(9*8,Y_4,secondsale,4,16);		//拿走第二种商品，显示10元
 //					sctm_pickup_2500ms=0;
 					OLED_ShowNum(12*8,Y_4,saleprice,2,16);
+					Sell.Change_Flag = 1;
+//					Cloud_All_Msg_Push();
+//					delay_ms(200);
 				}
 		}
 	}

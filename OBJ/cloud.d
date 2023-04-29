@@ -60,3 +60,4 @@
 ..\obj\cloud.o: ..\Utilities\common/ebi_lcd.h
 ..\obj\cloud.o: ..\Config\ht32_board_config.h
 ..\obj\cloud.o: D:\KEIL5\keil5\ARM\ARMCC\Bin\..\include\stdlib.h
+..\obj\cloud.o: ..\Hardware\DELAY\delay.h

@@ -5,6 +5,7 @@
 #include "MatrixKey.h"
 #include "pwm.h"
 #include "oled.h"
+#include "delay.h"
 
 /*人机交互相关变量*/
 //struct Interaction
@@ -20,8 +21,8 @@
 //	u8 Change_Flag;	// 0 无变更 || 1 有变更
 //	int room;	//房间号
 //}Send,Sell;
-struct Interaction Send;
-struct Interaction Sell;
+struct Interaction Send = {0};
+struct Interaction Sell = {0};
 
 //-------------------------------------------------------------------------------------------------------------------
 //  @brief      更新所有的信息到云端
@@ -36,10 +37,20 @@ void Cloud_All_Msg_Push(void)
 	if(Send.Change_Flag || Sell.Change_Flag)
 	{
 		char temp[256];
+		
+		if(Send.Change_Flag)
+		{
+			sprintf(temp,"{\"method\":\"thing.event.property.post\",\"id\":\"13507075\",\"params\":{\"DIS0\":%d,\"STATE0\":%d,\"ROOM0\":%d},\"version\":\"1.0.0\"}",Send.Distance,Send.State,Send.room); 
+			MQTT_PublishQs0(P_TOPIC_NAME,temp,strlen(temp));   //添加数据，发布给服务器
+		}
+		else if(Sell.Change_Flag)
+		{
+			sprintf(temp,"{\"method\":\"thing.event.property.post\",\"id\":\"13507075\",\"params\":{\"DIS1\":%d,\"STATE1\":%d},\"version\":\"1.0.0\"}",Sell.Distance,Sell.State); 
+			MQTT_PublishQs0(P_TOPIC_NAME,temp,strlen(temp));   //添加数据，发布给服务器
+		}
 		Send.Change_Flag = 0;
 		Sell.Change_Flag = 0;
-		sprintf(temp,"{\"method\":\"thing.event.property.post\",\"id\":\"13507075\",\"params\":{\"TIME0\":%d,\"DIS0\":%d,\"TIME1\":%d,\"DIS1\":%d,\"STATE0\":%d,\"STATE1\":%d,\"ROOM0\":%d},\"version\":\"1.0.0\"}",Send.Time,Send.Distance,Sell.Time,Sell.Distance,Send.State,Sell.State,Send.room); 
-		MQTT_PublishQs0(P_TOPIC_NAME,temp,strlen(temp));   //添加数据，发布给服务器
+		
 	}
 }
 
@@ -107,9 +118,11 @@ void Cloud_Ctrl_CMD(void)
 		Sell.Call = 1;	//有人呼叫
 		Sell.Change_Flag = 1;
 		sale_state = 1;
-		State = 1;
+//		State = 1;
+		Sell.Distance = RoomNum - 100;
 		Sell.State = 1;//运输中
-		Cloud_All_Msg_Push();
+//		Cloud_All_Msg_Push();
+		State = 1;
 		state_show();
 		//DEBUG_printf("Comming...\r\n");
 	}
@@ -126,19 +139,19 @@ void Cloud_Ctrl_CMD(void)
 	
 	//如有变更，更新状态到云端
 	/*更新送货状态*/
-	if(Send.Change_Flag)
-	{
-		Send.Change_Flag = 0; //还原状态
-		sprintf(temp,"{\"method\":\"thing.event.property.post\",\"id\":\"13507075\",\"params\":{\"PICK_UP0\":%d},\"version\":\"1.0.0\"}",Send.Pickup); 
-		MQTT_PublishQs0(P_TOPIC_NAME,temp,strlen(temp));   //添加数据，发布给服务器
-	}
-	/*更新收货状态*/
-	else if(Sell.Change_Flag)
-	{
-		Sell.Change_Flag = 0; //还原状态
-		sprintf(temp,"{\"method\":\"thing.event.property.post\",\"id\":\"13507075\",\"params\":{\"PICK_UP1\":%d,\"SELL_CALL\":%d},\"version\":\"1.0.0\"}", Sell.Pickup, Sell.Call); 
-		MQTT_PublishQs0(P_TOPIC_NAME,temp,strlen(temp));   //添加数据，发布给服务器
-	}
+//	if(Send.Change_Flag)
+//	{
+//		Send.Change_Flag = 0; //还原状态
+//		sprintf(temp,"{\"method\":\"thing.event.property.post\",\"id\":\"13507075\",\"params\":{\"PICK_UP0\":%d},\"version\":\"1.0.0\"}",Send.Pickup); 
+//		MQTT_PublishQs0(P_TOPIC_NAME,temp,strlen(temp));   //添加数据，发布给服务器
+//	}
+//	/*更新收货状态*/
+//	else if(Sell.Change_Flag)
+//	{
+//		Sell.Change_Flag = 0; //还原状态
+//		sprintf(temp,"{\"method\":\"thing.event.property.post\",\"id\":\"13507075\",\"params\":{\"PICK_UP1\":%d,\"SELL_CALL\":%d},\"version\":\"1.0.0\"}", Sell.Pickup, Sell.Call); 
+//		MQTT_PublishQs0(P_TOPIC_NAME,temp,strlen(temp));   //添加数据，发布给服务器
+//	}
 	
 	MQTT_CMDOutPtr += BUFF_UNIT;                             	 //指针下移
 	if(MQTT_CMDOutPtr==MQTT_CMDEndPtr)           	             //如果指针到缓冲区尾部了
@@ -172,7 +185,11 @@ u8 Handle_buff_about_cloud(void)
 				//////DEBUG_printf("发送数据到云:%s\r\n",&MQTT_TxDataOutPtr[2]);  //串口提示信息
 				//Attention 可能有BUG
 //					//////DEBUG_printf("%s\r\n", MQTT_TxDataOutPtr);
-				Cloud_printf("%s\r\n", &MQTT_TxDataOutPtr[2]);                       //发送数据
+//				for(int i =0;i<2;i++)
+//				{
+					Cloud_printf("%s\r\n", &MQTT_TxDataOutPtr[2]); 				//发送数据
+//					delay_ms(100);
+				
 				MQTT_TxDataOutPtr += BUFF_UNIT;                       //指针下移
 				if(MQTT_TxDataOutPtr==MQTT_TxDataEndPtr)              //如果指针到缓冲区尾部了
 					MQTT_TxDataOutPtr = MQTT_TxDataBuf[0];            //指针归位到缓冲区开头
@@ -212,5 +229,23 @@ u8 Handle_buff_about_cloud(void)
 	{
 		return 1;	
 	}
+}
+
+void cloud_init(void)
+{
+	char temp[256];
+				Send.room = 0;
+				Send.Distance = 0;
+				Send.Time = Send.Distance*5;
+				Sell.room = 0;
+				Sell.Distance = 0;
+				Sell.Time = 5;
+				Send.State = 0;
+				Sell.State = 0;
+//				Sell.Change_Flag = 1;
+//				Send.Change_Flag = 1;
+				sprintf(temp,"{\"method\":\"thing.event.property.post\",\"id\":\"13507075\",\"params\":{\"TIME0\":%d,\"DIS0\":%d,\"TIME1\":%d,\"DIS1\":%d,\"STATE0\":%d,\"STATE1\":%d,\"ROOM0\":%d},\"version\":\"1.0.0\"}",Send.Time,Send.Distance,Sell.Time,Sell.Distance,Send.State,Sell.State,Send.room); 
+				MQTT_PublishQs0(P_TOPIC_NAME,temp,strlen(temp));   //添加数据，发布给服务器
+//				Cloud_All_Msg_Push();
 }
 

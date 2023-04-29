@@ -182,10 +182,10 @@ void KeyProcess(unsigned char KeyNum)
 				Send.Distance = RoomNum - nowroom;
 				Send.Time = Send.Distance*5;
 				Send.Change_Flag = 1;
-				Cloud_All_Msg_Push();
+//				Cloud_All_Msg_Push();
 				
 			}
-			if(KeyNum==12)	//如果S12按键按下，取消
+			if(KeyNum==12)	//如果S12按键按下，初始化
 			{
 				RoomNum=0;		//密码清零
 				Count=0;		//计次清零
@@ -195,14 +195,19 @@ void KeyProcess(unsigned char KeyNum)
 				pickup = 0;
 				pickupover = 0;
 				saleprice = 0;
-//				Send.room = RoomNum;
-//				Send.Distance = RoomNum - nowroom;
+//				Send.room = 0;
+//				Send.Distance = 0;
 //				Send.Time = Send.Distance*5;
-				Send.State = 0;
-				Sell.State = 0;
-				Sell.Change_Flag = 1;
-				Send.Change_Flag = 1;
-				Cloud_All_Msg_Push();
+//				Sell.room = 0;
+//				Sell.Distance = 0;
+//				Sell.Time = Sell.Distance*5;
+//				Send.State = 0;
+//				Sell.State = 0;
+//				Sell.Change_Flag = 1;
+//				Send.Change_Flag = 1;
+////				Cloud_All_Msg_Push();
+//				Cloud_All_Msg_Push();
+				cloud_init();
 				
 //				OLED_ShowNum(6*8,Y_4,State,1,16);
 				state_show();

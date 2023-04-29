@@ -12,6 +12,7 @@ extern float IC_temp;
 u8 Handle_buff_about_cloud(void);
 void Cloud_Ctrl_CMD(void);
 void Cloud_All_Msg_Push(void);
+void cloud_init(void);
 
 struct Interaction
 {

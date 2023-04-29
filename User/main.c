@@ -30,6 +30,7 @@ void control_100ms(void);
 void get_weight_500ms(void);
 void cloud_process_500ms(void);
 //void state_show(void);
+//void cloud_init(void);
   
 int main(void)
 {
@@ -55,6 +56,7 @@ int main(void)
 	OLED_ShowString(0,Y_1," room:",16);
 	OLED_ShowString(0,Y_4," W:",16);
 	OLED_ShowString(8*8,Y_4," $:",16);
+	cloud_init();
 //	OLED_ShowNum(0*8,Y_2,11,2,16);		// 如果设置位数比实际位数大，则在最前面补空格 
 //	OLED_ShowNum(2*8,Y_3,2345,4,16);
 //	OLED_ShowNum(3*8,Y_4,3,1,16);
@@ -88,6 +90,7 @@ int main(void)
 			control_100ms();
 		}
 	Handle_buff_about_cloud();	//云端处理		
+	Cloud_All_Msg_Push();
 	}
 }
 
@@ -190,6 +193,8 @@ void cloud_process_500ms(void)
 			sctm_cloud_500ms=0;
 		}
 }
+
+
 
 //void state_show(void)
 //{
