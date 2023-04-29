@@ -10,11 +10,13 @@
 #define HX711_DOUT_1				GPIO_ReadInBit(HT_GPIOD, GPIO_PIN_1)
 
 extern void HX711_Init(void);
-extern u32 HX711_Read_1(void);
+extern int HX711_Read_1(void);
 extern void Get_Basic(void);
 extern void Get_Weight(void);
 
 extern volatile int Weight_Medicine_1;
 extern uint8_t pickup;
+extern uint8_t pickupover;
+extern uint8_t saleprice;
 
 #endif

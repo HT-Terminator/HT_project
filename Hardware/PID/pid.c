@@ -42,7 +42,7 @@ void Pidinit(void)
     //ËÙ¶È
     Speedl.kp=52;//6.5 8.5 30 40 50
     Speedl.ki=2;
-    Speedl.kd=0;
+    Speedl.kd=0;	//0
     Speedl.target_value=12;//57 58
     Speedl.output=0;
     Speedl.output_last=0;
@@ -51,7 +51,7 @@ void Pidinit(void)
 	
 	  Speedr.kp=52;
     Speedr.ki=2;
-    Speedr.kd=0;
+    Speedr.kd=0;		//0
     Speedr.target_value=12;
     Speedr.output=0;
     Speedr.output_last=0;

@@ -188,7 +188,7 @@ void encoder_data_process(void)
     Speed_data.left_wheel_pulse_num=0;
 	  Speed_data.right_wheel_pulse_num=0;	//数据处理完之后必须进行归0操作
 
-    Speed_data.actual_value=(Speed_data.actual_value_l+Speed_data.actual_value_r)/2.0;	//平均速度
+//    Speed_data.actual_value=(Speed_data.actual_value_l+Speed_data.actual_value_r)/2.0;	//平均速度
 	
 		//单位转换
 		/* 转速(1秒钟转多少圈)=单位时间内(100ms)的计数值/总分辨率*时间系数,总分辨率即车轮转过一圈的脉冲数，时间系数是1000ms/定时时长 */

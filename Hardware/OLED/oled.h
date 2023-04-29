@@ -55,6 +55,8 @@ void Write_IIC_Data(unsigned char IIC_Data);
 void Write_IIC_Byte(unsigned char IIC_Byte);
 
 void IIC_Wait_Ack(void);
+
+void state_show(void);
 #endif  
 	 
 

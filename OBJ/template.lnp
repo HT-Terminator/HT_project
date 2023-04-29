@@ -1,7 +1,6 @@
 --cpu Cortex-M0+
 "..\obj\ht32f5xxxx_01_it.o"
 "..\obj\main.o"
-"..\obj\led.o"
 "..\obj\usart.o"
 "..\obj\pwm.o"
 "..\obj\delay.o"
@@ -13,6 +12,8 @@
 "..\obj\pid.o"
 "..\obj\timdelay.o"
 "..\obj\track.o"
+"..\obj\cloud.o"
+"..\obj\mqtt.o"
 "..\obj\ht32_op.o"
 "..\obj\startup_ht32f5xxxx_01.o"
 "..\obj\ht32_usbd_core.o"

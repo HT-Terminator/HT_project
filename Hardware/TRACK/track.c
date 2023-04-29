@@ -6,6 +6,9 @@
 #include "isd1820.h"
 #include "MatrixKey.h"
 #include "HX711.H"
+#include "Cloud.h"
+#include "timdelay.h"
+#include "delay.h"
 
 
 uint8_t right1_state,right2_state,left1_state,left2_state,middle_state;
@@ -92,7 +95,22 @@ void Track_Getbit(void)
 		nowroom ++;
 		across_flag = 1;
 		
-		OLED_ShowNum(8*8,Y_3,nowroom,4,16);
+		if(sale_state == 0)
+		{
+			Send.Change_Flag = 1;
+			Send.Distance = RoomNum - nowroom;
+			Send.Time = Send.Distance*5;
+			Cloud_All_Msg_Push();
+		}
+		else if(sale_state == 1)
+		{
+			Sell.Change_Flag = 1;
+			Sell.Distance = RoomNum - nowroom;
+			Sell.Time = Sell.Distance*5;
+			Cloud_All_Msg_Push();
+		}
+		
+		OLED_ShowNum(12*6,Y_3,nowroom,3,16);
 	}
 	else if(state_sum < 3 && across_flag == 0)
 	{
@@ -105,32 +123,66 @@ void Track_Getbit(void)
 //到达目标房间后停止与开始
 void Stop_Begin_room(void)
 {
-	if(nowroom == RoomNum && pickup == 0)	//到达目的房间并且未取货
+	if(nowroom == RoomNum && pickupover == 0)	//到达目的房间并且未取货
 	{
-		Speedl.kp=70;
-		Speedr.kp=70;
+		Speedl.kp=90;	//70
+		Speedr.kp=90;
 		Speedl.target_value=0;
 		Speedr.target_value=0;
 		stop_state_room =1 ;
+//		State = 2; //待取货
+		Send.Change_Flag =1;
+		Send.State = 2;	//发送请取货
+		Send.Distance = 0;
+		Send.Time = 0;
+		for(int i=0;i<3;i++)
+			delay_ms(20);
+			Cloud_All_Msg_Push();
+		State = 2; //待取货
+		
+		
+		if(sale_state == 1)
+		{
+			Sell.Change_Flag = 1;
+			Sell.State = 2;//售货已送达
+			Sell.Distance = 0;
+			Sell.Time = 0;
+			for(int i=0;i<6;i++)
+				delay_ms(20);
+				Cloud_All_Msg_Push();
+		}
+		state_show();
 	}
-	else if(stop_state_room==1 && pickup == 1)
+	else if((stop_state_room==1 && pickupover == 1) || sctm_nopickup_10000ms >= 10000*2 )		//送达已取货或者超过取货时间，则开走
 	{
-			Speedl.kp=90;
-			Speedr.kp=90;
+//			Speedl.kp=50;	//90 25
+//			Speedr.kp=50;
 			if( pre_stop_state == 0){
-				Speedl.target_value=12;
-				Speedr.target_value=12;		
+				Speedl.kp=25;	//90 25
+				Speedr.kp=25;
+				Speedl.target_value=5+1;	//6 12
+				Speedr.target_value=5;		
 			}
 			else if(pre_stop_state == -1){
-				Speedl.target_value=0;		//8
-				Speedr.target_value=15;		//16
+				Speedl.kp=25;	//90 25
+				Speedr.kp=25;
+				Speedl.target_value=0;	//6 12
+				Speedr.target_value=8;
+//				Speedl.target_value=0;		//6
+//				Speedr.target_value=13;		//16 10
 			}
 			else if(pre_stop_state == 1){
-				Speedl.target_value=15;
+				Speedl.kp=25;	//90 25
+				Speedr.kp=25;
+				Speedl.target_value=8;	//6 12
 				Speedr.target_value=0;
+//				Speedl.target_value=11;
+//				Speedr.target_value=0;
 			}
 			stop_state_room = 0;
+			sctm_nopickup_10000ms=0;
 	}
+//	OLED_ShowNum(3*6,Y_4,State,1,16);
 }
 
 //到达终点后停止与开始
@@ -138,37 +190,47 @@ void Stop_Begin_StartingPoint(void)
 {
 	if(nowroom >= 100+RoomSum+1)	//到达起点
 	{
-		Speedl.kp=70;
-		Speedr.kp=70;
+		Speedl.kp=90;
+		Speedr.kp=90;
 		Speedl.target_value=0;
 		Speedr.target_value=0;
 		
 		stop_state_startingpoint =1 ;
 		State = 0;
 		nowroom = 100;
-		OLED_ShowNum(6*8,Y_4,State,4,16);
-		OLED_ShowNum(8*8,Y_3,nowroom,4,16);
+		
+		Send.Call = 0;	//空闲
+		Send.Change_Flag = 1;
+		Cloud_All_Msg_Push();
+		
+//		OLED_ShowNum(3*6,Y_4,State,1,16);
+		OLED_ShowNum(12*6,Y_3,nowroom,3,16);
+		state_show();
 	}
 	else if(State == 1 && stop_state_startingpoint == 1)
 	{
-		Speedl.kp=90;
-		Speedr.kp=90;
+		Speedl.kp=25;
+		Speedr.kp=25;
 		if( pre_stop_state == 0){
-			Speedl.target_value=12;
-			Speedr.target_value=12;		
+			Speedl.target_value=5+1;
+			Speedr.target_value=5;		
 		}
 		else if(pre_stop_state == -1){
-			Speedl.target_value=0;		//
-			Speedr.target_value=10;		//15
+			Speedl.target_value=0;	//6 12
+			Speedr.target_value=8;
+//			Speedl.target_value=0;		//
+//			Speedr.target_value=13;		//10 14
 		}
 		else if(pre_stop_state == 1){
-			Speedl.target_value=10;	
+			Speedl.target_value=8;	//6 12
 			Speedr.target_value=0;
+//			Speedl.target_value=13;	
+//			Speedr.target_value=0;
 		}
 		stop_state_startingpoint = 0;
-		OLED_ShowNum(6*8,Y_4,State,4,16);
+//		OLED_ShowNum(3*6,Y_4,State,1,16);
 	}
-
+//	state_show();
 }
 
 #if		1
@@ -177,8 +239,8 @@ void Track(void){
 	
 	if(distance < 500 && distance != 0)
 	{
-		Speedl.kp=70;
-		Speedr.kp=70;
+		Speedl.kp=90;		//90
+		Speedr.kp=90;
 		Speedl.target_value=0;
 		Speedr.target_value=0;
 		stop_state =1 ;
@@ -186,19 +248,23 @@ void Track(void){
 	}
 	else if(distance >=500){
 		if(stop_state == 1){
-			Speedl.kp=90;
-			Speedr.kp=90;
+			Speedl.kp=25;
+			Speedr.kp=25;
 			if( pre_stop_state == 0){
-				Speedl.target_value=12;
-				Speedr.target_value=12;		
+				Speedl.target_value=5+1;
+				Speedr.target_value=5;		
 			}
 			else if(pre_stop_state == -1){
-				Speedl.target_value=0;		//8
-				Speedr.target_value=15;		//16
+				Speedl.target_value=0;	//6 12
+				Speedr.target_value=8;
+//				Speedl.target_value=0;		//6
+//				Speedr.target_value=13;		//16
 			}
 			else if(pre_stop_state == 1){
-				Speedl.target_value=15;
+				Speedl.target_value=8;	//6 12
 				Speedr.target_value=0;
+//				Speedl.target_value=13;
+//				Speedr.target_value=0;
 			}
 			stop_state = 0;
 		}
@@ -208,43 +274,66 @@ void Track(void){
 
 		//中间
 		if(stop_state_room==0&&stop_state_startingpoint==0&&left1_state == notFindBlack && left2_state == notFindBlack && middle_state == findBlack && right1_state == notFindBlack && right2_state == notFindBlack){
-			Speedl.kp=52;
-			Speedr.kp=52;
-			Speedl.target_value=12;
-			Speedr.target_value=12;
+			Speedl.kp=35;
+			Speedr.kp=35;
+			Speedl.target_value=5+1;
+			Speedr.target_value=5; //12
+			sctm_left_500ms = 0;
 		}
 	
 		//右1
 		else if(stop_state_room==0&&stop_state_startingpoint==0&&left1_state == notFindBlack && left2_state == notFindBlack && middle_state == notFindBlack && right1_state == findBlack && right2_state == notFindBlack){
-			Speedl.kp=52;
-			Speedr.kp=52;
-			Speedl.target_value=15;		//22 17
+			Speedl.kp=40;			//52 25 35
+			Speedr.kp=40;
+			Speedl.target_value=8;		//22 17 15 17 15 8
 			Speedr.target_value=0;	
+			sctm_left_500ms = 0;
 		}
 	
 		//左1
 		else if(stop_state_room==0&&stop_state_startingpoint==0&&left1_state == findBlack && left2_state == notFindBlack && middle_state == notFindBlack && right1_state == notFindBlack && right2_state == notFindBlack){ 
-			Speedl.kp=52;
-			Speedr.kp=52;
+			Speedl.kp=40;
+			Speedr.kp=40;
 			Speedl.target_value=0;
-			Speedr.target_value=15;
+			Speedr.target_value=8;  //10
+			sctm_left_500ms = 0;
 		}
 	
 		//右2
 		else if(stop_state_room==0&&stop_state_startingpoint==0&&left1_state == notFindBlack && left2_state == notFindBlack && middle_state == notFindBlack && right1_state == notFindBlack && right2_state == findBlack){	
-			Speedl.kp=52;
-			Speedr.kp=52;
-			Speedl.target_value=52; //52
-			Speedr.target_value=0;
+			Speedl.kp=35;
+			Speedr.kp=35;
+//			Speedl.target_value=18; //52 48 52  55 30 25 20
+//			Speedr.target_value=-10;
+			Speedl.target_value=30; //52 48 52  55 30 25 20
+			Speedr.target_value=-10;
+			sctm_left_500ms = 0;
 		}
 	
 		//左2
 		else if(stop_state_room==0&&stop_state_startingpoint==0&&left1_state == notFindBlack && left2_state == findBlack && middle_state == notFindBlack && right1_state == notFindBlack && right2_state == notFindBlack){
-			Speedl.kp=52;
-			Speedr.kp=52;
-			Speedl.target_value=0;
-			Speedr.target_value=52;	//52	
+			if(sctm_left_500ms > 1500*2)
+			{
+				Speedl.kp=40;
+				Speedr.kp=40;
+				Speedl.target_value=0;
+				Speedr.target_value=8;  //10
+			}
+			else{
+				Speedl.kp=45;
+				Speedr.kp=45;
+				Speedl.target_value=-10;
+				Speedr.target_value=30;	//52	
+			}
 		}
+		
+		
+//		else if(stop_state_room==0&&stop_state_startingpoint==0&&left1_state == notFindBlack && left2_state == notFindBlack && middle_state == notFindBlack && right1_state == notFindBlack && right2_state == notFindBlack){
+//			Speedl.kp=35;
+//			Speedr.kp=35;
+//			Speedl.target_value=5+1;
+//			Speedr.target_value=5; //12
+//		}
 	}
 }
 #endif
@@ -288,7 +377,7 @@ void Track(void){
 		if(Dir.actual_value == -2)
 			Dir.actual_value = -2;
 //	}
-	OLED_ShowNum(8*8,Y_2,Dir.actual_value,2,16);
+	OLED_ShowNum(6*6,Y_2,Dir.actual_value,2,16);
 //	state_sum = left1_state+left2_state+middle_state+right1_state+right2_state;
 	
 //	if(state_sum == 3)

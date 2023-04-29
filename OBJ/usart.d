@@ -44,6 +44,10 @@
 ..\obj\usart.o: ..\Library\inc\ht32_serial.h
 ..\obj\usart.o: ..\Library\inc\ht32_div.h
 ..\obj\usart.o: ..\Library\inc\ht32_rand.h
+..\obj\usart.o: D:\KEIL5\keil5\ARM\ARMCC\Bin\..\include\stdarg.h
+..\obj\usart.o: D:\KEIL5\keil5\ARM\ARMCC\Bin\..\include\string.h
+..\obj\usart.o: ..\Hardware\MQTT\MQTT.h
+..\obj\usart.o: ..\Hardware\Cloud\Cloud.h
 ..\obj\usart.o: ..\Utilities\ht32_board.h
 ..\obj\usart.o: ..\Library\inc\ht32_config.h
 ..\obj\usart.o: ..\Utilities\HT32_board/ht32f52352_sk.h

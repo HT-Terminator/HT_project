@@ -47,3 +47,10 @@
 ..\obj\timdelay.o: D:\KEIL5\keil5\ARM\ARMCC\Bin\..\include\time.h
 ..\obj\timdelay.o: ..\Hardware\TIM\timdelay.h
 ..\obj\timdelay.o: ..\Hardware\TRACK\track.h
+..\obj\timdelay.o: ..\Hardware\HX711\HX711.h
+..\obj\timdelay.o: ..\Hardware\MQTT\MQTT.h
+..\obj\timdelay.o: ..\Hardware\Cloud\Cloud.h
+..\obj\timdelay.o: ..\Hardware\USART\usart.h
+..\obj\timdelay.o: D:\KEIL5\keil5\ARM\ARMCC\Bin\..\include\stdarg.h
+..\obj\timdelay.o: D:\KEIL5\keil5\ARM\ARMCC\Bin\..\include\string.h
+..\obj\timdelay.o: ..\Hardware\MatrixKey\MatrixKey.h

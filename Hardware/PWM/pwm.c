@@ -1,8 +1,99 @@
 #include "pwm.h"
 #include "time.h"
+#include "timdelay.h"
 
 unsigned char pwm_tim_mun = 2;
 unsigned char pwm_pin_value = 1,tim1_num1; // 
+unsigned char timL_num_high = 0;
+unsigned char timR_num_high = 0;
+
+
+void GPIO_ServosPwm_Init()
+{
+  { /* Enable peripheral clock                                                                              */
+	CKCU_PeripClockConfig_TypeDef CKCUClock = {{ 0 }};
+	CKCUClock.Bit.AFIO = 1;
+	CKCUClock.Bit.PC = 1;
+	CKCU_PeripClockConfig(CKCUClock, ENABLE);
+  }
+
+  { /* Configure GPIO as input mode                                                                         */
+
+    /* Configure AFIO mode as GPIO                                                                          */
+	AFIO_GPxConfig(GPIO_PC, AFIO_PIN_1|AFIO_PIN_5, AFIO_FUN_GPIO);
+
+    /* Configure GPIO pull resistor                                                                         */
+    GPIO_PullResistorConfig(HT_GPIOC, GPIO_PIN_1|GPIO_PIN_5, GPIO_PR_DOWN);
+    
+	/* Default value RESET/SET                                                                              */
+    GPIO_WriteOutBits(HT_GPIOC, GPIO_PIN_1|GPIO_PIN_5, RESET);
+	  
+    /* Configure GPIO direction as ouput                                                                    */
+    GPIO_DirectionConfig(HT_GPIOC, GPIO_PIN_1|GPIO_PIN_5, GPIO_DIR_OUT);
+	  
+		ServosL_control(CLOSE);
+		ServosR_control(CLOSE);
+  }
+}
+
+void servos1_angle(unsigned char angle)
+{
+
+	switch(angle)
+	{
+		case 0:timL_num_high = 2;break;
+		case 45:timL_num_high = 3;break;
+		case 90:timL_num_high = 4;break;
+		default:break;
+	}
+}
+
+void servos2_angle(unsigned char angle)
+{
+	switch(angle)
+	{
+		case 0:timR_num_high = 2;break;
+		case 45:timR_num_high = 3;break;
+		case 90:timR_num_high = 4;break;
+		default:break;
+	}
+}
+
+void ServosL_open()
+{
+	servos1_angle(45); // 左边舵机，角度变小是开
+}
+void ServosR_open()
+{
+	servos2_angle(90); // 右边舵机，角度变大是关
+}
+void ServosL_close()
+{
+	servos1_angle(90); 
+}
+void ServosR_close()
+{
+	servos2_angle(45);
+}
+
+// 信号为1就开，为0就关
+void ServosL_control(unsigned char single)
+{
+	switch(single)
+	{
+		case 0:ServosL_close();break;
+		case 1:ServosL_open();break;
+	}
+}
+void ServosR_control(unsigned char single)
+{
+	switch(single)
+	{
+		case 0:ServosR_close();break;
+		case 1:ServosR_open();break;
+	}
+}
+
 
 //输出四路PWM波控制后轮两个电机
 //arr：自动重装值

@@ -23,7 +23,10 @@
 #define P1_11 			GPIO_ReadInBit(HT_GPIOA, GPIO_PIN_11)
 
 extern unsigned char State;
+extern unsigned char sale_state;
 extern unsigned int  RoomNum ;
+extern unsigned int  WeightDelivey;
+extern unsigned int  WeightSale;
 
 void GPIO_MatrixKey_Configuration(void);
 unsigned char MatrixKey(void);

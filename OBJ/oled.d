@@ -54,3 +54,4 @@
 ..\obj\oled.o: D:\KEIL5\keil5\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\obj\oled.o: ..\Hardware\OLED\oledfont.h
 ..\obj\oled.o: ..\Hardware\DELAY\delay.h
+..\obj\oled.o: ..\Hardware\MatrixKey\MatrixKey.h

@@ -2,6 +2,7 @@
 #include "stdlib.h"
 #include "oledfont.h"  	 
 #include "delay.h"
+#include "MatrixKey.h"
 
 //OLED的显存
 //存放格式如下.
@@ -387,4 +388,14 @@ void OLED_Init(void)
 	
 	OLED_Clear();
 }  
+
+void state_show(void)
+{
+	if(State == 0)
+		OLED_ShowString(7*8,Y_2,"spare  ",16);
+	else if(State == 1)
+		OLED_ShowString(7*8,Y_2,"running",16);
+	else if(State == 2)
+		OLED_ShowString(7*8,Y_2,"notake ",16);
+}
 

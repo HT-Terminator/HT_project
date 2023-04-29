@@ -17,7 +17,14 @@ void HTCFG_TM_IRQHandler(void);
 extern unsigned int sctm_control_30ms;
 extern unsigned int sctm_encoder_30ms;
 extern unsigned int sctm_usart0_100ms;
-
+extern unsigned int sctm_servos1_num;
+extern unsigned int sctm_servos2_num;
+extern unsigned int sctm_weight_500ms;
+extern unsigned int sctm_pickup_2500ms;
+extern unsigned int sctm_mqtt_num;
+extern unsigned int sctm_cloud_500ms;
+extern unsigned int sctm_nopickup_10000ms;
+extern unsigned int sctm_left_500ms;
 
 
 

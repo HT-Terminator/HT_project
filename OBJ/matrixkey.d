@@ -57,3 +57,5 @@
 ..\obj\matrixkey.o: D:\KEIL5\keil5\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\obj\matrixkey.o: ..\Hardware\TRACK\track.h
 ..\obj\matrixkey.o: ..\Hardware\HX711\HX711.h
+..\obj\matrixkey.o: ..\Hardware\PWM\pwm.h
+..\obj\matrixkey.o: ..\Hardware\Cloud\Cloud.h

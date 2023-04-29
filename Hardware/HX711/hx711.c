@@ -3,12 +3,25 @@
 *************************************************************************************/
 #include "HX711.h"
 #include "delay.h"
+#include "oled.h"
+#include "MatrixKey.h"
+#include "timdelay.h"
+#include "pwm.h" 
+#include "Cloud.h"
 
 u32 HX711_Buffer_1;
 u32 Weight_Basic_1;
 volatile int Weight_Medicine_1;
+int weight_now;
+int weight_last;
+uint8_t diffbig=0;
 
-uint8_t pickup = 0;	//记录是否取货，未取货：0，已取货：1
+uint8_t pickup = 0;	//记录物品是否拿起，未拿起：0，已拿起：1
+uint8_t pickupover = 0;	//记录物品是否完全拿起，未拿起：0，已拿起：1
+uint8_t saleprice = 0;
+
+#define firstsale  	5
+#define secondsale  10
 
 //校准参数
 //因为不同的传感器特性曲线不是很一致，因此，每一个传感器需要矫正这里这个参数才能使测量值很准确。
@@ -83,7 +96,7 @@ void HX711_Init(void)
 //****************************************************
 //读取HX711
 //****************************************************
-u32 HX711_Read_1(void)	//增益128
+int HX711_Read_1(void)	//增益128
 {
 	unsigned long count; 
 	unsigned char i; 
@@ -119,16 +132,88 @@ void Get_Basic(void)
 //****************************************************
 void Get_Weight(void)
 {
+	int diff = 0;
+	weight_last = weight_now;
 	HX711_Buffer_1 = HX711_Read_1();
 	if(HX711_Buffer_1 > Weight_Basic_1)			
 	{
 		Weight_Medicine_1 = HX711_Buffer_1;
 		Weight_Medicine_1 = Weight_Medicine_1 - Weight_Basic_1;				//获取实物的AD采样数值。
-		Weight_Medicine_1 = (s32)((float)Weight_Medicine_1/GapValue); 	//计算实物的实际重量
+		Weight_Medicine_1 = (int)((float)Weight_Medicine_1/GapValue); 	//计算实物的实际重量
 	}
 	else
 	{
 		Weight_Medicine_1 = 0;
 	}
-
+	weight_now = Weight_Medicine_1;
+	OLED_ShowNum(3*8,Y_4,weight_now,4,16);
+	
+	diff = (int)(weight_last - weight_now);
+	
+	if(diff<0)
+		diff = -diff;
+	
+	
+	if(State == 2 && sale_state == 0){	//送货取货
+		if(diff > 15)
+			diffbig=1;
+	
+		if( diffbig == 1)
+			{
+				pickup = 1;
+				pickupover = 0;
+				if(sctm_pickup_2500ms >= 2500*2)
+				{
+					ServosR_control(CLOSE);
+					State  = 1;
+					pickupover = 1;
+					pickup = 0;
+					sctm_pickup_2500ms=0;
+					diffbig = 0;
+					Send.Pickup = 1;
+					Send.Change_Flag =1;
+					Send.State = 1;	//发送已取货
+					Cloud_All_Msg_Push();
+					state_show();
+				}
+			}
+	}
+	else if(State == 2 && sale_state == 1){	//售货取
+		if(diff > 15)
+			diffbig=1;
+	
+		if(diffbig == 1)
+		{
+			pickup = 1;
+			pickupover = 0;
+			if(sctm_pickup_2500ms >= 5500*2)
+				{
+					ServosL_control(CLOSE);
+					State  = 1;
+					pickupover = 1;
+					pickup = 0;
+					sctm_pickup_2500ms=0;
+					diffbig = 0;
+					Sell.Pickup = 1;				
+					Send.Change_Flag =1;
+					Send.State = 1;	//发送已取货
+					Cloud_All_Msg_Push();
+					state_show();
+				}
+			else if(sctm_pickup_2500ms >= 2500*2 && sctm_pickup_2500ms < 5000*2)
+				{
+					if(weight_now < 95+5 && weight_now > 95-5)
+						saleprice = firstsale;
+//						OLED_ShowNum(9*8,Y_4,firstsale,4,16);	//拿走第一种商品，显示5元
+					else if(weight_now < 95+10 && weight_now > 95)
+						saleprice = secondsale;
+					else
+						saleprice = 0;
+//						OLED_ShowNum(9*8,Y_4,secondsale,4,16);		//拿走第二种商品，显示10元
+//					sctm_pickup_2500ms=0;
+					OLED_ShowNum(12*8,Y_4,saleprice,2,16);
+				}
+		}
+	}
+//	OLED_ShowNum(8*8,Y_4,diff,4,16);
 }

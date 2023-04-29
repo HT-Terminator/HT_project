@@ -3,11 +3,17 @@
 #include "oled.h"
 #include "track.h"
 #include "HX711.h"
+#include "pwm.h"
+#include "Cloud.h"
 
-unsigned char State = 0;	//全过程状态记录
+unsigned char State = 0;	//全过程状态记录 0：停车 1：开车 2：待取货 
+unsigned char sale_state;	//售货与送货状态	0：送货，1：售货
 
 unsigned int Count ;
 unsigned int RoomNum ;
+
+unsigned int WeightDelivey = 1000;
+unsigned int WeightSale = 1000;
 
 void GPIO_MatrixKey_Configuration(void)
 {
@@ -146,14 +152,16 @@ void KeyProcess(unsigned char KeyNum)
 			{
 				if(RoomNum == 101 || RoomNum == 102 || RoomNum == 103 || RoomNum == 104)	//如果房间号等于正确房间号
 				{
-					OLED_ShowString(6*8,Y_2,"right",16);//显示正确
+					OLED_ShowString(0*8,Y_2,"right",16);//显示正确
 //					RoomNum=0;		//密码清零
 					Count=0;		//计次清零
+					pickupover = 0;
+					pickup = 0;
 //					OLED_ShowNum(6*8,Y_1,RoomNum,4,16);//更新显示
 				}
 				else				//否则
 				{
-					OLED_ShowString(6*8,Y_2,"error",16);//显示N,表错误
+					OLED_ShowString(0*8,Y_2,"error",16);//显示N,表错误
 					RoomNum=0;		//密码清零
 					Count=0;		//计次清零
 					OLED_ShowNum(6*8,Y_1,RoomNum,4,16);//更新显示
@@ -162,22 +170,69 @@ void KeyProcess(unsigned char KeyNum)
 					State = 1;
 				else 
 					State = 0;
-				OLED_ShowNum(6*8,Y_4,State,4,16);
+//				OLED_ShowNum(6*8,Y_4,State,1,16);
+				state_show();
+				
+		//		Get_Weight();
+				stop_state_room=0;
+				stop_state_startingpoint=0;
+				WeightDelivey = Weight_Medicine_1;	//获取送货重量
+				sale_state = 0;
+				Send.room = RoomNum;
+				Send.Distance = RoomNum - nowroom;
+				Send.Time = Send.Distance*5;
+				Send.Change_Flag = 1;
+				Cloud_All_Msg_Push();
+				
 			}
 			if(KeyNum==12)	//如果S12按键按下，取消
 			{
 				RoomNum=0;		//密码清零
 				Count=0;		//计次清零
-				OLED_ShowString(6*8,Y_2,"again",16);//显示N,表错误
+				OLED_ShowString(0*8,Y_2,"input",16);//显示N,表错误
 				OLED_ShowNum(6*8,Y_1,RoomNum,4,16);//更新显示
 				State = 0;
 				pickup = 0;
-				OLED_ShowNum(6*8,Y_4,State,4,16);
+				pickupover = 0;
+				saleprice = 0;
+//				Send.room = RoomNum;
+//				Send.Distance = RoomNum - nowroom;
+//				Send.Time = Send.Distance*5;
+				Send.State = 0;
+				Sell.State = 0;
+				Sell.Change_Flag = 1;
+				Send.Change_Flag = 1;
+				Cloud_All_Msg_Push();
+				
+//				OLED_ShowNum(6*8,Y_4,State,1,16);
+				state_show();
+				OLED_ShowNum(10*8,Y_4,saleprice,3,16);
 				nowroom = 100;
-				OLED_ShowNum(8*8,Y_3,nowroom,4,16);
+				OLED_ShowNum(12*6,Y_3,nowroom,3,16);
 			}
 			if(KeyNum==13)	//如果S13按键按下，继续前进
 			{
-				pickup = 1;
+				pickupover = 1;
 			}
+			if(KeyNum==14)
+			{
+				if(sale_state == 1)
+				{
+					ServosL_control(OPEN);
+	//				sale_state = 0;
+				}
+				else if(sale_state == 0)
+				{
+					ServosR_control(OPEN);
+	//				sale_state = 1;	//由云端发送售货信息后更改此标志位				
+				}
+			}
+			if(KeyNum==15)	//售货功能开关
+			{
+				WeightSale = Weight_Medicine_1;	//获取售货重量
+				sale_state = 1; //等待云端发送售货信号，该标志位置1
+				State = 1;
+				state_show();		
+			}
+			
 }

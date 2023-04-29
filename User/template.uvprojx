@@ -310,7 +310,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>1</Optim>
+            <Optim>0</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>1</OneElfS>
@@ -332,7 +332,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HT32_DRIVER, USE_HT32F52352_SK, USE_HT32F52342_52, USE_MEM_HT32F52352</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Code;..\Code\Include;..\Library\inc;..\Config;..\Utilities\common;..\Hardware\LED;..\Hardware\USART;..\Utilities;..\Utilities\HT32_Board;..\Hardware\PWM;..\Hardware\DELAY;..\Hardware\HX711;..\Hardware\MatrixKey;..\Hardware\OLED;..\Hardware\ISD1820;..\Hardware\ENCODER;..\Hardware\PID</IncludePath>
+              <IncludePath>..\Code;..\Code\Include;..\Library\inc;..\Config;..\Utilities\common;..\Hardware\LED;..\Hardware\USART;..\Utilities;..\Utilities\HT32_Board;..\Hardware\PWM;..\Hardware\DELAY;..\Hardware\HX711;..\Hardware\MatrixKey;..\Hardware\OLED;..\Hardware\ISD1820;..\Hardware\ENCODER;..\Hardware\PID;..\Hardware\TIM;..\Hardware\TRACK;..\Hardware\Cloud;..\Hardware\MQTT</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -391,11 +391,6 @@
           <GroupName>Hardware</GroupName>
           <Files>
             <File>
-              <FileName>led.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Hardware\LED\led.c</FilePath>
-            </File>
-            <File>
               <FileName>usart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Hardware\USART\usart.c</FilePath>
@@ -439,6 +434,26 @@
               <FileName>pid.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Hardware\PID\pid.c</FilePath>
+            </File>
+            <File>
+              <FileName>timdelay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Hardware\TIM\timdelay.c</FilePath>
+            </File>
+            <File>
+              <FileName>track.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Hardware\TRACK\track.c</FilePath>
+            </File>
+            <File>
+              <FileName>Cloud.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Hardware\Cloud\Cloud.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTT.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Hardware\MQTT\MQTT.c</FilePath>
             </File>
           </Files>
         </Group>

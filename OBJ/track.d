@@ -56,6 +56,12 @@
 ..\obj\track.o: ..\Config\ht32_board_config.h
 ..\obj\track.o: D:\KEIL5\keil5\ARM\ARMCC\Bin\..\include\stdlib.h
 ..\obj\track.o: ..\Hardware\USART\usart.h
+..\obj\track.o: D:\KEIL5\keil5\ARM\ARMCC\Bin\..\include\stdarg.h
+..\obj\track.o: D:\KEIL5\keil5\ARM\ARMCC\Bin\..\include\string.h
+..\obj\track.o: ..\Hardware\MQTT\MQTT.h
+..\obj\track.o: ..\Hardware\Cloud\Cloud.h
 ..\obj\track.o: ..\Hardware\ISD1820\isd1820.h
 ..\obj\track.o: ..\Hardware\MatrixKey\MatrixKey.h
 ..\obj\track.o: ..\Hardware\HX711\HX711.H
+..\obj\track.o: ..\Hardware\TIM\timdelay.h
+..\obj\track.o: ..\Hardware\DELAY\delay.h

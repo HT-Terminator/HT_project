@@ -43,6 +43,10 @@
 ..\obj\main.o: ..\Library\inc\ht32_div.h
 ..\obj\main.o: ..\Library\inc\ht32_rand.h
 ..\obj\main.o: ..\Hardware\USART\usart.h
+..\obj\main.o: D:\KEIL5\keil5\ARM\ARMCC\Bin\..\include\stdarg.h
+..\obj\main.o: D:\KEIL5\keil5\ARM\ARMCC\Bin\..\include\string.h
+..\obj\main.o: ..\Hardware\MQTT\MQTT.h
+..\obj\main.o: ..\Hardware\Cloud\Cloud.h
 ..\obj\main.o: ..\Hardware\PWM\pwm.h
 ..\obj\main.o: ..\Hardware\DELAY\delay.h
 ..\obj\main.o: ..\Hardware\HX711\hx711.h

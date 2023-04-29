@@ -44,3 +44,17 @@
 ..\obj\hx711.o: ..\Library\inc\ht32_div.h
 ..\obj\hx711.o: ..\Library\inc\ht32_rand.h
 ..\obj\hx711.o: ..\Hardware\DELAY\delay.h
+..\obj\hx711.o: ..\Hardware\OLED\oled.h
+..\obj\hx711.o: ..\Utilities\ht32_board.h
+..\obj\hx711.o: ..\Library\inc\ht32_config.h
+..\obj\hx711.o: ..\Utilities\HT32_board/ht32f52352_sk.h
+..\obj\hx711.o: ..\Utilities\common/i2c_eeprom.h
+..\obj\hx711.o: ..\Utilities\ht32_board.h
+..\obj\hx711.o: ..\Utilities\common/spi_flash.h
+..\obj\hx711.o: ..\Utilities\common/ebi_lcd.h
+..\obj\hx711.o: ..\Config\ht32_board_config.h
+..\obj\hx711.o: D:\KEIL5\keil5\ARM\ARMCC\Bin\..\include\stdlib.h
+..\obj\hx711.o: ..\Hardware\MatrixKey\MatrixKey.h
+..\obj\hx711.o: ..\Hardware\TIM\timdelay.h
+..\obj\hx711.o: ..\Hardware\PWM\pwm.h
+..\obj\hx711.o: ..\Hardware\Cloud\Cloud.h
