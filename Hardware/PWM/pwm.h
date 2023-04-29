@@ -2,7 +2,6 @@
 #define _PWM_H_
 #include "ht32f5xxxx_bftm.h"
 
-
 #define HTCFG_MCTM_CH0_GPIO_ID                      (GPIO_PA)
 #define HTCFG_MCTM_CH1_GPIO_ID                      (GPIO_PB)
 #define HTCFG_MCTM_CH2_GPIO_ID                      (GPIO_PB)
@@ -13,7 +12,7 @@
 #define HTCFG_MCTM_CH2_AFIO_PIN                     (AFIO_PIN_2)
 #define HTCFG_MCTM_CH3_AFIO_PIN                     (AFIO_PIN_3)
 
-//#define HTCFG_MCTM_RELOAD                           (48000000/2000)	//����2ms
+//#define HTCFG_MCTM_RELOAD                           (48000000/2000)	//锟斤拷锟斤拷2ms
 #define HTCFG_MCTM_RELOAD                           4800
 
 #define OPEN	1

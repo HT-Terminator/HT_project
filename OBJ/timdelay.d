@@ -2,6 +2,7 @@
 ..\obj\timdelay.o: ..\Hardware\PWM\pwm.h
 ..\obj\timdelay.o: ..\Library\inc\ht32f5xxxx_bftm.h
 ..\obj\timdelay.o: ..\Library\inc\ht32.h
+<<<<<<< HEAD
 ..\obj\timdelay.o: D:\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.44\ARM\INC\Holtek\HT32F5xxxx\ht32f5xxxx_01.h
 ..\obj\timdelay.o: D:\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.44\ARM\INC\Holtek\HT32F5xxxx\ht32_config.h
 ..\obj\timdelay.o: ..\Code\Include\core_cm0plus.h
@@ -12,6 +13,18 @@
 ..\obj\timdelay.o: ..\Library\inc\ht32f5xxxx_lib.h
 ..\obj\timdelay.o: ..\Library\inc\ht32f52342_52_libcfg.h
 ..\obj\timdelay.o: D:\KEIL5\keil5\ARM\ARMCC\Bin\..\include\stdio.h
+=======
+..\obj\timdelay.o: C:\zlg\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.38\ARM\INC\Holtek\HT32F5xxxx\ht32f5xxxx_01.h
+..\obj\timdelay.o: C:\zlg\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.38\ARM\INC\Holtek\HT32F5xxxx\ht32_config.h
+..\obj\timdelay.o: ..\Code\Include\core_cm0plus.h
+..\obj\timdelay.o: C:\zlg\KEIL5\keil5\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\timdelay.o: ..\Code\Include\core_cmInstr.h
+..\obj\timdelay.o: ..\Code\Include\core_cmFunc.h
+..\obj\timdelay.o: C:\zlg\KEIL5\keil5\ARM\PACK\Holtek\HT32_DFP\1.0.38\ARM\INC\Holtek\HT32F5xxxx\system_ht32f5xxxx_01.h
+..\obj\timdelay.o: ..\Library\inc\ht32f5xxxx_lib.h
+..\obj\timdelay.o: ..\Library\inc\ht32f52342_52_libcfg.h
+..\obj\timdelay.o: C:\zlg\KEIL5\keil5\ARM\ARMCC\Bin\..\include\stdio.h
+>>>>>>> 00baff4cd54284260955c2d0773a16d4d36686ed
 ..\obj\timdelay.o: ..\Config\ht32f5xxxx_conf.h
 ..\obj\timdelay.o: ..\Library\inc\ht32f5xxxx_adc.h
 ..\obj\timdelay.o: ..\Library\inc\ht32.h
@@ -44,6 +57,7 @@
 ..\obj\timdelay.o: ..\Library\inc\ht32_serial.h
 ..\obj\timdelay.o: ..\Library\inc\ht32_div.h
 ..\obj\timdelay.o: ..\Library\inc\ht32_rand.h
+<<<<<<< HEAD
 ..\obj\timdelay.o: D:\KEIL5\keil5\ARM\ARMCC\Bin\..\include\time.h
 ..\obj\timdelay.o: ..\Hardware\TIM\timdelay.h
 ..\obj\timdelay.o: ..\Hardware\TRACK\track.h
@@ -54,3 +68,7 @@
 ..\obj\timdelay.o: D:\KEIL5\keil5\ARM\ARMCC\Bin\..\include\stdarg.h
 ..\obj\timdelay.o: D:\KEIL5\keil5\ARM\ARMCC\Bin\..\include\string.h
 ..\obj\timdelay.o: ..\Hardware\MatrixKey\MatrixKey.h
+=======
+..\obj\timdelay.o: C:\zlg\KEIL5\keil5\ARM\ARMCC\Bin\..\include\time.h
+..\obj\timdelay.o: ..\Hardware\TIM\timdelay.h
+>>>>>>> 00baff4cd54284260955c2d0773a16d4d36686ed
